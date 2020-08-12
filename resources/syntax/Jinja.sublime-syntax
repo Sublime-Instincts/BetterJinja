@@ -1,0 +1,427 @@
+%YAML 1.2
+---
+file_extensions:
+  - j2
+  - jinja
+  - jinja2
+  - html.j2
+  - html.jinja
+  - html.jinja2
+  - htm.j2
+  - htm.jinja
+  - htm.jinja2
+scope: text.jinja
+
+variables:
+  digit: '[0-9]'
+  integers: '(?:{{digit}}*_)?{{digit}}+'
+  floats: '(?:(?:{{digit}}*_?)*)?(\.){{digit}}+(?:[eE]{{digit}}*)?'
+  identifiers: '[a-zA-Z_]+(?:{{digit}}*)?'
+
+  trim_block: '(?:[+-])'
+  logical_operators: \b(?:and|or|not|in|is)\b
+  builtin_tags: |-
+    (?x:
+      \b(?:
+          block|recursive|macro
+          |call|filter|set|extends|include|raw|debug|with
+          |autoescape|trans|pluralize|scoped|as|do
+      )\b
+    )
+  end_tags: |-
+    (?x:
+      \b(?:
+        endblock|endfor|endmacro|endif
+        |endautoescape|endverbatim|endapply|endembed
+        |endsandbox|endcall|endset|endraw|endtrans
+        |endfilter
+      )\b
+    )
+
+contexts:
+  main:
+    - match: ""
+      push: "Packages/HTML/HTML.sublime-syntax"
+      with_prototype:
+        - include: statement_blocks
+        - include: expression_blocks
+        - include: comments
+        - include: line_statements
+
+  ###[ Line Statements ]##################################################################
+
+  # TODO: Can we do something about the negative look behind ? The token is too simple. This will cause
+  # sregex to fall back to oniguruma, thus affecting performance.
+  line_statements:
+    - match: (?<!\S)\#{1}
+      scope: punctuation.definition.line-statement.jinja
+      push:
+        - meta_scope: meta.tag.line-statement.jinja
+        - match: ':'
+          scope: punctuation.terminator.jinja
+        - match: $\n?
+          pop: true
+        - include: match_keywords
+        - include: logical_operators
+
+  ###[ Statement Blocks ]##################################################################
+
+  statement_blocks:
+    - match: \{\%{{trim_block}}?
+      scope: punctuation.definition.statement.begin.jinja
+      push:
+        - meta_include_prototype: false
+        - meta_scope: meta.statement.jinja
+        - match: (\s+\-(?!\%))|(\-\s+(?=\%))
+          scope: invalid.illegal.jinja
+        - match: '{{trim_block}}?\%\}'
+          scope: punctuation.definition.statement.end.jinja
+          pop: true
+        # - include: import_statements
+        - include: get_item
+        - include: data_structures
+        - include: operators
+        - include: logical_operators
+        - include: constants
+        - include: others
+        - include: functions
+        - include: dot_accessor
+        - include: match_keywords
+        - include: match_identifiers
+        - include: common_expressions
+
+  ###[ Keywords ]##################################################################
+
+  match_keywords:
+    - include: match_keyword_for
+    - include: match_keyword_if
+    - include: match_keyword_else
+    - include: match_keyword_elif
+    - include: match_keyword_for
+    - include: match_tags
+    - include: match_keyword_continue
+    - include: match_keyword_break
+
+  others:
+    - match: (\bignore\b)\s{1}(?=\bmissing\b)
+      captures:
+        1: keyword.other.jinja
+    - match: (\bmissing\b)(?!\bignore\b\s{1})
+      captures:
+        1: keyword.other.jinja
+    - match: (\bwith\b)\s{1}(?=\bcontext\b)
+      captures:
+        1: keyword.other.jinja
+    - match: (\bcontext\b)(?!\bwith\b\s{1})
+      captures:
+        1: keyword.other.jinja
+    - match: (\bwithout\b)\s{1}(?=\bcontext\b)
+      captures:
+        1: keyword.other.jinja
+
+  match_keyword_if:
+    - match: \b(if)\b
+      scope: keyword.control.conditional.if.jinja
+
+  match_keyword_else:
+    - match: \b(else)\b
+      scope: keyword.control.conditional.else.jinja
+
+  match_keyword_elif:
+    - match: \b(elif)\b
+      scope: keyword.control.conditional.elseif.jinja
+
+  match_keyword_for:
+    - match: \b(for)\b
+      scope: keyword.control.loop.for.jinja
+
+  match_keyword_continue:
+    - match: \b(continue)\b
+      scope: keyword.control.flow.continue.jinja
+
+  match_keyword_break:
+    - match: \b(break)\b
+      scope: keyword.control.flow.break.jinja
+
+  match_tags:
+    - include: match_builtin_tags
+    - include: match_end_tags
+
+  match_builtin_tags:
+    - match: '{{builtin_tags}}'
+      scope: keyword.other.tag.jinja
+
+  match_end_tags:
+    - match: '{{end_tags}}'
+      scope: keyword.other.endtag.jinja
+
+  ###[ Comments ]##################################################################
+
+  comments:
+    - include: single_line_comments
+    - include: multi_line_comments
+
+  single_line_comments:
+    - match: \#\#
+      scope: punctuation.definition.comment.jinja
+      push:
+        - meta_scope: comment.line.jinja
+        - match: $\n?
+          pop: true
+
+  multi_line_comments:
+    - match: \{\#
+      scope: punctuation.definition.comment.begin.jinja
+      push:
+        - meta_scope: comment.block.jinja
+        - match: \#\}
+          scope: punctuation.definition.comment.end.jinja
+          pop: true
+
+  ###[ Expression Blocks ]##################################################################
+
+  expression_blocks:
+    - match: \{{2}
+      scope: punctuation.definition.placeholder.begin.jinja
+      push:
+        - meta_scope: meta.placeholder.jinja
+        - match: \}{2}
+          scope: punctuation.definition.placeholder.end.jinja
+          pop: true
+        - include: get_item
+        - include: data_structures
+        - include: match_keyword_if
+        - include: match_keyword_else
+        - include: logical_operators
+        - include: functions
+        - include: dot_accessor
+        - include: constants
+        - include: match_identifiers
+        - include: common_expressions
+        - include: operators
+
+  import_statements:
+    - match: \b(import)\b
+      scope: keyword.control.import.jinja
+      push:
+        - meta_scope: meta.statement.import.jinja
+        - match: (?=\S)
+          pop: true
+        - include: match_strings
+    - match: \b(from)\b
+      scope: keyword.control.import.from.jinja
+      push:
+        - meta_scope: meta.statement.import.jinja
+        - match: (?=\S)
+          pop: true
+        - include: match_strings
+
+  match_identifiers:
+    - match: \b_\b
+      scope: variable.language.blank.jinja
+    - match: '{{identifiers}}'
+      scope: variable.other.jinja
+
+  dot_accessor:
+    - match: \.
+      scope: punctuation.accessor.dot.jinja
+
+  item_seperator:
+    - match: \,
+      scope: punctuation.separator.sequence.jinja
+
+  functions:
+    - match: (\w+)(\()
+      captures:
+        1: variable.function.jinja
+        2: punctuation.section.arguments.begin.jinja
+      push:
+        - meta_content_scope: meta.function-call.arguments.jinja
+        - match: \)
+          scope: punctuation.section.arguments.end.jinja
+          pop: true
+        - include: get_item
+        - include: data_structures
+        - include: constants
+        - include: common_expressions
+        - include: parameters
+        - include: operators
+        - include: dot_accessor
+        - include: functions
+        - match: \,
+          scope: punctuation.separator.parameters.twig
+
+  parameters:
+    - match: '{{identifiers}}'
+      scope: variable.parameter.jinja
+
+  get_item:
+    - match: (\w+)(\[)
+      captures:
+        1: meta.item-access.jinja
+        2: meta.item-access.jinja punctuation.section.brackets.begin.jinja
+      push:
+        - meta_content_scope: meta.item-access.jinja
+        - match: \]
+          scope: meta.item-access.jinja punctuation.section.brackets.end.jinja
+          pop: true
+        - include: match_strings
+        - include: integers
+        - match: ':'
+          scope: punctuation.separator.slice.jinja
+
+  data_structures:
+    - include: lists
+    - include: dictionaries
+    - include: tuples
+
+  ###[ Lists ]##################################################################
+
+  lists:
+    - match: \[
+      scope: punctuation.section.sequence.begin.jinja
+      push:
+        - meta_scope: meta.sequence.list.jinja
+        - match: \]
+          scope: punctuation.section.sequence.end.jinja
+          pop: true
+        - include: data_structures
+        - include: item_seperator
+        - include: constants
+        - include: common_expressions
+
+  ###[ Dictionaries ]##################################################################
+
+  dictionaries:
+    - match: \{
+      scope: punctuation.section.mapping.begin.jinja
+      push:
+        - meta_scope: meta.mapping.jinja
+        - match: \}
+          scope: punctuation.section.mapping.end.jinja
+          pop: true
+        - include: data_structures
+        - include: common_expressions
+        - match: ':'
+          scope: punctuation.separator.mapping.key-value.jinja
+        - match: \,
+          scope: punctuation.separator.mapping.jinja
+
+  ###[ Tuples ]##################################################################
+
+  tuples:
+    - match: \(
+      scope: punctuation.section.sequence.begin.jinja
+      push:
+        - meta_scope: meta.sequence.tuple.jinja
+        - match: \)
+          scope: punctuation.section.sequence.end.jinja
+          pop: true
+        - include: data_structures
+        - include: common_expressions
+        - include: item_seperator
+
+  logical_operators:
+    - match: '{{logical_operators}}'
+      scope: keyword.operator.word.jinja
+
+  ###[ Common Expressions ]##################################################################
+
+  common_expressions:
+    - include: match_strings
+    - include: match_numbers
+
+  ###[ Strings ]##################################################################
+
+  match_strings:
+    - include: match_single_string
+    - include: match_double_string
+
+  match_single_string:
+    - match: \'
+      scope: punctuation.definition.string.begin.jinja
+      push:
+        - meta_scope: string.quoted.single.jinja
+        - match: \'
+          scope: punctuation.definition.string.end.jinja
+          pop: true
+        - include: within_strings
+
+  match_double_string:
+    - match: \"
+      scope: punctuation.definition.string.begin.jinja
+      push:
+        - meta_scope: string.quoted.double.jinja
+        - match: \"
+          scope: punctuation.definition.string.end.jinja
+          pop: true
+        - include: within_strings
+        - include: expression_blocks
+
+  within_strings:
+    - include: escape_characters
+    - include: printf_placeholder
+    - include: other_placeholder
+
+  other_placeholder:
+    - match: \{
+      scope: punctuation.definition.placeholder.begin.jinja
+      push:
+        - meta_scope: constant.other.placeholder.jinja
+        - match: \}
+          scope: punctuation.definition.placeholder.end.jinja
+          pop: true
+        - include: match_numbers
+        - include: operators
+        - include: match_identifiers
+
+  printf_placeholder:
+    - match: \%[\w]
+      scope: constant.other.placeholder.jinja
+
+  escape_characters:
+    - match: \{[\{\#]
+      scope: constant.character.escape.jinja
+
+  ###[ Operators ]##################################################################
+
+  operators: [
+    {match: \|   , scope: keyword.operator.logical.pipe.jinja},
+    {match: \>=  , scope: keyword.operator.comparison.jinja},
+    {match: \~   , scope: keyword.operator.concatenation.jinja},
+    {match: \<=  , scope: keyword.operator.comparison.jinja},
+    {match: \==  , scope: keyword.operator.comparison.jinja},
+    {match: \=   , scope: keyword.operator.assignment.jinja},
+    {match: \+   , scope: keyword.operator.arithmetic.jinja},
+    {match: \-   , scope: keyword.operator.arithmetic.jinja},
+    {match: \**  , scope: keyword.operator.arithmetic.jinja},
+    {match: \*   , scope: keyword.operator.arithmetic.jinja},
+    {match: \/\/ , scope: keyword.operator.arithmetic.jinja},
+    {match: \/   , scope: keyword.operator.arithmetic.jinja},
+    {match: \%   , scope: keyword.operator.arithmetic.jinja},
+    {match: \!=  , scope: keyword.operator.comparison.jinja},
+    {match: \>   , scope: keyword.operator.comparison.jinja},
+    {match: \<   , scope: keyword.operator.comparison.jinja},
+  ]
+
+  ###[ Constants ]##################################################################
+
+  constants:
+    - match: \b([Tt]rue|[Ff]alse|[Nn]one)\b
+      scope: constant.language.jinja
+
+  ###[ Numbers ]##################################################################
+
+  match_numbers:
+    - include: floats
+    - include: integers
+
+  integers:
+    - match: '{{integers}}'
+      scope: constant.numeric.integer.jinja
+
+  floats:
+    - match: '{{floats}}'
+      captures:
+        0: constant.numeric.float.jinja
+        1: punctuation.separator.decimal.jinja

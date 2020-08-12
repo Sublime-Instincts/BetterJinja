@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% filter ${1:filter_name} %}
+	${2:content}
+{% endfilter %}
+	]]></content>
+	<tabTrigger>jfilter</tabTrigger>
+	<scope>text.jinja</scope>
+	<description>Jinja2 filter</description>
+</snippet>

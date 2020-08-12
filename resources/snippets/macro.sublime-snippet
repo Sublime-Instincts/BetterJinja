@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% macro ${1:function} %}
+	${2:content}
+{% endmacro %}
+	]]></content>
+	<tabTrigger>jmacro</tabTrigger>
+	<scope>text.jinja</scope>
+	<description>Jinja2 macro</description>
+</snippet>

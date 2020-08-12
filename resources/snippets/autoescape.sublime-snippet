@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% autoescape ${1:boolean} %}
+	${2:content}
+{% endautoescape %}
+	]]></content>
+	<tabTrigger>jautoescape</tabTrigger>
+	<scope>text.jinja</scope>
+	<description>Jinja2 autoescape</description>
+</snippet>

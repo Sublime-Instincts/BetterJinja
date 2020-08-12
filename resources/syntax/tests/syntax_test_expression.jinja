@@ -1,0 +1,99 @@
+## SYNTAX TEST "Packages/BetterJinja/resources/syntax/Jinja.sublime-syntax"
+
+    {{  }}
+##  ^^meta.placeholder.jinja punctuation.definition.placeholder.begin.jinja
+##      ^^ meta.placeholder.jinja punctuation.definition.placeholder.end.jinja
+##  ^^^^^^ meta.placeholder.jinja
+
+    {{ + - * / ** // % }}
+##     ^ keyword.operator.arithmetic.jinja
+##       ^ keyword.operator.arithmetic.jinja
+##         ^ keyword.operator.arithmetic.jinja
+##           ^ keyword.operator.arithmetic.jinja
+##             ^^ keyword.operator.arithmetic.jinja
+##                ^^ keyword.operator.arithmetic.jinja
+##                   ^ keyword.operator.arithmetic.jinja
+
+    {{ >= <= == != < > }}
+##     ^^ keyword.operator.comparison.jinja
+##        ^^ keyword.operator.comparison.jinja
+##           ^^ keyword.operator.comparison.jinja
+##              ^^ keyword.operator.comparison.jinja
+##                 ^ keyword.operator.comparison.jinja
+##                   ^ keyword.operator.comparison.jinja
+
+    {{ = ~ }}
+##     ^ keyword.operator.assignment.jinja
+##       ^ keyword.operator.concatenation.jinja
+
+    {{ 1234567890 123.456789 123.456e789 }}
+##     ^^^^^^^^^^ constant.numeric.integer.jinja
+##                ^^^^^^^^^^ constant.numeric.float.jinja
+##                   ^ punctuation.separator.decimal.jinja
+##                           ^^^^^^^^^^^ constant.numeric.float.jinja
+
+    {{ "Hello, World" 'Hello, World' }}
+##     ^^^^^^^^^^^^^^ string.quoted.double.jinja
+##                    ^^^^^^^^^^^^^^ string.quoted.single.jinja
+##     ^ punctuation.definition.string.begin.jinja
+##                  ^ punctuation.definition.string.end.jinja
+##                    ^ punctuation.definition.string.begin.jinja
+##                                 ^ punctuation.definition.string.end.jinja
+
+    {{ [1, 2, 3, 4, 12.34] }}
+##     ^ punctuation.section.sequence.begin.jinja
+##                       ^ punctuation.section.sequence.end.jinja
+##     ^^^^^^^^^^^^^^^^^^^ meta.sequence.list.jinja
+##      ^ constant.numeric.integer.jinja
+##                  ^^^^^ constant.numeric.float.jinja
+
+    {{ ["a", 'c'] }}
+##      ^^^ string.quoted.double.jinja
+##           ^^^ string.quoted.single.jinja
+
+    {{ (1, 0.5, 'a', "b") }}
+##     ^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.jinja
+##      ^ constant.numeric.integer.jinja
+##         ^^^ constant.numeric.float.jinja
+##              ^^^ string.quoted.single.jinja
+##                   ^^^ string.quoted.double.jinja
+##     ^ punctuation.section.sequence.begin.jinja
+##                      ^ punctuation.section.sequence.end.jinja
+
+    {{ { "a": "b", 'c': 'd', "e": 123, "f": 123.456 } }}
+##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.jinja
+##     ^ punctuation.section.mapping.begin.jinja
+##                                                  ^ punctuation.section.mapping.end.jinja
+##       ^^^ string.quoted.double.jinja
+##                 ^^^ string.quoted.single.jinja
+##          ^ punctuation.separator.mapping.key-value.jinja
+##               ^ punctuation.separator.mapping.jinja
+##                 ^^^ string.quoted.single.jinja
+##                                ^^^ constant.numeric.integer.jinja
+##                                          ^^^^^^^ constant.numeric.float.jinja
+
+    {{ not in is and or }}
+##     ^^^ keyword.operator.word.jinja
+##         ^^ keyword.operator.word.jinja
+##            ^^ keyword.operator.word.jinja
+##               ^^^ keyword.operator.word.jinja
+##                   ^^ keyword.operator.word.jinja
+
+    {{ "foo {bar} baz" }}
+##          ^^^^^ constant.other.placeholder.jinja
+##          ^ punctuation.definition.placeholder.begin.jinja
+##              ^ punctuation.definition.placeholder.end.jinja
+##           ^^^ variable.other.jinja
+   
+    {{ "foo {1 + 2.3} baz" }}
+##           ^ constant.numeric.integer.jinja
+##               ^^^ constant.numeric.float.jinja
+##             ^ keyword.operator.arithmetic.jinja
+
+    {# #}
+##  ^^ punctuation.definition.comment.begin.jinja
+##     ^^ punctuation.definition.comment.end.jinja
+##  ^^^^^ comment.block.jinja
+
+    {{ foo.bar }}
+##        ^ punctuation.accessor.dot.jinja

@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% raw %}
+	${1:content}
+{% endraw %}
+	]]></content>
+	<tabTrigger>jraw</tabTrigger>
+	<scope>text.jinja</scope>
+	<description>Jinja2 raw block</description>
+</snippet>

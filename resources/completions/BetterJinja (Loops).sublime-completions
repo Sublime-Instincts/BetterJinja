@@ -1,0 +1,18 @@
+{
+	"scope": "text.jinja text.html.basic & (meta.placeholder.jinja | meta.statement.jinja)",
+	"completions": [
+		{ "trigger": "loop.index\tJinja2 Loop Variable", "contents": "loop.index", },
+		{ "trigger": "loop.index0\tJinja2 Loop Variable", "contents": "loop.index0", },
+		{ "trigger": "loop.revindex\tJinja2 Loop Variable", "contents": "loop.revindex", },
+		{ "trigger": "loop.revindex0\tJinja2 Loop Variable", "contents": "loop.revindex0", },
+		{ "trigger": "loop.first\tJinja2 Loop Variable", "contents": "loop.first", },
+		{ "trigger": "loop.last\tJinja2 Loop Variable", "contents": "loop.last", },
+		{ "trigger": "loop.length\tJinja2 Loop Variable", "contents": "loop.length", },
+		{ "trigger": "loop.cycle\tJinja2 Loop Variable", "contents": "loop.cycle", },
+		{ "trigger": "loop.depth\tJinja2 Loop Variable", "contents": "loop.depth", },
+		{ "trigger": "loop.depth0\tJinja2 Loop Variable", "contents": "loop.depth0", },
+		{ "trigger": "loop.previtem\tJinja2 Loop Variable", "contents": "loop.previtem", },
+		{ "trigger": "loop.nextitem\tJinja2 Loop Variable", "contents": "loop.nextitem", },
+		{ "trigger": "loop.changed\tJinja2 Loop Variable", "contents": "loop.changed()", },
+	],
+}

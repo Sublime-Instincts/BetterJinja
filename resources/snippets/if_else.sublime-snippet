@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+{% if ${1:condition} %}
+	${2:statement_1}
+{% else %}
+	${3:statement_2}
+{% endif %}
+	]]></content>
+	<tabTrigger>jifelse</tabTrigger>
+	<scope>text.jinja</scope>
+	<description>Jinja2 if else statement</description>
+</snippet>

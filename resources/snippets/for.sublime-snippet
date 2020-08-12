@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% for ${1:item} in ${2:sequence} %}
+	${3:content}
+{% endfor %}
+	]]></content>
+	<tabTrigger>jfor</tabTrigger>
+	<scope>text.jinja</scope>
+	<description>Jinja2 for loop</description>
+</snippet>
