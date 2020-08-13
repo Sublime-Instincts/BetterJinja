@@ -380,7 +380,7 @@ contexts:
       scope: constant.other.placeholder.jinja
 
   escape_characters:
-    - match: \{[\{\#]
+    - match: \\['"]
       scope: constant.character.escape.jinja
 
   ###[ Operators ]##################################################################

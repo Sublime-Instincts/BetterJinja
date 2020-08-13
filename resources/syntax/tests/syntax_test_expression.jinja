@@ -97,3 +97,9 @@
 
     {{ foo.bar }}
 ##        ^ punctuation.accessor.dot.jinja
+
+    {{ "This is a \" \' string" 'This is a \" \' string' }}
+##                ^^ constant.character.escape.jinja
+##                   ^^ constant.character.escape.jinja
+##                                         ^^ constant.character.escape.jinja
+##                                            ^^ constant.character.escape.jinja
