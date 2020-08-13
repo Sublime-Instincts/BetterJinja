@@ -26,6 +26,10 @@ assignees: Ultra-Instinct-05
 1. Step 1
 2. Step 2
 
+### Problematic Jinja2 template.
+
+[Please paste the problematic Jinja2 template wrapped in ``` (for GitHub flavored Markdown to recognise it as a code block). Please don't paste an Image !]
+
 ### Environment
 
 [The environment you experienced this bug in.]
