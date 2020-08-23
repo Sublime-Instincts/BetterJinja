@@ -37,6 +37,33 @@ variables:
         |endfilter
       )\b
     )
+  builtin_filters: |-
+    (?x:\b(?:
+      abs|attr|batch|capitalize|center|default|dictsort|escape|filesizeformat|
+      first|float|forceescape|format|groupby|indent|int|join|last|length|list|
+      lower|map|max|min|pprint|random|reject|rejectattr|replace|reverse|round|
+      safe|select|selectattr|slice|sort|string|striptags|sum|title|tojson|trim
+      |truncate|unique|upper|urlencode|urlize|wordcount|wordwrap|xmlattr|e|d|
+      count
+    )\b)
+  builtin_tests: |-
+    (?x:\b(?:
+      boolean|callable|defined|divisibleby|equalto|eq|escaped|even|false|float|
+      ge|gt|greaterthan|in|integer|iterable|le|lower|lt|lessthan|mapping|ne|
+      none|number|odd|sameas|sequence|string|true|undefined|upper
+    )\b)
+  builtin_globals: |-
+    (?x:
+      \b(?:
+        range|lipsum|dict|cycler|joiner|namespace
+      )\b
+    )
+  builtin_vars: |-
+    (?x:
+      \b(?:
+        loop
+      )\b
+    )
 
 contexts:
   main:
@@ -219,8 +246,10 @@ contexts:
   match_identifiers:
     - match: \b_\b
       scope: variable.language.blank.jinja
-    - match: '{{identifiers}}'
-      scope: variable.other.jinja
+    - match: '({{builtin_vars}})|({{identifiers}})'
+      captures:
+        1: support.constant.jinja
+        2: variable.other.jinja
 
   dot_accessor:
     - match: \.
@@ -231,10 +260,13 @@ contexts:
       scope: punctuation.separator.sequence.jinja
 
   functions:
-    - match: (\w+)(\()
+    - match: (?:({{builtin_globals}})|(\w+))(\()
+      # The non-global matched functions should only be user-defined functions.
+      # User-defined tests and filters are matched greedily.
       captures:
-        1: variable.function.jinja
-        2: punctuation.section.arguments.begin.jinja
+        1: support.function.global.jinja
+        2: variable.function.jinja
+        3: punctuation.section.arguments.begin.jinja
       push:
         - meta_content_scope: meta.function-call.arguments.jinja
         - match: \)
@@ -322,6 +354,20 @@ contexts:
         - include: item_seperator
 
   logical_operators:
+    - match: '\b(is) +(not)?\b'
+      captures:
+        1: keyword.operator.word.jinja
+        2: keyword.operator.word.jinja
+      # Greedily match the applied test to scope it.
+      push:
+        - match: '\b(?:({{builtin_tests}})|(\w+))\b'
+          captures:
+            1: support.function.test.jinja
+            2: variable.function.test.jinja
+          pop: true
+        - match: '\S'
+          scope: invalid.illegal.missing-test.jinja
+          pop: true
     - match: '{{logical_operators}}'
       scope: keyword.operator.word.jinja
 
@@ -385,8 +431,22 @@ contexts:
 
   ###[ Operators ]##################################################################
 
-  operators: [
-    {match: \|   , scope: keyword.operator.logical.pipe.jinja},
+  operators:
+    - match: \|
+      scope: keyword.operator.logical.pipe.jinja
+      # Greedily match the applied filter to scope it as a filter.
+      push:
+        - match: '\b(?:({{builtin_filters}})|({{identifiers}}))\b'
+          captures:
+            1: support.function.filter.jinja
+            2: variable.function.filter.jinja
+          pop: true
+        - match: '\S'
+          scope: invalid.illegal.missing-filter.jinja
+          pop: true
+    - include: other_operators
+
+  other_operators: [
     {match: \>=  , scope: keyword.operator.comparison.jinja},
     {match: \~   , scope: keyword.operator.concatenation.jinja},
     {match: \<=  , scope: keyword.operator.comparison.jinja},
