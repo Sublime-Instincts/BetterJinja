@@ -16,7 +16,7 @@ variables:
   digit: '[0-9]'
   integers: '(?:{{digit}}*_)?{{digit}}+'
   floats: '(?:(?:{{digit}}*_?)*)?(\.){{digit}}+(?:[eE]{{digit}}*)?'
-  identifiers: '[a-zA-Z_]+(?:{{digit}}*)?'
+  identifiers: '[a-zA-Z_][a-zA-Z0-9_]*'
 
   trim_block: '(?:[+-])'
   logical_operators: \b(?:and|or|not|in|is)\b
