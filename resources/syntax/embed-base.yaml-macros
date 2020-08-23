@@ -28,8 +28,6 @@ file_extensions: !add_suffix
 contexts:
   main:
     - match: ""
-      # Get the path to the syntax from the meta-variables, e.g.
-      # Packages/HTML/HTML.sublime-syntax
       push: !argument embedding_syntax_path
       with_prototype:
         - match: (?=##|\{\{|\{%|\{#)
