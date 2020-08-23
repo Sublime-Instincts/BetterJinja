@@ -1,5 +1,7 @@
 %YAML 1.2
 ---
+name: bash (Jinja2)
+scope: source.shell.bash.jinja
 file_extensions:
   - sh.jinja
   - sh.jinja2
@@ -71,13 +73,12 @@ contexts:
   main:
     - match: ''
       push: Packages/ShellScript/Bash.sublime-syntax
+      lines: false
       with_prototype:
-        - match: (?=##|\{\{|\{%|\{#)
+        - match: (?=\{(?:\{|%|#))
           push:
             - meta_scope: source.shell.bash source.jinja.embedded
             - clear_scopes: true
             - include: Jinja.sublime-syntax#main
             - match: ''
               pop: true
-name: bash (Jinja2)
-scope: source.shell.bash.jinja

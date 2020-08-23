@@ -1,5 +1,7 @@
 %YAML 1.2
 ---
+name: HTML (Jinja2)
+scope: text.html.basic.jinja
 file_extensions:
   - html.jinja
   - html.jinja2
@@ -17,13 +19,12 @@ contexts:
   main:
     - match: ''
       push: Packages/HTML/HTML.sublime-syntax
+      lines: true
       with_prototype:
-        - match: (?=##|\{\{|\{%|\{#)
+        - match: (?=##?|\{\{|\{%|\{#)
           push:
             - meta_scope: text.html.basic source.jinja.embedded
             - clear_scopes: true
             - include: Jinja.sublime-syntax#main
             - match: ''
               pop: true
-name: HTML (Jinja2)
-scope: text.html.basic.jinja

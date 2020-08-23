@@ -1,5 +1,7 @@
 %YAML 1.2
 ---
+name: JSON (Jinja2)
+scope: source.json.jinja
 file_extensions:
   - json.jinja
   - json.jinja2
@@ -47,13 +49,12 @@ contexts:
   main:
     - match: ''
       push: Packages/JavaScript/JSON.sublime-syntax
+      lines: true
       with_prototype:
-        - match: (?=##|\{\{|\{%|\{#)
+        - match: (?=##?|\{\{|\{%|\{#)
           push:
             - meta_scope: source.json source.jinja.embedded
             - clear_scopes: true
             - include: Jinja.sublime-syntax#main
             - match: ''
               pop: true
-name: JSON (Jinja2)
-scope: source.json.jinja

@@ -1,4 +1,5 @@
 """Custom macros for syntax embedding."""
+from collections import OrderedDict
 from itertools import product
 
 from YAMLMacros.api import raw_macro
@@ -6,7 +7,7 @@ from YAMLMacros.lib.include import include_resource
 
 
 @raw_macro
-def base_syntax(path, arguments, eval, name=None):
+def base_syntax(path, arguments, eval, name=None, line_statements=True):
     """
     Import variables from the base syntax to extend.
 
@@ -19,6 +20,10 @@ def base_syntax(path, arguments, eval, name=None):
     :type       eval:             callable
     :param      name:             The name of the syntax, None for autodetect.
     :type       name:             str|None
+    :param      line_statements:  Whether or not to use line statements.
+                                  Set to False if the host language uses `#`
+                                  for comments.
+    :type       line_statements:  boolean
 
     :returns:   YAML element after macro transformation. This is an empty dict
                 so that it can be used in an `apply` macro.
@@ -27,11 +32,15 @@ def base_syntax(path, arguments, eval, name=None):
     syntax_yaml = include_resource(path.value)
     if name is not None:
         name = eval(name)
+    if not isinstance(line_statements, bool):
+        line_statements = eval(line_statements)
+
     arguments['embedding_language'] = name or syntax_yaml.get('name', '')
     arguments['embedding_suffixes'] = syntax_yaml.get('file_extensions', [])
     arguments['embedding_syntax_path'] = path.value
     arguments['embedding_scope'] = syntax_yaml.get('scope', '')
-    return {}
+    arguments['enable_line_statements'] = line_statements
+    return OrderedDict()
 
 
 @raw_macro

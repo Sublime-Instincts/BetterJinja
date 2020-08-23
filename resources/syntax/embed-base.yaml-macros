@@ -29,8 +29,12 @@ contexts:
   main:
     - match: ""
       push: !argument embedding_syntax_path
+      lines: !argument enable_line_statements
       with_prototype:
-        - match: (?=##|\{\{|\{%|\{#)
+        - match: !if
+            condition: !argument enable_line_statements
+            then: '(?=##?|\{\{|\{%|\{#)'
+            else: '(?=\{(?:\{|%|#))'
           push:
             - meta_scope: !format '{embedding_scope} source.jinja.embedded'
             - clear_scopes: true

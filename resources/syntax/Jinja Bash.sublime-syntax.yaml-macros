@@ -5,4 +5,5 @@
 - !base_syntax
   path: Packages/ShellScript/Bash.sublime-syntax
   name: bash
+  line_statements: false
 - !include embed-base.yaml-macros
