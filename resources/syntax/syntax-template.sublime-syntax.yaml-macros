@@ -1,0 +1,17 @@
+%YAML 1.2
+%TAG ! tag:yaml-macros:YAMLMacros.lib.include,YAMLMacros.lib.extend,embed:
+---
+# Template for Jinja-embedding syntaxes. Replace the base syntax with the
+# desired host syntax.
+
+# We will apply the following macros.
+!apply
+# Mark which base (host) syntax we shall use using its path, e.g.
+# Packages/HTML/HTML.sublime-syntax
+# This will extract the necessary information from the syntax and set them
+# as meta-variables.
+- !base_syntax path/to/syntax.sublime-syntax
+# Include the base template, whose macros will be automatically expanded upon
+# import. The resulting YAML will be merged on top of an empty dict and will be
+# written out to the name of this file, minus the `.yaml-macros` extension.
+- !include embed-base.yaml-macros
