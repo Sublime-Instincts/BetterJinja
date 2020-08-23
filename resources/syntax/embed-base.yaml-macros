@@ -1,0 +1,25 @@
+%YAML 1.2
+%TAG ! tag:yaml-macros:YAMLMacros.lib.extend,YAMLMacros.lib.arguments,embed:
+---
+!merge
+name: !format 'Jinja ({embedding_language})'
+scope: !format '{embedding_scope}.jinja'
+file_extensions: !add_suffix
+  source: !argument embedding_suffixes
+  suffix:
+    - jinja
+    - jinja2
+    - j2
+
+contexts:
+  main:
+    - match: ""
+      push: !argument embedding_syntax_path
+      with_prototype:
+        - match: (?=##|\{\{|\{%|\{#)
+          push:
+            - meta_scope: !format '{embedding_scope} source.jinja.embedded'
+            - clear_scopes: true
+            - include: Jinja.sublime-syntax#main
+            - match: ''
+              pop: true

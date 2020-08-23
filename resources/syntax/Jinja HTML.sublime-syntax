@@ -1,0 +1,23 @@
+%YAML 1.2
+---
+file_extensions:
+  - html.jinja
+  - html.jinja2
+  - html.j2
+  - htm.jinja
+  - htm.jinja2
+  - htm.j2
+  - shtml.jinja
+  - shtml.jinja2
+  - shtml.j2
+  - xhtml.jinja
+  - xhtml.jinja2
+  - xhtml.j2
+scope: text.html.basic.jinja
+contexts:
+  main:
+    - match: ''
+      push: Packages/HTML/HTML.sublime-syntax
+      with_prototype:
+        - include: Jinja.sublime-syntax#main
+name: Jinja (HTML)

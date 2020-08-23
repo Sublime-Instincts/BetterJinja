@@ -1,0 +1,6 @@
+%YAML 1.2
+%TAG ! tag:yaml-macros:YAMLMacros.lib.include,YAMLMacros.lib.extend,embed:
+---
+!apply
+- !base_syntax Packages/ShellScript/Bash.sublime-syntax
+- !include embed-base.yaml-macros

@@ -1,0 +1,59 @@
+%YAML 1.2
+---
+file_extensions:
+  - json.jinja
+  - json.jinja2
+  - json.j2
+  - sublime-settings.jinja
+  - sublime-settings.jinja2
+  - sublime-settings.j2
+  - sublime-menu.jinja
+  - sublime-menu.jinja2
+  - sublime-menu.j2
+  - sublime-keymap.jinja
+  - sublime-keymap.jinja2
+  - sublime-keymap.j2
+  - sublime-mousemap.jinja
+  - sublime-mousemap.jinja2
+  - sublime-mousemap.j2
+  - sublime-theme.jinja
+  - sublime-theme.jinja2
+  - sublime-theme.j2
+  - sublime-build.jinja
+  - sublime-build.jinja2
+  - sublime-build.j2
+  - sublime-project.jinja
+  - sublime-project.jinja2
+  - sublime-project.j2
+  - sublime-completions.jinja
+  - sublime-completions.jinja2
+  - sublime-completions.j2
+  - sublime-commands.jinja
+  - sublime-commands.jinja2
+  - sublime-commands.j2
+  - sublime-macro.jinja
+  - sublime-macro.jinja2
+  - sublime-macro.j2
+  - sublime-color-scheme.jinja
+  - sublime-color-scheme.jinja2
+  - sublime-color-scheme.j2
+  - ipynb.jinja
+  - ipynb.jinja2
+  - ipynb.j2
+  - Pipfile.lock.jinja
+  - Pipfile.lock.jinja2
+  - Pipfile.lock.j2
+scope: source.json.jinja
+contexts:
+  main:
+    - match: ''
+      push: Packages/JavaScript/JSON.sublime-syntax
+      with_prototype:
+        - match: (?=##|\{\{|\{%|\{#)
+          push:
+            - meta_scope: source.json source.jinja.embedded
+            - clear_scopes: true
+            - include: Jinja.sublime-syntax#main
+            - match: ''
+              pop: true
+name: Jinja (JSON)

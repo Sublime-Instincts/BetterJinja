@@ -1,0 +1,83 @@
+%YAML 1.2
+---
+file_extensions:
+  - sh.jinja
+  - sh.jinja2
+  - sh.j2
+  - bash.jinja
+  - bash.jinja2
+  - bash.j2
+  - zsh.jinja
+  - zsh.jinja2
+  - zsh.j2
+  - ash.jinja
+  - ash.jinja2
+  - ash.j2
+  - .bash_aliases.jinja
+  - .bash_aliases.jinja2
+  - .bash_aliases.j2
+  - .bash_completions.jinja
+  - .bash_completions.jinja2
+  - .bash_completions.j2
+  - .bash_functions.jinja
+  - .bash_functions.jinja2
+  - .bash_functions.j2
+  - .bash_login.jinja
+  - .bash_login.jinja2
+  - .bash_login.j2
+  - .bash_logout.jinja
+  - .bash_logout.jinja2
+  - .bash_logout.j2
+  - .bash_profile.jinja
+  - .bash_profile.jinja2
+  - .bash_profile.j2
+  - .bash_variables.jinja
+  - .bash_variables.jinja2
+  - .bash_variables.j2
+  - .bashrc.jinja
+  - .bashrc.jinja2
+  - .bashrc.j2
+  - .profile.jinja
+  - .profile.jinja2
+  - .profile.j2
+  - .textmate_init.jinja
+  - .textmate_init.jinja2
+  - .textmate_init.j2
+  - .zlogin.jinja
+  - .zlogin.jinja2
+  - .zlogin.j2
+  - .zlogout.jinja
+  - .zlogout.jinja2
+  - .zlogout.j2
+  - .zprofile.jinja
+  - .zprofile.jinja2
+  - .zprofile.j2
+  - .zshenv.jinja
+  - .zshenv.jinja2
+  - .zshenv.j2
+  - .zshrc.jinja
+  - .zshrc.jinja2
+  - .zshrc.j2
+  - PKGBUILD.jinja
+  - PKGBUILD.jinja2
+  - PKGBUILD.j2
+  - .ebuild.jinja
+  - .ebuild.jinja2
+  - .ebuild.j2
+  - .eclass.jinja
+  - .eclass.jinja2
+  - .eclass.j2
+scope: source.shell.bash.jinja
+contexts:
+  main:
+    - match: ''
+      push: Packages/ShellScript/Bash.sublime-syntax
+      with_prototype:
+        - match: (?=##|\{\{|\{%|\{#)
+          push:
+            - meta_scope: source.shell.bash source.jinja.embedded
+            - clear_scopes: true
+            - include: Jinja.sublime-syntax#main
+            - match: ''
+              pop: true
+name: Jinja (Bourne Again Shell (bash))
