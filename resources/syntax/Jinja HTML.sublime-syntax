@@ -13,11 +13,17 @@ file_extensions:
   - xhtml.jinja
   - xhtml.jinja2
   - xhtml.j2
-scope: text.html.basic.jinja
 contexts:
   main:
     - match: ''
       push: Packages/HTML/HTML.sublime-syntax
       with_prototype:
-        - include: Jinja.sublime-syntax#main
-name: Jinja (HTML)
+        - match: (?=##|\{\{|\{%|\{#)
+          push:
+            - meta_scope: text.html.basic source.jinja.embedded
+            - clear_scopes: true
+            - include: Jinja.sublime-syntax#main
+            - match: ''
+              pop: true
+name: HTML (Jinja2)
+scope: text.html.basic.jinja

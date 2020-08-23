@@ -43,7 +43,6 @@ file_extensions:
   - Pipfile.lock.jinja
   - Pipfile.lock.jinja2
   - Pipfile.lock.j2
-scope: source.json.jinja
 contexts:
   main:
     - match: ''
@@ -56,4 +55,5 @@ contexts:
             - include: Jinja.sublime-syntax#main
             - match: ''
               pop: true
-name: Jinja (JSON)
+name: JSON (Jinja2)
+scope: source.json.jinja

@@ -2,5 +2,7 @@
 %TAG ! tag:yaml-macros:YAMLMacros.lib.include,YAMLMacros.lib.extend,embed:
 ---
 !apply
-- !base_syntax Packages/ShellScript/Bash.sublime-syntax
+- !base_syntax
+  path: Packages/ShellScript/Bash.sublime-syntax
+  name: bash
 - !include embed-base.yaml-macros

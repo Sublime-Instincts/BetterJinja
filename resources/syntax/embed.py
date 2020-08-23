@@ -6,21 +6,28 @@ from YAMLMacros.lib.include import include_resource
 
 
 @raw_macro
-def base_syntax(path, arguments):
-    """Import variables from the base syntax to extend.
+def base_syntax(path, arguments, eval, name=None):
+    """
+    Import variables from the base syntax to extend.
 
-    :param      path:       The path to the base syntax, e.g.
-                            Packages/HTML/HTML.sublime-syntax
-    :type       path:       str
-    :param      arguments:  Arguments injected by YAMLMacros
-    :type       arguments:  dict
+    :param      path:             The path to the base syntax, e.g.
+                                  Packages/HTML/HTML.sublime-syntax
+    :type       path:             str
+    :param      arguments:        Arguments injected by YAMLMacros
+    :type       arguments:        dict
+    :param      eval:             Evaluation function injected by YAMLMacros
+    :type       eval:             callable
+    :param      name:             The name of the syntax, None for autodetect.
+    :type       name:             str|None
 
     :returns:   YAML element after macro transformation. This is an empty dict
                 so that it can be used in an `apply` macro.
     :rtype:     dict
     """
     syntax_yaml = include_resource(path.value)
-    arguments['embedding_language'] = syntax_yaml.get('name', '')
+    if name is not None:
+        name = eval(name)
+    arguments['embedding_language'] = name or syntax_yaml.get('name', '')
     arguments['embedding_suffixes'] = syntax_yaml.get('file_extensions', [])
     arguments['embedding_syntax_path'] = path.value
     arguments['embedding_scope'] = syntax_yaml.get('scope', '')

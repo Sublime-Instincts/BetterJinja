@@ -6,11 +6,19 @@
 
 # We will apply the following macros.
 !apply
+
 # Mark which base (host) syntax we shall use using its path, e.g.
 # Packages/HTML/HTML.sublime-syntax
 # This will extract the necessary information from the syntax and set them
 # as meta-variables.
 - !base_syntax path/to/syntax.sublime-syntax
+# Alternatively:
+- !base_syntax
+  path: path/to/syntax.sublime-syntax
+  name: Syntax  # Use this to override automatic detection of syntax name.
+                # E.g. "bash" -> "bash (Jinja2)" instead of
+                # "Bourne Again Shell (bash) (Jinja2)"
+
 # Include the base template, whose macros will be automatically expanded upon
 # import. The resulting YAML will be merged on top of an empty dict and will be
 # written out to the name of this file, minus the `.yaml-macros` extension.

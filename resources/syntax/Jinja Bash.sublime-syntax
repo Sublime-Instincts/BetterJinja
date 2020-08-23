@@ -67,7 +67,6 @@ file_extensions:
   - .eclass.jinja
   - .eclass.jinja2
   - .eclass.j2
-scope: source.shell.bash.jinja
 contexts:
   main:
     - match: ''
@@ -80,4 +79,5 @@ contexts:
             - include: Jinja.sublime-syntax#main
             - match: ''
               pop: true
-name: Jinja (Bourne Again Shell (bash))
+name: bash (Jinja2)
+scope: source.shell.bash.jinja

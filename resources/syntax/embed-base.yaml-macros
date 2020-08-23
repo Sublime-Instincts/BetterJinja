@@ -9,7 +9,7 @@
 # meta-variables (see the per-syntax macros). In essence, this formats the name
 # of the syntax as "Jinja (HTML)" if the host language is HTML, Jinja (JSON)
 # for JSON, etc. Scopes are analogous, and become "source.html.basic.jinja" etc
-name: !format 'Jinja ({embedding_language})'
+name: !format '{embedding_language} (Jinja2)'
 scope: !format '{embedding_scope}.jinja'
 # Add the .jinja, .jinja2, .j2 suffixes to each file_extension listed in the
 # host syntax' file extensions, through a custom macro.
