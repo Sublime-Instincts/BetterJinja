@@ -38,20 +38,24 @@ variables:
       )\b
     )
   builtin_filters: |-
-    (?x:\b(?:
-      abs|attr|batch|capitalize|center|default|dictsort|escape|filesizeformat|
-      first|float|forceescape|format|groupby|indent|int|join|last|length|list|
-      lower|map|max|min|pprint|random|reject|rejectattr|replace|reverse|round|
-      safe|select|selectattr|slice|sort|string|striptags|sum|title|tojson|trim
-      |truncate|unique|upper|urlencode|urlize|wordcount|wordwrap|xmlattr|e|d|
-      count
-    )\b)
+    (?x:
+      \b(?:
+        abs|attr|batch|capitalize|center|default|dictsort|escape|filesizeformat|
+        first|float|forceescape|format|groupby|indent|int|join|last|length|list|
+        lower|map|max|min|pprint|random|reject|rejectattr|replace|reverse|round|
+        safe|select|selectattr|slice|sort|string|striptags|sum|title|tojson|trim
+        |truncate|unique|upper|urlencode|urlize|wordcount|wordwrap|xmlattr|e|d|
+        count
+      )\b
+    )
   builtin_tests: |-
-    (?x:\b(?:
-      boolean|callable|defined|divisibleby|equalto|eq|escaped|even|false|float|
-      ge|gt|greaterthan|in|integer|iterable|le|lower|lt|lessthan|mapping|ne|
-      none|number|odd|sameas|sequence|string|true|undefined|upper
-    )\b)
+    (?x:
+      \b(?:
+        boolean|callable|defined|divisibleby|equalto|eq|escaped|even|false|float|
+        ge|gt|greaterthan|in|integer|iterable|le|lower|lt|lessthan|mapping|ne|
+        none|number|odd|sameas|sequence|string|true|undefined|upper
+      )\b
+    )
   builtin_globals: |-
     (?x:
       \b(?:
@@ -354,7 +358,7 @@ contexts:
         - include: item_seperator
 
   logical_operators:
-    - match: '\b(is) +(not)?\b'
+    - match: '\b(is)\s+(not)?\b'
       captures:
         1: keyword.operator.word.jinja
         2: keyword.operator.word.jinja
