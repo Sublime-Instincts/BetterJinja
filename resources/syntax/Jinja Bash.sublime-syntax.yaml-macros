@@ -1,0 +1,9 @@
+%YAML 1.2
+%TAG ! tag:yaml-macros:YAMLMacros.lib.include,YAMLMacros.lib.extend,embed:
+---
+!apply
+- !base_syntax
+  path: Packages/ShellScript/Bash.sublime-syntax
+  name: bash
+  line_statements: false
+- !include embed-base.yaml-macros
