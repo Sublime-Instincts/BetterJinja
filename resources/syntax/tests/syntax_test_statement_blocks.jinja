@@ -15,13 +15,12 @@
 ## ^^^ meta.statement.jinja punctuation.definition.statement.begin.jinja
 ##      ^^^ meta.statement.jinja punctuation.definition.statement.end.jinja
 
-   {% if elif else endif is scoped %}
+   {% if elif else endif scoped %}
 ##    ^^ keyword.control.conditional.if.jinja
 ##       ^^^^ keyword.control.conditional.elseif.jinja
 ##            ^^^^ keyword.control.conditional.else.jinja
 ##                 ^^^^^ keyword.other.endtag.jinja
-##                       ^^ keyword.operator.word.jinja
-##                          ^^^^^^ keyword.other.tag.jinja
+##                       ^^^^^^ keyword.other.tag.jinja
 
    {% for item in items endfor %}
 ##    ^^^ keyword.control.loop.for.jinja
@@ -96,8 +95,9 @@
    {%- - %}
 ##     ^ invalid.illegal.jinja
 
-    {% | %}
+    {% | list %}
 ##     ^ keyword.operator.logical.pipe.jinja
+##       ^^^^ support.function.filter.jinja
 
     {% function(arg1 = value1, arg2 = value2) %}
 ##     ^^^^^^^^ variable.function.jinja
@@ -106,3 +106,6 @@
 ##                   ^ keyword.operator.assignment.jinja
 ##                           ^ punctuation.separator.parameters.twig
 ##                                          ^ punctuation.section.arguments.end.jinja
+
+   {% set ns = namespace() %}
+##             ^^^^^^^^^ support.function.global.jinja

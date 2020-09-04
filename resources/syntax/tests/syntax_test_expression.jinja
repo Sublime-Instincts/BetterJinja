@@ -72,19 +72,18 @@
 ##                                ^^^ constant.numeric.integer.jinja
 ##                                          ^^^^^^^ constant.numeric.float.jinja
 
-    {{ not in is and or }}
+    {{ not in and or }}
 ##     ^^^ keyword.operator.word.jinja
 ##         ^^ keyword.operator.word.jinja
-##            ^^ keyword.operator.word.jinja
-##               ^^^ keyword.operator.word.jinja
-##                   ^^ keyword.operator.word.jinja
+##            ^^^ keyword.operator.word.jinja
+##                ^^ keyword.operator.word.jinja
 
     {{ "foo {bar} baz" }}
 ##          ^^^^^ constant.other.placeholder.jinja
 ##          ^ punctuation.definition.placeholder.begin.jinja
 ##              ^ punctuation.definition.placeholder.end.jinja
 ##           ^^^ variable.other.jinja
-   
+
     {{ "foo {1 + 2.3} baz" }}
 ##           ^ constant.numeric.integer.jinja
 ##               ^^^ constant.numeric.float.jinja
@@ -103,3 +102,59 @@
 ##                   ^^ constant.character.escape.jinja
 ##                                         ^^ constant.character.escape.jinja
 ##                                            ^^ constant.character.escape.jinja
+
+   {{ foo is defined }}
+##    ^^^ variable.other.jinja
+##        ^^ keyword.operator.word.jinja
+##           ^^^^^^^ support.function.test.jinja
+
+   {{ foo is my_test }}
+##    ^^^ variable.other.jinja
+##        ^^ keyword.operator.word.jinja
+##           ^^^^^^^ variable.function.test.jinja
+
+   {{ foo is not defined }}
+##    ^^^ variable.other.jinja
+##        ^^ keyword.operator.word.jinja
+##           ^^^ keyword.operator.word.jinja
+##               ^^^^^^^ support.function.test.jinja
+
+   {{ foo is not my_test }}
+##    ^^^ variable.other.jinja
+##        ^^ keyword.operator.word.jinja
+##           ^^^ keyword.operator.word.jinja
+##               ^^^^^^^ variable.function.test.jinja
+
+   {{ foo | list }}
+##    ^^^ variable.other.jinja
+##        ^ keyword.operator.logical.pipe.jinja
+##          ^^^^ support.function.filter.jinja
+
+   {{ foo | my_list }}
+##    ^^^ variable.other.jinja
+##        ^ keyword.operator.logical.pipe.jinja
+##          ^^^^^^^ variable.function.filter.jinja
+
+   {{ foo | default([]) | list }}
+##    ^^^ variable.other.jinja
+##        ^ keyword.operator.logical.pipe.jinja
+##          ^^^^^^^ support.function.filter.jinja
+##                      ^ keyword.operator.logical.pipe.jinja
+##                        ^^^^ support.function.filter.jinja
+
+   {{ foo | int is in range(10) }}
+##    ^^^ variable.other.jinja
+##        ^ keyword.operator.logical.pipe.jinja
+##          ^^^ support.function.filter.jinja
+##              ^^ keyword.operator.word.jinja
+##                 ^^ support.function.test.jinja
+##                    ^^^^^ support.function.global.jinja
+
+   {{ loop.index }}
+##    ^^^^ support.constant.jinja
+
+   {{ my_loop.index }}
+##    ^^^^^^^ variable.other.jinja
+
+   {{ subl_cfg.config | dict2items }}
+##                      ^^^^^^^^^^ variable.function.filter.jinja
