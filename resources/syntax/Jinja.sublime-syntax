@@ -69,6 +69,19 @@ variables:
       )\b
     )
 
+  # This is mainly used as lookahead so as to distinguish between
+  # parenthesised expressions & tuples. This is borrowed from
+  # the python syntax.
+  simple_expression: |-
+    (?x:
+      (?: \s*
+        | ("(?:[^"]*)")  # Match double strings
+        | ('(?:[^']*)')  # Match single strings
+        | ({{integers}}) # Match integers
+        | ({{floats}})   # Match floats
+      )
+    )
+
 contexts:
   main:
     - match: ""
@@ -262,8 +275,7 @@ contexts:
         - match: \]
           scope: meta.item-access.jinja punctuation.section.brackets.end.jinja
           pop: true
-        - include: match_strings
-        - include: integers
+        - include: expressions
         - match: ':'
           scope: punctuation.separator.slice.jinja
 
@@ -298,7 +310,7 @@ contexts:
           scope: punctuation.separator.mapping.pair.jinja
 
   tuples:
-    - match: \(
+    - match: \((?={{simple_expression}}\,)
       scope: punctuation.section.sequence.begin.jinja
       push:
         - meta_scope: meta.sequence.tuple.jinja
@@ -307,6 +319,14 @@ contexts:
           pop: true
         - include: expressions
         - include: item_seperator
+    - match: \(
+      scope: punctuation.section.group.begin.jinja
+      push:
+        - meta_scope: meta.group.jinja
+        - match: \)
+          scope: punctuation.section.group.end.jinja
+          pop: true
+        - include: expressions
 
   logical_operators:
     - match: '\b(is)\s+(not)?\b'

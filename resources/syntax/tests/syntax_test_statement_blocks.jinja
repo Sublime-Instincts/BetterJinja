@@ -2,20 +2,23 @@
 
    {%  %}
 ## ^^^^^^ meta.statement.jinja
-## ^^ text.html.basic meta.statement.jinja punctuation.definition.statement.begin.jinja
-##     ^^ meta.statement.jinja punctuation.definition.statement.end.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##     ^^ punctuation.definition.statement.end.jinja
 
    {%+  +%}
 ## ^^^^^^^^ meta.statement.jinja
-## ^^^ meta.statement.jinja punctuation.definition.statement.begin.jinja
-##      ^^^ meta.statement.jinja punctuation.definition.statement.end.jinja
+## ^^^ punctuation.definition.statement.begin.jinja
+##      ^^^ punctuation.definition.statement.end.jinja
 
    {%-  -%}
 ## ^^^^^^^^ meta.statement.jinja
-## ^^^ meta.statement.jinja punctuation.definition.statement.begin.jinja
-##      ^^^ meta.statement.jinja punctuation.definition.statement.end.jinja
+## ^^^ punctuation.definition.statement.begin.jinja
+##      ^^^ punctuation.definition.statement.end.jinja
 
    {% if elif else endif scoped %}
+## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##                              ^^ punctuation.definition.statement.end.jinja
 ##    ^^ keyword.control.conditional.if.jinja
 ##       ^^^^ keyword.control.conditional.elseif.jinja
 ##            ^^^^ keyword.control.conditional.else.jinja
@@ -23,52 +26,85 @@
 ##                       ^^^^^^ keyword.other.tag.jinja
 
    {% for item in items endfor %}
+## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##                             ^^ punctuation.definition.statement.end.jinja
 ##    ^^^ keyword.control.loop.for.jinja
 ##             ^^ keyword.operator.word.jinja
 ##                      ^^^^^^ keyword.other.endtag.jinja
 ##        ^^^^ variable.other.jinja
 
    {% macro endmacro %}
+## ^^^^^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##                   ^^ punctuation.definition.statement.end.jinja
 ##    ^^^^^ keyword.other.tag.jinja
 ##          ^^^^^^^^ keyword.other.endtag.jinja
 
    {% raw endraw %}
+## ^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##               ^^ punctuation.definition.statement.end.jinja
 ##    ^^^ keyword.other.tag.jinja
 ##        ^^^^^^ keyword.other.endtag.jinja
 
    {% block endblock %}
+## ^^^^^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##                   ^^ punctuation.definition.statement.end.jinja
 ##    ^^^^^ keyword.other.tag.jinja
 ##          ^^^^^^^^ keyword.other.endtag.jinja
 
    {% autoescape endautoescape %}
+## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##                             ^^ punctuation.definition.statement.end.jinja
 ##    ^^^^^^^^^^ keyword.other.tag.jinja
 ##               ^^^^^^^^^^^^^ keyword.other.endtag.jinja
 
    {% call endcall %}
+## ^^^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##                 ^^ punctuation.definition.statement.end.jinja
 ##    ^^^^ keyword.other.tag.jinja
 ##         ^^^^^^^ keyword.other.endtag.jinja
 
    {% filter endfilter %}
+## ^^^^^^^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##                     ^^ punctuation.definition.statement.end.jinja
 ##    ^^^^^^ keyword.other.tag.jinja
 ##           ^^^^^^^^^ keyword.other.endtag.jinja
 
    {% set endset %}
+## ^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##               ^^ punctuation.definition.statement.end.jinja
 ##    ^^^ keyword.other.tag.jinja
 ##        ^^^^^^ keyword.other.endtag.jinja
 
    {% trans endtrans %}
+## ^^^^^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##                   ^^ punctuation.definition.statement.end.jinja
 ##    ^^^^^ keyword.other.tag.jinja
 ##          ^^^^^^^^ keyword.other.endtag.jinja
 
    {% set endset %}
+## ^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##               ^^ punctuation.definition.statement.end.jinja
 ##    ^^^ keyword.other.tag.jinja
 ##        ^^^^^^ keyword.other.endtag.jinja
 
    {% extends "index.html" %}
+## ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##                         ^^ punctuation.definition.statement.end.jinja
 ##    ^^^^^^^ keyword.other.tag.jinja
-##            ^^^^^^^^^^^^ string.quoted.double.jinja
-##            ^ string.quoted.double.jinja punctuation.definition.string.begin.jinja
-##                       ^ string.quoted.double.jinja punctuation.definition.string.end.jinja
+##            ^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
+##            ^ punctuation.definition.string.begin.jinja
+##                       ^ punctuation.definition.string.end.jinja
 
    {% include "sidebar.html" ignore missing with context %}
 ##    ^^^^^^^ keyword.other.tag.jinja
@@ -90,9 +126,15 @@
 
 
    {% - -%}
+## ^^^^^^^^ meta.statement.jinja
+## ^^ punctuation.definition.statement.begin.jinja
+##      ^^^ punctuation.definition.statement.end.jinja
 ##   ^^ invalid.illegal.jinja
 
    {%- - %}
+## ^^^^^^^^ meta.statement.jinja
+## ^^^ punctuation.definition.statement.begin.jinja
+##       ^^ punctuation.definition.statement.end.jinja
 ##     ^ invalid.illegal.jinja
 
     {% | list %}

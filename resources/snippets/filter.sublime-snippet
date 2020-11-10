@@ -5,6 +5,6 @@
 {% endfilter %}
 	]]></content>
 	<tabTrigger>jfilter</tabTrigger>
-	<scope>text.jinja</scope>
+	<scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
 	<description>Jinja2 filter</description>
 </snippet>

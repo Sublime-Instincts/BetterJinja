@@ -126,6 +126,17 @@
 ##                   ^^^ meta.string.jinja  string.quoted.double.jinja
 ##       ^ punctuation.separator.sequence.jinja
 
+    {{ (1 + 2) (1 not in [1, 2, 3]) }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
+##  ^^ punctuation.definition.placeholder.begin.jinja
+##                                  ^^ punctuation.definition.placeholder.end.jinja
+##     ^^^^^^^ meta.group.jinja
+##     ^ punctuation.section.group.begin.jinja
+##           ^ meta.group.jinja punctuation.section.group.end.jinja
+##             ^^^^^^^^^^^^^^^^^^^^ meta.group.jinja
+##             ^ punctuation.section.group.begin.jinja
+##                                ^ punctuation.section.group.end.jinja
+
     {{ { "a": "b", 'c': 'd', "e": 123, "f": 123.456 } }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
 ##  ^^ punctuation.definition.placeholder.begin.jinja
