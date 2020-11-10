@@ -182,16 +182,20 @@
 ##         ^^^ variable.other.jinja
 ##        ^ punctuation.accessor.dot.jinja
 
-    {{ "Character \" \' escape" 'Character \" \' escape' }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
+    {{ "Character \" \' {{ {% escape" 'Character \" \' {{ {% escape' }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
 ##  ^^ punctuation.definition.placeholder.begin.jinja
-##                                                       ^^ punctuation.definition.placeholder.end.jinja
-##     ^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
-##                              ^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.jinja string.quoted.single.jinja
+##                                                                   ^^ punctuation.definition.placeholder.end.jinja
+##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
+##                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.jinja string.quoted.single.jinja
 ##                ^^ constant.character.escape.jinja
 ##                   ^^ constant.character.escape.jinja
-##                                         ^^ constant.character.escape.jinja
-##                                            ^^ constant.character.escape.jinja
+##                      ^^ constant.character.escape.jinja
+##                         ^^ constant.character.escape.jinja
+##                                               ^^ constant.character.escape.jinja
+##                                                  ^^ constant.character.escape.jinja
+##                                                     ^^ constant.character.escape.jinja
+##                                                        ^^ constant.character.escape.jinja
 
    {{ foo is defined }}
 ##    ^^^ variable.other.jinja

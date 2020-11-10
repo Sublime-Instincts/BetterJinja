@@ -377,6 +377,8 @@ contexts:
   escape_characters:
     - match: \\['"]
       scope: constant.character.escape.jinja
+    - match: \{[{%]
+      scope: constant.character.escape.jinja
 
   operators:
     - match: \|
