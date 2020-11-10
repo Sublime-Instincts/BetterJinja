@@ -74,28 +74,30 @@ contexts:
     - match: ""
       push: "Packages/HTML/HTML.sublime-syntax"
       with_prototype:
+        - include: comments
         - include: statement_blocks
         - include: expression_blocks
-        - include: comments
-        - include: line_statements
 
-  ###[ Line Statements ]##################################################################
+  comments:
+    - include: single_line_comments
+    - include: multi_line_comments
 
-  # TODO: Can we do something about the negative look behind ? The token is too simple. This will cause
-  # sregex to fall back to oniguruma, thus affecting performance.
-  line_statements:
-    - match: (?<!\S)\#{1}
-      scope: punctuation.definition.line-statement.jinja
+  single_line_comments:
+    - match: \#\#
+      scope: punctuation.definition.comment.jinja
       push:
-        - meta_scope: meta.tag.line-statement.jinja
-        - match: ':'
-          scope: punctuation.terminator.jinja
+        - meta_scope: comment.line.jinja
         - match: $\n?
           pop: true
-        - include: match_keywords
-        - include: logical_operators
 
-  ###[ Statement Blocks ]##################################################################
+  multi_line_comments:
+    - match: \{\#
+      scope: punctuation.definition.comment.begin.jinja
+      push:
+        - meta_scope: comment.block.jinja
+        - match: \#\}
+          scope: punctuation.definition.comment.end.jinja
+          pop: true
 
   statement_blocks:
     - match: \{\%{{trim_block}}?
@@ -108,20 +110,31 @@ contexts:
         - match: '{{trim_block}}?\%\}'
           scope: punctuation.definition.statement.end.jinja
           pop: true
-        # - include: import_statements
-        - include: get_item
-        - include: data_structures
-        - include: operators
-        - include: logical_operators
-        - include: constants
-        - include: others
-        - include: functions
-        - include: dot_accessor
-        - include: match_keywords
-        - include: match_identifiers
-        - include: common_expressions
+        - include: expressions
 
-  ###[ Keywords ]##################################################################
+  expression_blocks:
+    - match: \{{2}
+      scope: punctuation.definition.placeholder.begin.jinja
+      push:
+        - meta_scope: meta.placeholder.jinja
+        - match: \}{2}
+          scope: punctuation.definition.placeholder.end.jinja
+          pop: true
+        - include: expressions
+
+  expressions:
+    - include: get_item
+    - include: data_structures
+    - include: match_keywords
+    - include: logical_operators
+    - include: functions
+    - include: dot_accessor
+    - include: constants
+    - include: match_identifiers
+    - include: strings
+    - include: numbers
+    - include: operators
+    - include: others
 
   match_keywords:
     - include: match_keyword_for
@@ -186,51 +199,6 @@ contexts:
     - match: '{{end_tags}}'
       scope: keyword.other.endtag.jinja
 
-  ###[ Comments ]##################################################################
-
-  comments:
-    - include: single_line_comments
-    - include: multi_line_comments
-
-  single_line_comments:
-    - match: \#\#
-      scope: punctuation.definition.comment.jinja
-      push:
-        - meta_scope: comment.line.jinja
-        - match: $\n?
-          pop: true
-
-  multi_line_comments:
-    - match: \{\#
-      scope: punctuation.definition.comment.begin.jinja
-      push:
-        - meta_scope: comment.block.jinja
-        - match: \#\}
-          scope: punctuation.definition.comment.end.jinja
-          pop: true
-
-  ###[ Expression Blocks ]##################################################################
-
-  expression_blocks:
-    - match: \{{2}
-      scope: punctuation.definition.placeholder.begin.jinja
-      push:
-        - meta_scope: meta.placeholder.jinja
-        - match: \}{2}
-          scope: punctuation.definition.placeholder.end.jinja
-          pop: true
-        - include: get_item
-        - include: data_structures
-        - include: match_keyword_if
-        - include: match_keyword_else
-        - include: logical_operators
-        - include: functions
-        - include: dot_accessor
-        - include: constants
-        - include: match_identifiers
-        - include: common_expressions
-        - include: operators
-
   import_statements:
     - match: \b(import)\b
       scope: keyword.control.import.jinja
@@ -276,14 +244,7 @@ contexts:
         - match: \)
           scope: punctuation.section.arguments.end.jinja
           pop: true
-        - include: get_item
-        - include: data_structures
-        - include: constants
-        - include: common_expressions
-        - include: parameters
-        - include: operators
-        - include: dot_accessor
-        - include: functions
+        - include: expressions
         - match: \,
           scope: punctuation.separator.parameters.twig
 
@@ -311,8 +272,6 @@ contexts:
     - include: dictionaries
     - include: tuples
 
-  ###[ Lists ]##################################################################
-
   lists:
     - match: \[
       scope: punctuation.section.sequence.begin.jinja
@@ -321,12 +280,7 @@ contexts:
         - match: \]
           scope: punctuation.section.sequence.end.jinja
           pop: true
-        - include: data_structures
-        - include: item_seperator
-        - include: constants
-        - include: common_expressions
-
-  ###[ Dictionaries ]##################################################################
+        - include: expressions
 
   dictionaries:
     - match: \{
@@ -336,14 +290,11 @@ contexts:
         - match: \}
           scope: punctuation.section.mapping.end.jinja
           pop: true
-        - include: data_structures
-        - include: common_expressions
+        - include: expressions
         - match: ':'
           scope: punctuation.separator.mapping.key-value.jinja
         - match: \,
           scope: punctuation.separator.mapping.jinja
-
-  ###[ Tuples ]##################################################################
 
   tuples:
     - match: \(
@@ -353,9 +304,7 @@ contexts:
         - match: \)
           scope: punctuation.section.sequence.end.jinja
           pop: true
-        - include: data_structures
-        - include: common_expressions
-        - include: item_seperator
+        - include: expressions
 
   logical_operators:
     - match: '\b(is)\s+(not)?\b'
@@ -375,33 +324,27 @@ contexts:
     - match: '{{logical_operators}}'
       scope: keyword.operator.word.jinja
 
-  ###[ Common Expressions ]##################################################################
+  strings:
+    - include: single_quoted_string
+    - include: double_quoted_string
 
-  common_expressions:
-    - include: match_strings
-    - include: match_numbers
-
-  ###[ Strings ]##################################################################
-
-  match_strings:
-    - include: match_single_string
-    - include: match_double_string
-
-  match_single_string:
+  single_quoted_string:
     - match: \'
       scope: punctuation.definition.string.begin.jinja
       push:
-        - meta_scope: string.quoted.single.jinja
+        - meta_include_prototype: false
+        - meta_scope: meta.string.jinja string.quoted.single.jinja
         - match: \'
           scope: punctuation.definition.string.end.jinja
           pop: true
         - include: within_strings
 
-  match_double_string:
+  double_quoted_string:
     - match: \"
       scope: punctuation.definition.string.begin.jinja
       push:
-        - meta_scope: string.quoted.double.jinja
+        - meta_include_prototype: false
+        - meta_scope: meta.string.jinja string.quoted.double.jinja
         - match: \"
           scope: punctuation.definition.string.end.jinja
           pop: true
@@ -432,8 +375,6 @@ contexts:
   escape_characters:
     - match: \\['"]
       scope: constant.character.escape.jinja
-
-  ###[ Operators ]##################################################################
 
   operators:
     - match: \|
@@ -468,15 +409,11 @@ contexts:
     {match: \<   , scope: keyword.operator.comparison.jinja},
   ]
 
-  ###[ Constants ]##################################################################
-
   constants:
     - match: \b([Tt]rue|[Ff]alse|[Nn]one)\b
       scope: constant.language.jinja
 
-  ###[ Numbers ]##################################################################
-
-  match_numbers:
+  numbers:
     - include: floats
     - include: integers
 
