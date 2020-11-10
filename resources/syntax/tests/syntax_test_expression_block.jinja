@@ -1,11 +1,14 @@
 ## SYNTAX TEST "Packages/BetterJinja/resources/syntax/Jinja.sublime-syntax"
 
     {{  }}
-##  ^^meta.placeholder.jinja punctuation.definition.placeholder.begin.jinja
-##      ^^ meta.placeholder.jinja punctuation.definition.placeholder.end.jinja
 ##  ^^^^^^ meta.placeholder.jinja
+##  ^^ punctuation.definition.placeholder.begin.jinja
+##      ^^ punctuation.definition.placeholder.end.jinja
 
     {{ + - * / ** // % }}
+##  ^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
+##  ^^ punctuation.definition.placeholder.begin.jinja
+##                     ^^ punctuation.definition.placeholder.end.jinja
 ##     ^ keyword.operator.arithmetic.jinja
 ##       ^ keyword.operator.arithmetic.jinja
 ##         ^ keyword.operator.arithmetic.jinja
@@ -15,6 +18,9 @@
 ##                   ^ keyword.operator.arithmetic.jinja
 
     {{ >= <= == != < > }}
+##  ^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
+##  ^^ punctuation.definition.placeholder.begin.jinja
+##                     ^^ punctuation.definition.placeholder.end.jinja
 ##     ^^ keyword.operator.comparison.jinja
 ##        ^^ keyword.operator.comparison.jinja
 ##           ^^ keyword.operator.comparison.jinja
@@ -23,8 +29,22 @@
 ##                   ^ keyword.operator.comparison.jinja
 
     {{ = ~ }}
+##  ^^^^^^^^^ meta.placeholder.jinja
+##  ^^ punctuation.definition.placeholder.begin.jinja
+##         ^^ punctuation.definition.placeholder.end.jinja
 ##     ^ keyword.operator.assignment.jinja
 ##       ^ keyword.operator.concatenation.jinja
+
+    {{ true false True False none None }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
+##  ^^ punctuation.definition.placeholder.begin.jinja
+##                                     ^^ punctuation.definition.placeholder.end.jinja
+##     ^^^^ constant.language.boolean.jinja
+##          ^^^^^ constant.language.boolean.jinja
+##                ^^^^ constant.language.boolean.jinja
+##                     ^^^^^ constant.language.boolean.jinja
+##                           ^^^^ constant.language.null.jinja
+##                                ^^^^ constant.language.null.jinja
 
     {{ 1234567890 123.456789 123.456e789 }}
 ##     ^^^^^^^^^^ constant.numeric.integer.jinja

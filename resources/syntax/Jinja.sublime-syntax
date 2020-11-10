@@ -391,27 +391,29 @@ contexts:
           pop: true
     - include: other_operators
 
-  other_operators: [
-    {match: \>=  , scope: keyword.operator.comparison.jinja},
-    {match: \~   , scope: keyword.operator.concatenation.jinja},
-    {match: \<=  , scope: keyword.operator.comparison.jinja},
-    {match: \==  , scope: keyword.operator.comparison.jinja},
-    {match: \=   , scope: keyword.operator.assignment.jinja},
-    {match: \+   , scope: keyword.operator.arithmetic.jinja},
-    {match: \-   , scope: keyword.operator.arithmetic.jinja},
-    {match: \**  , scope: keyword.operator.arithmetic.jinja},
-    {match: \*   , scope: keyword.operator.arithmetic.jinja},
-    {match: \/\/ , scope: keyword.operator.arithmetic.jinja},
-    {match: \/   , scope: keyword.operator.arithmetic.jinja},
-    {match: \%   , scope: keyword.operator.arithmetic.jinja},
-    {match: \!=  , scope: keyword.operator.comparison.jinja},
-    {match: \>   , scope: keyword.operator.comparison.jinja},
-    {match: \<   , scope: keyword.operator.comparison.jinja},
-  ]
+  other_operators:
+    - match: \~
+      scope: keyword.operator.concatenation.jinja
+    - match: '\={2}'
+      scope: keyword.operator.comparison.jinja
+    - match: '!\={1}'
+      scope: keyword.operator.comparison.jinja
+    - match: '='
+      scope: keyword.operator.assignment.jinja
+    - match: '[<>]='
+      scope: keyword.operator.comparison.jinja
+    - match: '[<>]'
+      scope: keyword.operator.comparison.jinja
+    - match: '[\*\/]{2}'
+      scope: keyword.operator.arithmetic.jinja
+    - match: '[\+\-\*\/\%]'
+      scope: keyword.operator.arithmetic.jinja
 
   constants:
-    - match: \b([Tt]rue|[Ff]alse|[Nn]one)\b
-      scope: constant.language.jinja
+    - match: \b([Tt]rue|[Ff]alse)\b
+      scope: constant.language.boolean.jinja
+    - match: \b([Nn]one)\b
+      scope: constant.language.null.jinja
 
   numbers:
     - include: floats
