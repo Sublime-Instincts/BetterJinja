@@ -1,4 +1,8 @@
 [
+	// This keybinding makes it easier to generate a statement block.
+	//
+	// When inside a {}, pressing % will insert % on both side of {} like so {% | %}, where
+	// | is the cursor.
 	{
 		"keys": ["%"],
 		"command": "insert_snippet",
@@ -6,12 +10,17 @@
 			"contents": "% ${0} %"
 		},
 		"context": [
-			{ "key": "selector", "operator": "equal", "operand": "text.jinja" },
+			{ "key": "selector", "operator": "equal", "operand": "text.jinja - meta.string - comment" },
 			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "}$", "match_all": true },
 		],
 	},
+
+	// This keybinding makes it easier to generate an expression block.
+	//
+	// When inside a {}, pressing { will insert {} in the inside of {} like so {{ | }}, where
+	// | is the cursor.
 	{
 		"keys": ["{"],
 		"command": "insert_snippet",
@@ -19,7 +28,7 @@
 			"contents": "{ ${0} }"
 		},
 		"context": [
-			{ "key": "selector", "operator": "equal", "operand": "text.jinja" },
+			{ "key": "selector", "operator": "equal", "operand": "text.jinja - meta.string - comment" },
 			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "}$", "match_all": true },
