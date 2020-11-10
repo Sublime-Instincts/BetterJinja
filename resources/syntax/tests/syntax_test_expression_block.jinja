@@ -150,15 +150,29 @@
 ##             ^^ keyword.operator.word.jinja
 
     {{ "foo {bar} baz" }}
-##          ^^^^^ constant.other.placeholder.jinja
-##          ^ punctuation.definition.placeholder.begin.jinja
-##              ^ punctuation.definition.placeholder.end.jinja
-##           ^^^ variable.other.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
+##  ^^ punctuation.definition.placeholder.begin.jinja
+##                     ^^ punctuation.definition.placeholder.end.jinja
+##     ^^^^^ meta.string.jinja string.quoted.double.jinja
+##               ^^^^^ meta.string.jinja string.quoted.double.jinja
+##          ^^^^^ meta.string.jinja meta.interpolation.jinja
+##          ^ punctuation.section.interpolation.begin.jinja
+##              ^ punctuation.section.interpolation.end.jinja
+##           ^^^ text.embedded.jinja variable.other.jinja
 
     {{ "foo {1 + 2.3} baz" }}
-##           ^ constant.numeric.integer.jinja
-##               ^^^ constant.numeric.float.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
+##  ^^ punctuation.definition.placeholder.begin.jinja
+##                         ^^ punctuation.definition.placeholder.end.jinja
+##     ^^^^^ meta.string.jinja string.quoted.double.jinja
+##                   ^^^^^ meta.string.jinja string.quoted.double.jinja
+##          ^^^^^^^^^ meta.string.jinja meta.interpolation.jinja
+##          ^ punctuation.section.interpolation.begin.jinja
+##                  ^ punctuation.section.interpolation.end.jinja
+##           ^^^^^^^ text.embedded.jinja
+##           ^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 ##             ^ keyword.operator.arithmetic.jinja
+##               ^^^ meta.number.float.decimal.jinja
 
     {{ foo.bar }}
 ##  ^^^^^^^^^^^^^ meta.placeholder.jinja

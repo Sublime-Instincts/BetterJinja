@@ -360,15 +360,15 @@ contexts:
 
   other_placeholder:
     - match: \{
-      scope: punctuation.definition.placeholder.begin.jinja
+      scope: punctuation.section.interpolation.begin.jinja
       push:
-        - meta_scope: constant.other.placeholder.jinja
+        - clear_scopes: 1
+        - meta_scope: meta.interpolation.jinja
+        - meta_content_scope: text.embedded.jinja
         - match: \}
-          scope: punctuation.definition.placeholder.end.jinja
+          scope: punctuation.section.interpolation.end.jinja
           pop: true
-        - include: match_numbers
-        - include: operators
-        - include: match_identifiers
+        - include: expressions
 
   printf_placeholder:
     - match: \%[\w]
