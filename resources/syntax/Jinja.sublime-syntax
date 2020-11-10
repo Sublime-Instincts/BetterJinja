@@ -150,14 +150,22 @@ contexts:
     - include: dot_accessor
 
   match_keywords:
-    - include: match_keyword_for
-    - include: match_keyword_if
-    - include: match_keyword_else
-    - include: match_keyword_elif
-    - include: match_keyword_for
-    - include: match_tags
-    - include: match_keyword_continue
-    - include: match_keyword_break
+    - match: \b(for)\b
+      scope: keyword.control.loop.for.jinja
+    - match: \b(if)\b
+      scope: keyword.control.conditional.if.jinja
+    - match: \b(else)\b
+      scope: keyword.control.conditional.else.jinja
+    - match: \b(elif)\b
+      scope: keyword.control.conditional.elseif.jinja
+    - match: \b(continue)\b
+      scope: keyword.control.flow.continue.jinja
+    - match: \b(break)\b
+      scope: keyword.control.flow.break.jinja
+    - match: '{{end_tags}}'
+      scope: keyword.other.endtag.jinja
+    - match: '{{builtin_tags}}'
+      scope: keyword.other.tag.jinja
 
   others:
     - match: (\bignore\b)\s{1}(?=\bmissing\b)
@@ -175,42 +183,6 @@ contexts:
     - match: (\bwithout\b)\s{1}(?=\bcontext\b)
       captures:
         1: keyword.other.jinja
-
-  match_keyword_if:
-    - match: \b(if)\b
-      scope: keyword.control.conditional.if.jinja
-
-  match_keyword_else:
-    - match: \b(else)\b
-      scope: keyword.control.conditional.else.jinja
-
-  match_keyword_elif:
-    - match: \b(elif)\b
-      scope: keyword.control.conditional.elseif.jinja
-
-  match_keyword_for:
-    - match: \b(for)\b
-      scope: keyword.control.loop.for.jinja
-
-  match_keyword_continue:
-    - match: \b(continue)\b
-      scope: keyword.control.flow.continue.jinja
-
-  match_keyword_break:
-    - match: \b(break)\b
-      scope: keyword.control.flow.break.jinja
-
-  match_tags:
-    - include: match_builtin_tags
-    - include: match_end_tags
-
-  match_builtin_tags:
-    - match: '{{builtin_tags}}'
-      scope: keyword.other.tag.jinja
-
-  match_end_tags:
-    - match: '{{end_tags}}'
-      scope: keyword.other.endtag.jinja
 
   import_statements:
     - match: \b(import)\b
@@ -257,6 +229,7 @@ contexts:
         - match: \)
           scope: punctuation.section.arguments.end.jinja
           pop: true
+        - include: parameters
         - include: expressions
         - match: \,
           scope: punctuation.separator.parameters.twig
@@ -282,7 +255,7 @@ contexts:
   data_structures:
     - include: lists
     - include: dictionaries
-    - include: tuples
+    - include: tuple_or_parenthesised_expression
 
   lists:
     - match: \[
@@ -309,7 +282,7 @@ contexts:
         - match: \,
           scope: punctuation.separator.mapping.pair.jinja
 
-  tuples:
+  tuple_or_parenthesised_expression:
     - match: \((?={{simple_expression}}\,)
       scope: punctuation.section.sequence.begin.jinja
       push:
