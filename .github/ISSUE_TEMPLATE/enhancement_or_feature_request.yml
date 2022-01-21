@@ -1,0 +1,20 @@
+---
+name: Enhancement or feature request.
+description: File an enhancement/feature request to make BetterJinja more amazing !
+
+body:
+  - type: textarea
+    attributes:
+      label: Description of your enhancement/feature request proposal.
+      description: |
+        A description of what enhancement and (or) feature request, you'd like to see in BetterJinja.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Alternatives.
+      description: |
+        What other alternatives currently exist that you are employing.
+    validations:
+      required: true
