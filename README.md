@@ -1,6 +1,7 @@
 # BetterJinja
 
-![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge)    ![LICENSE](https://img.shields.io/badge/ST-Build%203092+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterJinja?style=for-the-badge&logo=github&sort=semver)
+![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge) ![LICENSE](https://img.shields.io/badge/ST-Build%203092+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterJinja?style=for-the-badge&logo=github&sort=semver) ![Downloads](https://img.shields.io/packagecontrol/dt/Jinja2?style=for-the-badge)
+![Syntax tests](https://img.shields.io/github/workflow/status/Sublime-Instincts/BetterJinja/syntax_test?color=green&label=Syntax%20Tests&logo=github&logoColor=white&style=for-the-badge)
 
 A Sublime Text package that offers enhanced syntax highlighting, snippets, completions and much more for [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) templates. Read more for the full documentation.
 
@@ -34,8 +35,8 @@ In order to get the auto completions, go to `Preferences: Settings` from the com
 "auto_complete_selector": "text.jinja, meta.tag - punctuation.definition.tag.begin, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
 "auto_complete_triggers":
 [
-	{"characters": "<", "selector": "text.html"},
-	{"selector": "text.jinja, text.html.basic"},
+    {"characters": "<", "selector": "text.html"},
+    {"selector": "text.jinja, text.html.basic"},
 ]
 ```
 
@@ -67,7 +68,7 @@ Please follow the issue & feature request templates that have been setup while r
 ## License
 The MIT License (MIT)
 
-Copyright 2020 &copy; Ashwin Shenoy
+Copyright 2022 &copy; Ashwin Shenoy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

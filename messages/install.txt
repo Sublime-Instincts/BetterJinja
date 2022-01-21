@@ -20,15 +20,15 @@ BetterJinja, which means any of your jinja files will already be
 receiving syntax highlighting.
 
 The following file extensions are supported :-
-	- .j2
-	- .jinja
-	- .jinja2
-	- .htm.j2
-	- .htm.jinja
-	- .htm.jinja2
-	- .html.j2 
-	- .html.jinja
-	- .html.jinja2
+    - .j2
+    - .jinja
+    - .jinja2
+    - .htm.j2
+    - .htm.jinja
+    - .htm.jinja2
+    - .html.j2
+    - .html.jinja
+    - .html.jinja2
 
 Having Problems ?
 -----------------
