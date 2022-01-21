@@ -1,0 +1,66 @@
+name: syntax_test
+
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+    paths:
+      - '**/syntax_test_*'
+      - '**/*.hidden-tmLanguage'
+      - '**/*.sublime-syntax'
+      - '**/*.tmLanguage'
+      - '**/*.tmPreferences'
+      - '.github/workflows/syntax_test.yml'
+  pull_request:
+    branches:
+      - '*'
+    paths:
+      - '**/syntax_test_*'
+      - '**/*.hidden-tmLanguage'
+      - '**/*.sublime-syntax'
+      - '**/*.tmLanguage'
+      - '**/*.tmPreferences'
+      - '.github/workflows/syntax_test.yml'
+  workflow_dispatch:
+
+jobs:
+  run_syntax_tests:
+    name: Test on Build ${{ matrix.sublime-build }} (${{ matrix.sublime-channel }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: ${{ matrix.optional }}
+    strategy:
+      max-parallel: 2
+      fail-fast: false
+      matrix:
+        include:
+          - sublime-channel: stable
+            sublime-build: 4126
+            optional: false
+          - sublime-channel: dev
+            sublime-build: 4125
+            optional: false
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@master
+      - name: Get binary for Build ${{ matrix.sublime-build }} (${{ matrix.sublime-channel }})
+        run: |
+          wget -O st_syntax_tests.tar.xz https://download.sublimetext.com/st_syntax_tests_build_${{ matrix.sublime-build }}_x64.tar.xz
+          tar xf st_syntax_tests.tar.xz
+          mv st_syntax_tests/* ./
+          rm -R st_syntax_tests st_syntax_tests.tar.xz
+      - name: Move root dirs & files into "Data/Packages/BetterJinja" subdir (except for syntax_tests)
+        run: |
+          mkdir -p Data/Packages/BetterJinja
+          find . -maxdepth 1 -mindepth 1 -not -name 'Data' \! -name 'syntax_tests' -exec mv '{}' Data/Packages/BetterJinja ';'
+      - name: Download the HTML syntax and move it to Data/Packages
+        run: |
+          wget -O HTML.sublime-syntax https://raw.githubusercontent.com/sublimehq/Packages/master/HTML/HTML.sublime-syntax
+          wget -O 'HTML (Plain).sublime-syntax' 'https://raw.githubusercontent.com/sublimehq/Packages/master/HTML/HTML%20(Plain).sublime-syntax'
+          mkdir -p Data/Packages/HTML
+          mv HTML.sublime-syntax ./Data/Packages/HTML
+          mv 'HTML (Plain).sublime-syntax' ./Data/Packages/HTML
+      - name: Run syntax tests
+        run: ./syntax_tests
