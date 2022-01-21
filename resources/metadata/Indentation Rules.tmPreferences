@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
 <dict>
-	<key>scope</key>
-	<string>text.jinja text.html.basic</string>
-	<key>settings</key>
-	<dict>
-		<key>decreaseIndentPattern</key>
-		<string>^\s*\{\%[-]?\s*(endfor|endif|else|endblock|endmacro|endcall|endfilter|endset|endtrans|endwith|endautoescape)\b.*\s*\%\}\s*$</string>
-		<key>increaseIndentPattern</key>
-		<string>^\s*\{\%-?\s*\b(if|else|for|block|elif|macro|call|filter|set|trans|pluralize|with|autoescape)\b.*%}\s*$</string>
-		<key>disableIndentNextLinePattern</key>
-		<string></string>
-	</dict>
+    <key>scope</key>
+    <string>text.jinja text.html.basic</string>
+    <key>settings</key>
+    <dict>
+        <key>decreaseIndentPattern</key>
+        <string>(?x)
+            ^\s*\{\%[-]?\s*
+            (
+                endfor|endif|else|endblock|endmacro|endcall|endfilter|endset|
+                endtrans|endwith|endautoescape
+            )
+            \b.*\s*\%\}\s*$
+        </string>
+        <key>increaseIndentPattern</key>
+        <string>(?x)
+            ^\s*\{\%-?\s*\b
+            (
+                if|else|for|block|elif|macro|call|filter|set|trans|pluralize
+                |with|autoescape
+            )
+            \b.*%}\s*$</string>
+        <key>disableIndentNextLinePattern</key>
+        <string></string>
+    </dict>
 </dict>
 </plist>

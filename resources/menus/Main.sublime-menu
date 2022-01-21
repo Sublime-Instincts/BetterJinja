@@ -1,6 +1,6 @@
 [
-	{
-		"caption": "Preferences",
+    {
+        "caption": "Preferences",
         "mnemonic": "n",
         "id": "preferences",
         "children":
@@ -11,29 +11,29 @@
                 "id": "package-settings",
                 "children":
                 [
-                	{
-                		"caption": "BetterJinja",
-                		"children": [
-                			{
-                				"caption": "Documentation",
-                				"command": "open_url",
-                				"args": {
-                					"url": "https://github.com/Sublime-Instincts/BetterJinja/blob/master/README.md"
-                				},
-                			},
-                			{ "caption": "-", },
-                			{
-                				"caption": "Key Bindings",
-                				"command": "edit_settings",
-                				"args": {
-                					"base_file": "${packages}/BetterJinja/resources/keymaps/Default.sublime-settings",
-                					"default": "[\n\t${0}\n]\n",
-                				},
-                			}
-                		],
-                	}
+                    {
+                        "caption": "BetterJinja",
+                        "children": [
+                            {
+                                "caption": "Documentation",
+                                "command": "open_url",
+                                "args": {
+                                    "url": "https://github.com/Sublime-Instincts/BetterJinja/blob/master/README.md"
+                                },
+                            },
+                            { "caption": "-", },
+                            {
+                                "caption": "Key Bindings",
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/BetterJinja/resources/keymaps/Default.sublime-settings",
+                                    "default": "[\n\t${0}\n]\n",
+                                },
+                            }
+                        ],
+                    }
                 ]
             }
         ]
-	}
+    }
 ]
