@@ -1,10 +1,10 @@
 <snippet>
-	<content><![CDATA[
+    <content><![CDATA[
 {% if ${1:condition} %}
-	${2:statement_1}
+    ${2:statement_1}
 {% endif %}
-	]]></content>
-	<tabTrigger>jif</tabTrigger>
-	<scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
-	<description>Jinja2 if statement</description>
+    ]]></content>
+    <tabTrigger>jif</tabTrigger>
+    <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
+    <description>Jinja2 if statement</description>
 </snippet>

@@ -1,10 +1,10 @@
 <snippet>
-	<content><![CDATA[
+    <content><![CDATA[
 {% with ${1:assignment} %}
-	${2:content}
+    ${2:content}
 {% endwith %}
-	]]></content>
-	<tabTrigger>jwith</tabTrigger>
-	<scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
-	<description>Jinja2 with statement</description>
+    ]]></content>
+    <tabTrigger>jwith</tabTrigger>
+    <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
+    <description>Jinja2 with statement</description>
 </snippet>

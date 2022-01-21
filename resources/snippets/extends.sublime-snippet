@@ -1,8 +1,8 @@
 <snippet>
-	<content><![CDATA[
+    <content><![CDATA[
 {% extends "${1:template}" %}
-	]]></content>
-	<tabTrigger>jextends</tabTrigger>
-	<scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
-	<description>Jinja2 extends</description>
+    ]]></content>
+    <tabTrigger>jextends</tabTrigger>
+    <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
+    <description>Jinja2 extends</description>
 </snippet>
