@@ -1,11 +1,11 @@
 {
-	"scope": "text.jinja text.html.basic & (meta.placeholder.jinja | meta.statement.jinja)",
-	"completions": [
-		{ "trigger": "range\tJinja2 Function", "contents": "range()", },
-		{ "trigger": "lipsum\tJinja2 Function", "contents": "lipsum()", },
-		{ "trigger": "dict\tJinja2 Function", "contents": "dict()", },
-		{ "trigger": "cycler\tJinja2 Function", "contents": "cycler()", },
-		{ "trigger": "joiner\tJinja2 Function", "contents": "joiner()", },
-		{ "trigger": "namespace\tJinja2 Function", "contents": "namespace()", },
-	],
+    "scope": "text.jinja text.html.basic & (meta.placeholder.jinja | meta.statement.jinja)",
+    "completions": [
+        { "trigger": "range\tJinja2 Function", "contents": "range()", },
+        { "trigger": "lipsum\tJinja2 Function", "contents": "lipsum()", },
+        { "trigger": "dict\tJinja2 Function", "contents": "dict()", },
+        { "trigger": "cycler\tJinja2 Function", "contents": "cycler()", },
+        { "trigger": "joiner\tJinja2 Function", "contents": "joiner()", },
+        { "trigger": "namespace\tJinja2 Function", "contents": "namespace()", },
+    ],
 }
