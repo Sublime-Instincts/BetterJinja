@@ -1,6 +1,6 @@
 # BetterJinja
 
-![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge) ![LICENSE](https://img.shields.io/badge/ST-Build%203092+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterJinja?style=for-the-badge&logo=github&sort=semver) ![Downloads](https://img.shields.io/packagecontrol/dt/Jinja2?style=for-the-badge)
+![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge) ![LICENSE](https://img.shields.io/badge/ST-Build%204107+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterJinja?style=for-the-badge&logo=github&sort=semver) ![Downloads](https://img.shields.io/packagecontrol/dt/Jinja2?style=for-the-badge)
 ![Syntax tests](https://img.shields.io/github/workflow/status/Sublime-Instincts/BetterJinja/syntax_test?color=green&label=Syntax%20Tests&logo=github&logoColor=white&style=for-the-badge)
 
 A Sublime Text package that offers enhanced syntax highlighting, snippets, completions and much more for [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) templates. Read more for the full documentation.
@@ -9,6 +9,7 @@ A Sublime Text package that offers enhanced syntax highlighting, snippets, compl
 
 - Indentation for code blocks.
 - Snippets for common code blocks.
+- Key bindings to make your life easier.
 - Enhanced syntax highlighting for Jinja2 templates.
 - Autocompletions for built in tags, filters, functions, tests & loop variables.
 
@@ -20,6 +21,25 @@ The best way is to install it via [Package Control](https://packagecontrol.io/).
 You can also use `Package Control: Add Repository`. Copy the github url (without the `.git` at the end) and enter it into the input panel that pops up at the bottom when you select `Package Control: Add Repository`. Now use `Package Control: Install Package` and search for `BetterJinja` and install it.
 
 ## Documentation
+
+### How to use this package ?
+
+By default, this package supports the following Jinja2 extensions:
+`j2`, `jinja`, `jinja2`, `html.j2`, `html.jinja`, `html.jinja2`, `htm.j2`, `htm.jinja`, `htm.jinja2`.
+
+Since a user can have more than one templating language package installed, this package doesn't support `.html` directly. To get highlighting for `.html` files with Jinja2 code and all the other features this package provides, you can follow any of the two approaches given below
+
+1. Go to the bottom right status bar item that displays information on current syntax and click on that when the currently open file is any `.html` file. From there go to `Open all with current extensions as ...` and scroll to select `Jinja`. You should now be good to go.
+
+2. When the currently open file has any of the aforementioned file extensions, from the main menu, go to `Preferences -> Settings -- Syntax Specific`. This should open a 2 column new window, with the default settings on the right and a user settings on the left. In the user settings, add the following, save & close.
+
+```json
+{
+    "extensions": [
+        ".html"
+    ]
+}
+```
 
 ### Key bindings
 
@@ -44,6 +64,9 @@ If you already have these in your user settings, then just copy the Twig related
 
 ### Snippets
 
+`BetterJinja` only adds basic snippets for common code blocks. If you want more snippets, then please follow the official documentation on
+[snippets](https://www.sublimetext.com/docs/completions.html#snippets) and create your own.
+
 |  **Tab Trigger**  |           **Jinja2 Code Block**           |
 |-------------------|-------------------------------------------|
 |    ```jwith```    |       ```{% with %}{% endwith %}```       |
@@ -59,11 +82,19 @@ If you already have these in your user settings, then just copy the Twig related
 |    ```jblock```   |      ```{% block %}{% endblock %}```      |
 | ```jautoescape``` | ```{% autoescape %}{% endautoescape %}``` |
 
+If you want to ignore the snippets that are provided by default, you can use the `ignored_snippets` setting.
+
+`"ignored_snippets": ["BetterJinja/*"]`
+
 ## Issues & Feature requests.
 
 There is always scope for improvements so please do report any bug(s) that you encounter or request for feature(s) that this package should support.
 
 Please follow the issue & feature request templates that have been setup while reporting any bug(s) or requesting for feature(s) (So as to stay as organised as possible).
+
+## Acknowledgements.
+
+The [syntax_test.yml](https://github.com/Sublime-Instincts/BetterTwig/.github/workflows/syntax_test.yml) is taken & used (with some modifications) from the official [Packages](https://github.com/sublimehq/Packages) repository. So full credit goes to them for it.
 
 ## License
 The MIT License (MIT)
