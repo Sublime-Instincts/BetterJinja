@@ -87,53 +87,61 @@ contexts:
     - match: ""
       push: "Packages/HTML/HTML.sublime-syntax"
       with_prototype:
-        - include: comments
-        - include: statement_blocks
-        - include: expression_blocks
+        - include: comment
+        - include: statement_block
+        - include: expression_block
 
-  comments:
-    - include: single_line_comments
-    - include: multi_line_comments
+  comment:
+    - include: single_line_comment
+    - include: multi_line_comment
 
-  single_line_comments:
+  single_line_comment:
     - match: \#\#
       scope: punctuation.definition.comment.jinja
-      push:
-        - meta_scope: comment.line.jinja
-        - match: $\n?
-          pop: true
+      push: single_line_comment_body
 
-  multi_line_comments:
+  single_line_comment_body:
+    - meta_scope: comment.line.jinja
+    - match: $\n?
+      pop: true
+
+  multi_line_comment:
     - match: \{\#
       scope: punctuation.definition.comment.begin.jinja
-      push:
-        - meta_scope: comment.block.jinja
-        - match: \#\}
-          scope: punctuation.definition.comment.end.jinja
-          pop: true
+      push: multi_line_comment_body
 
-  statement_blocks:
+  multi_line_comment_body:
+    - meta_scope: comment.block.jinja
+    - match: \#\}
+      scope: punctuation.definition.comment.end.jinja
+      pop: true
+
+  statement_block:
     - match: \{\%{{trim_block}}?
       scope: punctuation.definition.statement.begin.jinja
-      push:
-        - meta_include_prototype: false
-        - meta_scope: meta.statement.jinja
-        - match: (\s+\-(?!\%))|(\-\s+(?=\%))
-          scope: invalid.illegal.jinja
-        - match: '{{trim_block}}?\%\}'
-          scope: punctuation.definition.statement.end.jinja
-          pop: true
-        - include: expressions
+      push: statement_block_body
 
-  expression_blocks:
+  statement_block_body:
+    - meta_include_prototype: false
+    - meta_scope: meta.statement.jinja
+    - match: (\s+\-(?!\%))|(\-\s+(?=\%))
+      scope: invalid.illegal.jinja
+    - match: '{{trim_block}}?\%\}'
+      scope: punctuation.definition.statement.end.jinja
+      pop: true
+    - include: expressions
+
+  expression_block:
     - match: \{{2}
       scope: punctuation.definition.placeholder.begin.jinja
-      push:
-        - meta_scope: meta.placeholder.jinja
-        - match: \}{2}
-          scope: punctuation.definition.placeholder.end.jinja
-          pop: true
-        - include: expressions
+      push: expression_block_body
+
+  expression_block_body:
+    - meta_scope: meta.placeholder.jinja
+    - match: \}{2}
+      scope: punctuation.definition.placeholder.end.jinja
+      pop: true
+    - include: expressions
 
   expressions:
     - include: get_item
@@ -143,7 +151,7 @@ contexts:
     - include: functions
     - include: constants
     - include: match_identifiers
-    - include: strings
+    - include: string
     - include: numbers
     - include: operators
     - include: others
@@ -319,32 +327,36 @@ contexts:
     - match: '{{logical_operators}}'
       scope: keyword.operator.word.jinja
 
-  strings:
+  string:
     - include: single_quoted_string
     - include: double_quoted_string
 
   single_quoted_string:
     - match: \'
       scope: punctuation.definition.string.begin.jinja
-      push:
-        - meta_include_prototype: false
-        - meta_scope: meta.string.jinja string.quoted.single.jinja
-        - match: \'
-          scope: punctuation.definition.string.end.jinja
-          pop: true
-        - include: within_strings
+      push: single_quoted_string_body
+
+  single_quoted_string_body:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.jinja string.quoted.single.jinja
+    - match: \'
+      scope: punctuation.definition.string.end.jinja
+      pop: true
+    - include: within_strings
 
   double_quoted_string:
     - match: \"
       scope: punctuation.definition.string.begin.jinja
-      push:
-        - meta_include_prototype: false
-        - meta_scope: meta.string.jinja string.quoted.double.jinja
-        - match: \"
-          scope: punctuation.definition.string.end.jinja
-          pop: true
-        - include: within_strings
-        - include: expression_blocks
+      push: double_quoted_string_body
+
+  double_quoted_string_body:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.jinja string.quoted.double.jinja
+    - match: \"
+      scope: punctuation.definition.string.end.jinja
+      pop: true
+    - include: within_strings
+    - include: expression_blocks
 
   within_strings:
     - include: escape_characters
