@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Auto completions for builtin tags, filters, tests and functions. 
 - Abiility to use <kbd>ctrl + /</kbd> for Jinja2 line comments & <kbd>ctrl + shift + /</kbd> for block comments.
 
-## [1.1.0] - 2022-01-
+## [1.1.0] - 2022-03-
 ### Added
 - Added command palette entries to open key bindings & documentation.
 - Updated all the completion files to use kind, annotation & details.
@@ -21,9 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Prevent snippets from triggering in certain places like strings etc.
-- Scope escape characters better in strings.
+- Better scoping for escape characters in strings.
 - Improved interpolation scopes.
-- Distinguish builtin filters/tests/globals/variables better.
+- Distinguish builtin filters/tests/globals/variables in a netter way.
 - General syntax cleanups.
 
 ### Removed
