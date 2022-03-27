@@ -3,14 +3,14 @@
 ![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge) ![LICENSE](https://img.shields.io/badge/ST-Build%204107+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterJinja?style=for-the-badge&logo=github&sort=semver) ![Downloads](https://img.shields.io/packagecontrol/dt/Jinja2?style=for-the-badge)
 ![Syntax tests](https://img.shields.io/github/workflow/status/Sublime-Instincts/BetterJinja/syntax_test?color=green&label=Syntax%20Tests&logo=github&logoColor=white&style=for-the-badge)
 
-A Sublime Text package that offers enhanced syntax highlighting, snippets, completions and much more for [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/) templates. Read more for the full documentation.
+A Sublime Text package that offers enhanced syntax highlighting, snippets, completions and much more for [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) templates. Read more for the full documentation.
 
 ## Features
 
 - Indentation for code blocks.
 - Snippets for common code blocks.
 - Key bindings to make your life easier.
-- Enhanced syntax highlighting for Jinja2 templates.
+- Enhanced syntax highlighting for Jinja templates.
 - Autocompletions for built in tags, filters, functions, tests & loop variables.
 
 ## Installation
@@ -24,10 +24,10 @@ You can also use `Package Control: Add Repository`. Copy the github url (without
 
 ### How to use this package ?
 
-By default, this package supports the following Jinja2 extensions:
+By default, this package supports the following Jinja extensions:
 `j2`, `jinja`, `jinja2`, `html.j2`, `html.jinja`, `html.jinja2`, `htm.j2`, `htm.jinja`, `htm.jinja2`.
 
-Since a user can have more than one templating language package installed, this package doesn't support `.html` directly. To get highlighting for `.html` files with Jinja2 code and all the other features this package provides, you can follow any of the two approaches given below
+Since a user can have more than one templating language package installed, this package doesn't support `.html` directly. To get highlighting for `.html` files with Jinja code and all the other features this package provides, you can follow any of the two approaches given below
 
 1. Go to the bottom right status bar item that displays information on current syntax and click on that when the currently open file is any `.html` file. From there go to `Open all with current extensions as ...` and scroll to select `Jinja`. You should now be good to go.
 
@@ -45,7 +45,7 @@ Since a user can have more than one templating language package installed, this 
 
 - The key bindings are configured so that pressing <kbd>shift + {</kbd> **twice** will automatically add spaces on both sides for the inner brace expression block & place the cursor in the center, like so `{{ | }}`.
 - |||ly pressing <kbd>shift + %</kbd> within `{}` will add spaces on both sides of the inner `%` like so `{% | %}`
-- You can use <kbd>ctrl + /</kbd> for inserting Jinja2 style line comments (`## This is a line comment`)
+- You can use <kbd>ctrl + /</kbd> for inserting Jinja style line comments (`## This is a line comment`)
 - Similarly, use <kbd>ctrl + shift + /</kbd> for block style comments (`{# This is a block comment #}`)
 
 ### Auto completions
@@ -67,7 +67,7 @@ If you already have these in your user settings, then just copy the Twig related
 `BetterJinja` only adds basic snippets for common code blocks. If you want more snippets, then please follow the official documentation on
 [snippets](https://www.sublimetext.com/docs/completions.html#snippets) and create your own.
 
-|  **Tab Trigger**  |           **Jinja2 Code Block**           |
+|  **Tab Trigger**  |           **Jinja Code Block**           |
 |-------------------|-------------------------------------------|
 |    ```jwith```    |       ```{% with %}{% endwith %}```       |
 |     ```jraw```    |         ```{% raw %}{% endraw %}```       |

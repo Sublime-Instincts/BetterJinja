@@ -6,13 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2020-08-12
 ### Added
-- Indentation for Jinja2 code blocks.
-- Snippets for commonly used Jinja2 blocks.
+- Indentation for Jinja code blocks.
+- Snippets for commonly used Jinja blocks.
 - The main syntax file along with syntax test for the scopes.
 - Auto completions for builtin tags, filters, tests and functions. 
-- Abiility to use <kbd>ctrl + /</kbd> for Jinja2 line comments & <kbd>ctrl + shift + /</kbd> for block comments.
+- Abiility to use <kbd>ctrl + /</kbd> for Jinja line comments & <kbd>ctrl + shift + /</kbd> for block comments.
 
-## [1.1.0] - 2022-03-
+## [1.1.0] - 2022-03-27
 ### Added
 - Added command palette entries to open key bindings & documentation.
 - Updated all the completion files to use kind, annotation & details.
@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Prevent snippets from triggering in certain places like strings etc.
 - Better scoping for escape characters in strings.
 - Improved interpolation scopes.
-- Distinguish builtin filters/tests/globals/variables in a netter way.
+- Distinguish builtin filters/tests/globals/variables in a better way.
 - General syntax cleanups.
 
 ### Removed

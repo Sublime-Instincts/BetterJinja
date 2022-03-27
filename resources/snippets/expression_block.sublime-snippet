@@ -4,4 +4,5 @@
     ]]></content>
     <tabTrigger>jexp</tabTrigger>
     <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
+    <description>Jinja expression</description>
 </snippet>

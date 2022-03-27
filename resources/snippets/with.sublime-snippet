@@ -6,5 +6,5 @@
     ]]></content>
     <tabTrigger>jwith</tabTrigger>
     <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
-    <description>Jinja2 with statement</description>
+    <description>Jinja with statement</description>
 </snippet>

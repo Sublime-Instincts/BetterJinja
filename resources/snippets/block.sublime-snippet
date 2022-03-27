@@ -6,5 +6,5 @@
     ]]></content>
     <tabTrigger>jblock</tabTrigger>
     <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
-    <description>Jinja2 block</description>
+    <description>Jinja block</description>
 </snippet>

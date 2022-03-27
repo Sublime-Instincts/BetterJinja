@@ -8,9 +8,9 @@
                                         |__/       
 ======================================================================
 
-BetterJinja is an enhanced syntax highlighting package for Jinja2 
+BetterJinja is an enhanced syntax highlighting package for Jinja
 templates for Sublime Text. It also provides snippets, completions, 
-automatic indentation for Jinja2 code blocks and more !
+automatic indentation for Jinja code blocks and more !
 
 Quick start
 -----------
