@@ -199,14 +199,12 @@ contexts:
         - meta_scope: meta.statement.import.jinja
         - match: (?=\S)
           pop: true
-        - include: match_strings
     - match: \b(from)\b
       scope: keyword.control.import.from.jinja
       push:
         - meta_scope: meta.statement.import.jinja
         - match: (?=\S)
           pop: true
-        - include: match_strings
 
   match_identifiers:
     - match: \b_\b
@@ -356,7 +354,6 @@ contexts:
       scope: punctuation.definition.string.end.jinja
       pop: true
     - include: within_strings
-    - include: expression_blocks
 
   within_strings:
     - include: escape_characters
