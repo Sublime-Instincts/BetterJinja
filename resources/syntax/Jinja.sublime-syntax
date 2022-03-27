@@ -144,6 +144,7 @@ contexts:
     - include: expressions
 
   expressions:
+    - include: others
     - include: get_item
     - include: data_structures
     - include: match_keywords
@@ -154,7 +155,6 @@ contexts:
     - include: string
     - include: numbers
     - include: operators
-    - include: others
     - include: dot_accessor
 
   match_keywords:
