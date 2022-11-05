@@ -1,0 +1,21 @@
+%YAML 1.2
+---
+name: HTML (Jinja)
+file_extensions:
+  - html.j2
+  - html.jinja
+  - html.jinja2
+  - htm.j2
+  - htm.jinja
+  - htm.jinja2
+scope: text.html.jinja
+
+extends: Jinja.sublime-syntax
+
+contexts:
+  main:
+    # Override parent syntax.
+    - match: ''
+      push: Packages/HTML/HTML.sublime-syntax
+      with_prototype:
+        - include: base
