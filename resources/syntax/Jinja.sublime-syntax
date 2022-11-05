@@ -1,15 +1,10 @@
 %YAML 1.2
 ---
+name: Jinja
 file_extensions:
   - j2
   - jinja
   - jinja2
-  - html.j2
-  - html.jinja
-  - html.jinja2
-  - htm.j2
-  - htm.jinja
-  - htm.jinja2
 scope: text.jinja
 
 variables:
@@ -84,12 +79,10 @@ variables:
 
 contexts:
   main:
-    - match: ""
-      push: "Packages/HTML/HTML.sublime-syntax"
-      with_prototype:
-        - include: comment
-        - include: statement_block
-        - include: expression_block
+    # NOTE: Syntax variants override this context.
+    - include: comment
+    - include: statement_block
+    - include: expression_block
 
   comment:
     - include: single_line_comment
