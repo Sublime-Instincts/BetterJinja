@@ -1,0 +1,19 @@
+%YAML 1.2
+---
+name: YAML (Jinja)
+file_extensions:
+  # Salt states.
+  - sls
+scope: source.yaml.jinja
+
+extends: Jinja.sublime-syntax
+
+contexts:
+  main:
+    # Override base syntax.
+    - match: ''
+      push: Packages/YAML/YAML.sublime-syntax
+      with_prototype:
+        - include: comment
+        - include: statement_block
+        - include: expression_block
