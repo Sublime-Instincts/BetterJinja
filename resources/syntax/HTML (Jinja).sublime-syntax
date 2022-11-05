@@ -14,10 +14,8 @@ extends: Jinja.sublime-syntax
 
 contexts:
   main:
-    # Override base syntax.
+    # Override parent syntax.
     - match: ''
       push: Packages/HTML/HTML.sublime-syntax
       with_prototype:
-        - include: comment
-        - include: statement_block
-        - include: expression_block
+        - include: base

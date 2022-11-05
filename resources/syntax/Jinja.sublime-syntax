@@ -80,6 +80,9 @@ variables:
 contexts:
   main:
     # NOTE: Syntax variants override this context.
+    - include: base
+
+  base:
     - include: comment
     - include: statement_block
     - include: expression_block
