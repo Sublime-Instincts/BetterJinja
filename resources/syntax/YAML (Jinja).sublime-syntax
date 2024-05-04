@@ -1,0 +1,86 @@
+%YAML 1.2
+---
+name: YAML (Jinja)
+scope: source.yaml.jinja
+version: 2
+
+extends: Packages/YAML/YAML.sublime-syntax
+
+file_extensions:
+  - yaml.jinja
+
+variables:
+  ns_plain_first_plain_in: |- # c=plain-in
+    (?x:
+        [^\s{{c_indicator}}]
+      | [?:-] [^\s{{c_flow_indicator}}]
+      | (?:[?:-] )?{{  # begins with jinja interpolation
+
+    )
+
+  ns_plain_first_plain_out: |- # c=plain-out
+    (?x:
+        [^\s{{c_indicator}}]
+      | [?:-] \S
+      | (?:[?:-] )?{{  # begins with jinja interpolation
+    )
+
+contexts:
+
+  block-scalar-body:
+    - meta_prepend: true
+    - include: jinja-interpolations
+
+  flow-scalar-plain-in-body:
+    - meta_prepend: true
+    - include: jinja-interpolations
+
+  flow-scalar-plain-out-body:
+    - meta_prepend: true
+    - include: jinja-interpolations
+
+  flow-scalar-double-quoted-body:
+    - meta_prepend: true
+    - include: jinja-interpolations
+
+  flow-scalar-single-quoted-body:
+    - meta_prepend: true
+    - include: jinja-interpolations
+
+  flow-collection:
+    - meta_prepend: true
+    - include: scope:text.jinja#statement_block
+
+  flow-mapping:
+    - match: \{(?!{)
+      scope: punctuation.definition.mapping.begin.yaml
+      push: flow-mapping-body
+
+  flow-mapping-body:
+    - meta_scope: meta.mapping.yaml
+    - match: \}(?!})
+      scope: punctuation.definition.mapping.end.yaml
+      pop: 1
+    - match: ','
+      scope: punctuation.separator.sequence.yaml
+    - include: flow-pair
+    - include: flow-node-11  # for sets
+
+###[ JINJA EXPRESSIONS ]#######################################################
+
+  jinja-interpolations:
+    - include: jinja-expression-blocks
+
+  jinja-expression-blocks:
+    - match: \{{2}
+      scope: punctuation.section.interpolation.begin.jinja
+      push: jinja-expression-block-body
+
+  jinja-expression-block-body:
+    - clear_scopes: 1  # remove `string` scope
+    - meta_include_prototype: false
+    - meta_scope: meta.interpolation.jinja
+    - match: \}{2}
+      scope: punctuation.section.interpolation.end.jinja
+      pop: 1
+    - include: scope:text.jinja#expressions
