@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% pluralize $1%}]]></content>
+	<tabTrigger>pluralize</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja pluralize statement tag</description>
+</snippet>

@@ -37,3 +37,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix package name "Jinja2" in various resource files (fixes #15)
 - Fix syntax tests not running (fixes #18)
 - Fix snippets' indentation
+
+## [2.0.0]
+
+- Reorganize whole package
+- Rewrite all syntax definitons extending ST's (CSS, JavaScript, JSON, HTML, Markdown, XML)
+- fix snippet indentation (now using tabs)

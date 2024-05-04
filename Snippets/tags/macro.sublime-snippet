@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% macro $1%}]]></content>
+	<tabTrigger>macro</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja macro tag</description>
+</snippet>

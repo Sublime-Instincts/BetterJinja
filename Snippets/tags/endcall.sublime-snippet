@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endcall %}]]></content>
+	<tabTrigger>endcall</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja endcall tag</description>
+</snippet>

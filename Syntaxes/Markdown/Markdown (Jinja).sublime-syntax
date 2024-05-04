@@ -1,0 +1,32 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: Markdown (Jinja)
+scope: text.html.markdown.jinja
+version: 2
+
+extends: Packages/Markdown/Markdown.sublime-syntax
+
+file_extensions:
+  - md.jinja
+  - md.jinja2
+  - md.j2
+  - jinja.md
+  - jinja2.md
+  - j2.md
+
+contexts:
+  prototype:
+    - meta_prepend: true
+    # exclude line comments and line statements
+    # to avoid conflicts with atx headings
+    - include: Text (Jinja).sublime-syntax#block-comments
+    - include: Text (Jinja).sublime-syntax#statement-blocks
+    - include: Text (Jinja).sublime-syntax#expression-blocks
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.jinja
+
+  html-content:
+    - include: HTML (Jinja).sublime-syntax#html

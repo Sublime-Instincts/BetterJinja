@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+{% if ${1:condition} %}
+${TM_TEMPLATE_INDENT}$1
+{% else %}
+${TM_TEMPLATE_INDENT}$0
+{% endif %}
+]]></content>
+	<tabTrigger>jifelse</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja if else statement</description>
+</snippet>

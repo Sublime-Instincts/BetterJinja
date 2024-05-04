@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% call ${1:function} %}
+${TM_TEMPLATE_INDENT}$0
+{% endcall %}
+]]></content>
+	<tabTrigger>jcall</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja call statement</description>
+</snippet>

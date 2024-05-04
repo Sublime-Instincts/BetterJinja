@@ -1,0 +1,223 @@
+# SYNTAX TEST "YAML (Jinja).sublime-syntax"
+%YAML 1.2
+---
+
+  {#  #}
+# ^^^^^^ meta.embedded.comment.jinja comment.block.jinja
+# ^^ punctuation.definition.comment.begin.jinja
+#     ^^ punctuation.definition.comment.end.jinja
+
+{# note: commented-out template because we no longer use this
+# <- meta.embedded.comment.jinja comment.block.jinja punctuation.definition.comment.begin.jinja
+
+    {% for user in users %}
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.comment.jinja comment.block.jinja - meta.embedded.statement
+        ...
+    {% endfor %}
+#  ^^^^^^^^^^^^^^ meta.embedded.comment.jinja comment.block.jinja - meta.embedded.statement
+#}
+# <- meta.embedded.comment.jinja comment.block.jinja punctuation.definition.comment.end.jinja
+
+key: "{{value}}"
+# <- meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#^^ meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#  ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#    ^ meta.string.yaml string.quoted.double.yaml punctuation.definition.string.begin.yaml
+#     ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
+#     ^^ punctuation.section.embedded.begin.jinja
+#       ^^^^^ variable.other.jinja
+#            ^^ punctuation.section.embedded.end.jinja
+#              ^ meta.string.yaml string.quoted.double.yaml punctuation.definition.string.end.yaml
+#               ^ - meta.mapping - meta.string - meta.embedded
+
+key: '{{value}}'
+# <- meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#^^ meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#  ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#    ^ meta.string.yaml string.quoted.single.yaml punctuation.definition.string.begin.yaml
+#     ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
+#     ^^ punctuation.section.embedded.begin.jinja
+#       ^^^^^ variable.other.jinja
+#            ^^ punctuation.section.embedded.end.jinja
+#              ^ meta.string.yaml string.quoted.single.yaml punctuation.definition.string.end.yaml
+#               ^ - meta.mapping - meta.string - meta.embedded
+
+key: {{value}}
+# <- meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#^^ meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#  ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#    ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
+#    ^^ punctuation.section.embedded.begin.jinja
+#      ^^^^^ variable.other.jinja
+#           ^^ punctuation.section.embedded.end.jinja
+#             ^ - meta.mapping - meta.string - meta.embedded
+
+key: my-{{value}}
+# <- meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#^^ meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#  ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#    ^^^ meta.string.yaml string.unquoted.plain.out.yaml - meta.embedded
+#       ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
+#       ^^ punctuation.section.embedded.begin.jinja
+#         ^^^^^ variable.other.jinja
+#              ^^ punctuation.section.embedded.end.jinja
+#                ^ - meta.mapping - meta.string - meta.embedded
+
+key: {{my}}-value
+# <- meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#^^ meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#  ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#    ^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
+#    ^^ punctuation.section.embedded.begin.jinja
+#      ^^ variable.other.jinja
+#        ^^ punctuation.section.embedded.end.jinja
+#          ^^^^^^ meta.string.yaml string.unquoted.plain.out.yaml - meta.embedded
+#                ^ - meta.mapping - meta.string - meta.embedded
+
+key: |
+  {{value}}
+  # <- meta.string.yaml meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+  #^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
+  #^ punctuation.section.embedded.begin.jinja
+  # ^^^^^ variable.other.jinja
+  #      ^^ punctuation.section.embedded.end.jinja
+  #        ^ meta.string.yaml string.unquoted.block.yaml - meta.embedded
+  string {{other}} value
+  # <- meta.string.yaml string.unquoted.block.yaml
+  #^^^^^^ meta.string.yaml string.unquoted.block.yaml - meta.embedded
+  #      ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
+  #               ^^^^^^^ meta.string.yaml string.unquoted.block.yaml - meta.embedded
+
+dict: {
+  key: {{ value }}
+# <- meta.mapping.yaml
+# ^^^ meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.in.yaml
+#    ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#      ^^^^^^^^^^^ meta.mapping.value.yaml meta.string.yaml meta.embedded.expression.jinja
+}
+# <- meta.mapping.yaml punctuation.definition.mapping.end.yaml
+
+key:
+  - {{ value + 20 }}
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
+#   ^^ punctuation.section.embedded.begin.jinja
+#      ^^^^^ variable.other.jinja
+#            ^ keyword.operator.arithmetic.jinja
+#              ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+#                 ^^ punctuation.section.embedded.end.jinja
+  - {{ value + 20 }} with {# comment #} in it
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
+#                   ^^^^^^ meta.string.yaml - meta.embedded
+#                         ^^^^^^^^^^^^^ meta.string.yaml meta.embedded.comment.jinja comment.block.jinja
+#                                      ^^^^^^ meta.string.yaml - meta.embedded
+#   ^^^^^^^^^^^^^^^^ - string
+#   ^^ punctuation.section.embedded.begin.jinja
+#      ^^^^^ variable.other.jinja
+#            ^ keyword.operator.arithmetic.jinja
+#              ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+#                 ^^ punctuation.section.embedded.end.jinja
+#                   ^^^^^^ string.unquoted.plain.out.yaml
+#                         ^^^^^^^^^^^^^ - string
+#                         ^^ punctuation.definition.comment.begin.jinja
+#                                    ^^ punctuation.definition.comment.end.jinja
+#                                      ^^^^^^ string.unquoted.plain.out.yaml
+  - string {{ value + 20 }}
+# ^ punctuation.definition.block.sequence.item.yaml
+#   ^^^^^^^ meta.string.yaml string.unquoted.plain.out.yaml
+#          ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
+#          ^^ punctuation.section.embedded.begin.jinja
+#             ^^^^^ variable.other.jinja
+#                   ^ keyword.operator.arithmetic.jinja
+#                     ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+#                        ^^ punctuation.section.embedded.end.jinja
+
+key: [
+  {{ value + 20 }},
+# <- meta.sequence.flow.yaml
+#^^^^^^^^^^^^^^^^^^^ meta.sequence.flow.yaml
+# ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
+# ^^ punctuation.section.embedded.begin.jinja
+#    ^^^^^ variable.other.jinja
+#          ^ keyword.operator.arithmetic.jinja
+#            ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+#               ^^ punctuation.section.embedded.end.jinja
+#                 ^ punctuation.separator.sequence.yaml
+  {{ value + 20 }}string,
+# <- meta.sequence.flow.yaml
+#^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.flow.yaml
+# ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
+# ^^ punctuation.section.embedded.begin.jinja
+#    ^^^^^ variable.other.jinja
+#          ^ keyword.operator.arithmetic.jinja
+#            ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+#               ^^ punctuation.section.embedded.end.jinja
+#                 ^^^^^^ meta.string.yaml string.unquoted.plain.in.yaml
+#                       ^ punctuation.separator.sequence.yaml
+  string{{ value + 20 }}
+# <- meta.sequence.flow.yaml
+#^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.flow.yaml
+# ^^^^^^ meta.string.yaml string.unquoted.plain.in.yaml
+#       ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
+#       ^^ punctuation.section.embedded.begin.jinja
+#          ^^^^^ variable.other.jinja
+#                ^ keyword.operator.arithmetic.jinja
+#                  ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+#                     ^^ punctuation.section.embedded.end.jinja
+]
+# <- meta.sequence.flow.yaml punctuation.definition.sequence.end.yaml
+
+my-{{key}}: {{value}}
+# <- meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#^^ meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#  ^^^^^^^ meta.mapping.key.yaml meta.string.yaml meta.embedded.expression.jinja
+#         ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#           ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
+
+{{key}}-name: {{value}}
+# <- punctuation.section.embedded.begin.jinja
+#^^^^^^ meta.string.yaml meta.embedded.expression.jinja
+#      ^^^^^ meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
+#           ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#             ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
+
+{% if true %}
+# <- meta.embedded.statement.jinja punctuation.section.embedded.begin.jinja
+#^^^^^^^^^^^^ meta.embedded.statement.jinja
+#^ punctuation.section.embedded.begin.jinja
+#  ^^ keyword.control.conditional.if.jinja
+#     ^^^^ constant.language.boolean.jinja
+#          ^^ punctuation.section.embedded.end.jinja
+
+{% else %}
+# <- meta.embedded.statement.jinja punctuation.section.embedded.begin.jinja
+#^^^^^^^^^ meta.embedded.statement.jinja
+#^ punctuation.section.embedded.begin.jinja
+#  ^^^^ keyword.control.conditional.else.jinja
+#       ^^ punctuation.section.embedded.end.jinja
+
+{% endif %}
+# <- meta.embedded.statement.jinja punctuation.section.embedded.begin.jinja
+#^^^^^^^^^^ meta.embedded.statement.jinja
+#^ punctuation.section.embedded.begin.jinja
+#  ^^^^^ keyword.other.endtag.jinja
+#        ^^ punctuation.section.embedded.end.jinja
+
+dict: {
+  {% if true %}
+# ^^^^^^^^^^^^^ meta.mapping.yaml meta.embedded.statement.jinja
+# ^^ punctuation.section.embedded.begin.jinja
+#    ^^ keyword.control.conditional.if.jinja
+#       ^^^^ constant.language.boolean.jinja
+#            ^^ punctuation.section.embedded.end.jinja
+}
+
+list: [
+  {% if true %}
+# ^^^^^^^^^^^^^ meta.sequence.flow.yaml meta.embedded.statement.jinja
+# ^^ punctuation.section.embedded.begin.jinja
+#    ^^ keyword.control.conditional.if.jinja
+#       ^^^^ constant.language.boolean.jinja
+#            ^^ punctuation.section.embedded.end.jinja
+]

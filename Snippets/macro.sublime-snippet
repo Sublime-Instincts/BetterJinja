@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% macro ${1:function} %}
+${TM_TEMPLATE_INDENT}$0
+{% endmacro %}
+]]></content>
+	<tabTrigger>jmacro</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja macro statement</description>
+</snippet>

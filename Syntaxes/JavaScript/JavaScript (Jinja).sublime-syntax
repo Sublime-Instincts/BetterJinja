@@ -1,0 +1,30 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: JavaScript (Jinja)
+scope: source.js.jinja
+version: 2
+
+extends: Packages/JavaScript/JavaScript.sublime-syntax
+
+file_extensions:
+  - js.jinja
+  - js.jinja2
+  - js.j2
+  - jinja.js
+  - jinja2.js
+  - j2.js
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.jinja
+
+  string-content:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations

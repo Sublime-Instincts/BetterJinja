@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+{% extends "${0:template}" %}
+]]></content>
+	<tabTrigger>extends</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja extends tag</description>
+</snippet>

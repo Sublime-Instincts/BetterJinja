@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% trans $1%}
+${TM_TEMPLATE_INDENT}$0
+{% endtrans %}
+]]></content>
+	<tabTrigger>jtrans</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja trans statement</description>
+</snippet>

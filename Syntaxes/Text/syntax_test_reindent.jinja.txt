@@ -1,0 +1,67 @@
+## SYNTAX TEST reindent "Text (Jinja).sublime-syntax"
+
+{% autoescape true %}
+    foo
+{% endautoescape %}
+
+{% block block_name %}
+    foo
+{% endblock block_name %}
+
+{% call function %}
+    foo
+{% endcall %}
+
+{% for item in [10, 20, 30] %}
+    {{ item }}
+{% endfor %}
+
+{% if foo = 1 %}
+    {% if foo = 1 %}
+        foo
+    {% elif me = 2 %}
+        {% if foo = 1 %}
+            foo
+        {% elif me = 2 %}
+            bar
+        {% else %}
+            {% if foo = 1 %}
+                foo
+            {% elif me = 2 %}
+                bar
+            {% else %}
+                baz
+            {% endif %}
+        {% endif %}
+    {% else %}
+        baz
+    {% endif %}
+{% elif me = 2 %}
+    bar
+{% else %}
+    baz
+{% endif %}
+
+{% macro function %}
+    fun foo
+{% endmacro %}
+
+{% raw %}
+    raw foo
+{% endraw %}
+
+{% set i = 0 %}
+
+{% set var | wordwrap() %}
+    {{ var }}
+{% endset %}
+
+{% trans %}
+    foo
+{% pluralize %}
+    bar
+{% endtrans %}
+
+{% with var = 15 %}
+    Print {{ var }}!
+{% endwith %}

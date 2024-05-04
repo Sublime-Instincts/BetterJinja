@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endmacro %}]]></content>
+	<tabTrigger>endmacro</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja endmacro tag</description>
+</snippet>

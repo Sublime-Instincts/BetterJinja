@@ -8,27 +8,36 @@
              |__/                                    by Ashwin Shenoy
 ======================================================================
 
-Jinja2 is an enhanced syntax highlighting package for Jinja
-templates for Sublime Text. It also provides snippets, completions, 
-automatic indentation for Jinja code blocks and more !
+Jinja2 package provides syntax definitions, snippets and completions
+for Jinja templates in Sublime Text.
+
+Supported languages are:
+    CSS, JavaScript, JSON, HTML, Markdown, Text, XML and YAML.
 
 Quick start
 -----------
 
-If you are seeing this messages, that means you have already installed 
-Jinja2, which means any of your jinja files will already be
-receiving syntax highlighting.
+Each syntax definition is assigned to a default set of file extensions,
+following the schema of:
 
-The following file extensions are supported :-
-    - .j2
-    - .jinja
-    - .jinja2
-    - .htm.j2
-    - .htm.jinja
-    - .htm.jinja2
-    - .html.j2
-    - .html.jinja
-    - .html.jinja2
+  - .<lang>.jinja
+  - .jinja.<lang>
+  - .<lang>.jinja2
+  - .jinja2.<lang>
+  - .<lang>.j2
+  - .j2.<lang>
+
+Default templating language is HTML with following file extensions:
+
+  - .j2
+  - .jinja
+  - .jinja2
+  - .htm.j2
+  - .htm.jinja
+  - .htm.jinja2
+  - .html.j2
+  - .html.jinja
+  - .html.jinja2
 
 Having Problems ?
 -----------------
@@ -38,10 +47,3 @@ can be improved to make your work easier, please log an issue with the
 issue tracker:
 
     https://github.com/Sublime-Instincts/BetterJinja/issues
-
-Get in Touch
-------------
-
-Jinja2 is developed & maintained by Ashwin Shenoy. If you have
-any feedback regarding Jinja2, just send a mail on
-ashwinshenoy05@gmail.com . 

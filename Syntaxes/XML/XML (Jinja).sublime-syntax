@@ -1,0 +1,60 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: XML (Jinja)
+scope: text.xml.jinja
+version: 2
+
+extends: Packages/XML/XML.sublime-syntax
+
+file_extensions:
+  - xml.jinja
+  - xml.jinja2
+  - xml.j2
+  - jinja.xml
+  - jinja2.xml
+  - j2.xml
+
+variables:
+  tag_name_break: (?=[/<>\s])
+  tag_name_start: (?:[A-Za-z]|{{)
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.jinja
+
+  comment-content:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  cdata-content:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  string-common-content:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  tag:
+    # overwrite context to support tag name interpolation
+    - match: <(?={{tag_name_start}})
+      scope: punctuation.definition.tag.begin.opening.xml
+      push:
+        - begin-tag-content
+        - tag-name
+    - match: </(?={{tag_name_start}})
+      scope: punctuation.definition.tag.begin.closing.xml
+      push:
+        - end-tag-content
+        - tag-name
+
+  tag-name:
+    - meta_content_scope: entity.name.tag.xml
+    - match: '{{tag_name_break}}'
+      pop: 1

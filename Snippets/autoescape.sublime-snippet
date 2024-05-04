@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% autoescape ${1:true} %}
+${TM_TEMPLATE_INDENT}$0
+{% endautoescape %}
+]]></content>
+	<tabTrigger>jautoescape</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja autoescape statement</description>
+</snippet>
