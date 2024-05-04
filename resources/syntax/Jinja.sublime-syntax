@@ -1,16 +1,8 @@
 %YAML 1.2
 ---
-file_extensions:
-  - j2
-  - jinja
-  - jinja2
-  - html.j2
-  - html.jinja
-  - html.jinja2
-  - htm.j2
-  - htm.jinja
-  - htm.jinja2
+name: Jinja
 scope: text.jinja
+hidden: true
 
 variables:
   digit: '[0-9]'
@@ -84,12 +76,9 @@ variables:
 
 contexts:
   main:
-    - match: ""
-      push: "Packages/HTML/HTML.sublime-syntax"
-      with_prototype:
-        - include: comment
-        - include: statement_block
-        - include: expression_block
+    - include: comment
+    - include: statement_block
+    - include: expression_block
 
   comment:
     - include: single_line_comment
