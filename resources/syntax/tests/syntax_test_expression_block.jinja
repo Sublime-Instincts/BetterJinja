@@ -1,14 +1,14 @@
 ## SYNTAX TEST "Packages/BetterJinja/resources/syntax/Jinja.sublime-syntax"
 
     {{  }}
-##  ^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##      ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##      ^^ punctuation.section.interpolation.end.jinja
 
     {{ + - * / ** // % }}
-##  ^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                     ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                     ^^ punctuation.section.interpolation.end.jinja
 ##     ^ keyword.operator.arithmetic.jinja
 ##       ^ keyword.operator.arithmetic.jinja
 ##         ^ keyword.operator.arithmetic.jinja
@@ -18,9 +18,9 @@
 ##                   ^ keyword.operator.arithmetic.jinja
 
     {{ >= <= == != < > }}
-##  ^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                     ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                     ^^ punctuation.section.interpolation.end.jinja
 ##     ^^ keyword.operator.comparison.jinja
 ##        ^^ keyword.operator.comparison.jinja
 ##           ^^ keyword.operator.comparison.jinja
@@ -29,16 +29,16 @@
 ##                   ^ keyword.operator.comparison.jinja
 
     {{ = ~ }}
-##  ^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##         ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##         ^^ punctuation.section.interpolation.end.jinja
 ##     ^ keyword.operator.assignment.jinja
 ##       ^ keyword.operator.concatenation.jinja
 
     {{ true false True False none None }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                                     ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                                     ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^ constant.language.boolean.jinja
 ##          ^^^^^ constant.language.boolean.jinja
 ##                ^^^^ constant.language.boolean.jinja
@@ -47,16 +47,16 @@
 ##                                ^^^^ constant.language.null.jinja
 
     {{ 123 123_456 }}
-##  ^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                 ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                 ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 ##         ^^^^^^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 
     {{ 42.3 0.3 .5 42.1e2 123_456.789 123_456.789e1 }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                                                  ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                                                  ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^ meta.number.float.decimal.jinja
 ##     ^^ constant.numeric.value.jinja
 ##       ^ punctuation.separator.decimal.jinja
@@ -84,9 +84,9 @@
 
 
     {{ "Hello, World" 'Hello, World' }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                                   ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                                   ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
 ##     ^ punctuation.definition.string.begin.jinja
 ##                  ^ punctuation.definition.string.end.jinja
@@ -95,9 +95,9 @@
 ##                                 ^ punctuation.definition.string.end.jinja
 
     {{ [1, 2, 3, 4, 12.34] }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                         ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                         ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^^^^^^^^^^^^^^^^ meta.sequence.list.jinja
 ##     ^ punctuation.section.sequence.begin.jinja
 ##                       ^ punctuation.section.sequence.end.jinja
@@ -106,17 +106,17 @@
 ##       ^ punctuation.separator.sequence.jinja
 
     {{ ["a", 'c'] }}
-##  ^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                ^^ punctuation.section.interpolation.end.jinja
 ##      ^^^ meta.string.jinja string.quoted.double.jinja
 ##           ^^^ meta.string.jinja  string.quoted.single.jinja
 ##         ^ punctuation.separator.sequence.jinja
 
     {{ (1, 0.5, 'a', "b") }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                        ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                        ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.jinja
 ##     ^ punctuation.section.sequence.begin.jinja
 ##                      ^ punctuation.section.sequence.end.jinja
@@ -127,9 +127,9 @@
 ##       ^ punctuation.separator.sequence.jinja
 
     {{ (1 + 2) (1 not in [1, 2, 3]) }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                                  ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                                  ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^^^^ meta.group.jinja
 ##     ^ punctuation.section.group.begin.jinja
 ##           ^ meta.group.jinja punctuation.section.group.end.jinja
@@ -138,9 +138,9 @@
 ##                                ^ punctuation.section.group.end.jinja
 
     {{ { "a": "b", 'c': 'd', "e": 123, "f": 123.456 } }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                                                    ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                                                    ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.jinja
 ##     ^ punctuation.section.mapping.begin.jinja
 ##                                                  ^ punctuation.section.mapping.end.jinja
@@ -153,17 +153,17 @@
 ##                                          ^^^^^^^ meta.number.float.decimal.jinja
 
     {{ not and or }}
-##  ^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^ keyword.operator.word.jinja
 ##         ^^^ keyword.operator.word.jinja
 ##             ^^ keyword.operator.word.jinja
 
     {{ "foo {bar} baz" }}
-##  ^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                     ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                     ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^^ meta.string.jinja string.quoted.double.jinja
 ##               ^^^^^ meta.string.jinja string.quoted.double.jinja
 ##          ^^^^^ meta.string.jinja meta.interpolation.jinja
@@ -172,9 +172,9 @@
 ##           ^^^ text.embedded.jinja variable.other.jinja
 
     {{ "foo {1 + 2.3} baz" }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                         ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                         ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^^ meta.string.jinja string.quoted.double.jinja
 ##                   ^^^^^ meta.string.jinja string.quoted.double.jinja
 ##          ^^^^^^^^^ meta.string.jinja meta.interpolation.jinja
@@ -186,17 +186,17 @@
 ##               ^^^ meta.number.float.decimal.jinja
 
     {{ foo.bar }}
-##  ^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##             ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##             ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^ variable.other.jinja
 ##         ^^^ variable.other.jinja
 ##        ^ punctuation.accessor.dot.jinja
 
     {{ "Character \" \' {{ {% escape" 'Character \" \' {{ {% escape' }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.jinja
-##  ^^ punctuation.definition.placeholder.begin.jinja
-##                                                                   ^^ punctuation.definition.placeholder.end.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.jinja
+##  ^^ punctuation.section.interpolation.begin.jinja
+##                                                                   ^^ punctuation.section.interpolation.end.jinja
 ##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
 ##                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.jinja string.quoted.single.jinja
 ##                ^^ constant.character.escape.jinja

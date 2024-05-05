@@ -136,13 +136,13 @@ contexts:
 
   expression_block:
     - match: \{{2}
-      scope: punctuation.definition.placeholder.begin.jinja
+      scope: punctuation.section.interpolation.begin.jinja
       push: expression_block_body
 
   expression_block_body:
-    - meta_scope: meta.placeholder.jinja
+    - meta_scope: meta.interpolation.jinja
     - match: \}{2}
-      scope: punctuation.definition.placeholder.end.jinja
+      scope: punctuation.section.interpolation.end.jinja
       pop: true
     - include: expressions
 
