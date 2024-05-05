@@ -10,7 +10,7 @@ A Sublime Text package that offers enhanced syntax highlighting, snippets, compl
 - Indentation for code blocks.
 - Snippets for common code blocks.
 - Key bindings to make your life easier.
-- Enhanced syntax highlighting for Jinja templates.
+- Enhanced syntax highlighting for Jinja HTML and YAML templates.
 - Autocompletions for built in tags, filters, functions, tests & loop variables.
 
 ## Installation
