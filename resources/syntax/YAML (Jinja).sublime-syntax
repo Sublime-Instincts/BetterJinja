@@ -30,27 +30,27 @@ contexts:
 
   block-scalar-body:
     - meta_prepend: true
-    - include: jinja-interpolations
+    - include: Jinja.sublime-syntax#interpolations
 
   flow-scalar-plain-in-body:
     - meta_prepend: true
-    - include: jinja-interpolations
+    - include: Jinja.sublime-syntax#interpolations
 
   flow-scalar-plain-out-body:
     - meta_prepend: true
-    - include: jinja-interpolations
+    - include: Jinja.sublime-syntax#interpolations
 
   flow-scalar-double-quoted-body:
     - meta_prepend: true
-    - include: jinja-interpolations
+    - include: Jinja.sublime-syntax#interpolations
 
   flow-scalar-single-quoted-body:
     - meta_prepend: true
-    - include: jinja-interpolations
+    - include: Jinja.sublime-syntax#interpolations
 
   flow-collection:
     - meta_prepend: true
-    - include: scope:text.jinja#statement_block
+    - include: Jinja.sublime-syntax#statement_block
 
   flow-mapping:
     - match: \{(?!{)
@@ -66,22 +66,3 @@ contexts:
       scope: punctuation.separator.sequence.yaml
     - include: flow-pair
     - include: flow-node-11  # for sets
-
-###[ JINJA EXPRESSIONS ]#######################################################
-
-  jinja-interpolations:
-    - include: jinja-expression-blocks
-
-  jinja-expression-blocks:
-    - match: \{{2}
-      scope: punctuation.section.interpolation.begin.jinja
-      push: jinja-expression-block-body
-
-  jinja-expression-block-body:
-    - clear_scopes: 1  # remove `string` scope
-    - meta_include_prototype: false
-    - meta_scope: meta.interpolation.jinja
-    - match: \}{2}
-      scope: punctuation.section.interpolation.end.jinja
-      pop: 1
-    - include: scope:text.jinja#expressions

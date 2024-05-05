@@ -120,6 +120,20 @@ contexts:
       pop: true
     - include: expressions
 
+  interpolations:
+    - match: \{{2}
+      scope: punctuation.section.interpolation.begin.jinja
+      push: interpolation_body
+
+  interpolation_body:
+    - clear_scopes: 1  # remove `string` scope
+    - meta_include_prototype: false
+    - meta_scope: meta.interpolation.jinja
+    - match: \}{2}
+      scope: punctuation.section.interpolation.end.jinja
+      pop: true
+    - include: expressions
+
   expression_block:
     - match: \{{2}
       scope: punctuation.definition.placeholder.begin.jinja
