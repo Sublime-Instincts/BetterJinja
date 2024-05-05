@@ -7,6 +7,6 @@
 {% endif %}
     ]]></content>
     <tabTrigger>jifelse</tabTrigger>
-    <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
+    <scope>(text.jinja, text.html.jinja, source.yaml.jinja) - comment - meta.string - meta.interpolation - meta.statement</scope>
     <description>Jinja if else statement</description>
 </snippet>

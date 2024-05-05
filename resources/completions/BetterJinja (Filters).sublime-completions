@@ -1,5 +1,5 @@
 {
-    "scope": "text.jinja text.html.basic & (meta.placeholder.jinja | meta.statement.jinja)",
+    "scope": "(text.jinja, text.html.jinja, source.yaml.jinja) & (meta.interpolation.jinja | meta.statement.jinja)",
     "completions": [
         {
             "trigger": "abs",

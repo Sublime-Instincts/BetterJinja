@@ -3,6 +3,6 @@
 {% extends "${1:template}" %}
     ]]></content>
     <tabTrigger>jextends</tabTrigger>
-    <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
+    <scope>(text.jinja, text.html.jinja, source.yaml.jinja) - comment - meta.string - meta.interpolation - meta.statement</scope>
     <description>Jinja extends</description>
 </snippet>
