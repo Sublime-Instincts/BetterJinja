@@ -50,6 +50,7 @@ contexts:
 
   flow-collection:
     - meta_prepend: true
+    - include: Jinja.sublime-syntax#multi_line_comment
     - include: Jinja.sublime-syntax#statement_block
 
   flow-mapping:

@@ -2,6 +2,22 @@
 %YAML 1.2
 ---
 
+  {#  #}
+# ^^^^^^ comment.block.jinja
+# ^^ punctuation.definition.comment.begin.jinja
+#     ^^ punctuation.definition.comment.end.jinja
+
+{# note: commented-out template because we no longer use this
+# <- comment.block.jinja punctuation.definition.comment.begin.jinja
+
+    {% for user in users %}
+#  ^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block.jinja - meta.embedded.statement
+        ...
+    {% endfor %}
+#  ^^^^^^^^^^^^^^ comment.block.jinja - meta.embedded.statement
+#}
+# <- comment.block.jinja punctuation.definition.comment.end.jinja
+
 key: "{{value}}"
 # <- meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
 #^^ meta.mapping.key.yaml meta.string.yaml string.unquoted.plain.out.yaml
