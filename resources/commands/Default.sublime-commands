@@ -1,13 +1,13 @@
 [
     {
-        "caption": "BetterJinja: Open documentation",
+        "caption": "Jinja2: Open documentation",
         "command": "open_url",
         "args": {
             "url": "https://github.com/Sublime-Instincts/BetterJinja/blob/master/README.md"
         },
     },
     {
-        "caption": "Preferences: BetterJinja Key Bindings",
+        "caption": "Preferences: Jinja2 Key Bindings",
         "command": "edit_settings",
         "args": {
             "base_file": "${packages}/Jinja2/resources/keymaps/Default.sublime-keymap",
