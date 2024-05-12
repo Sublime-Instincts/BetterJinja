@@ -1,4 +1,4 @@
-# BetterJinja
+# Jinja2
 
 ![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge) ![LICENSE](https://img.shields.io/badge/ST-Build%204107+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterJinja?style=for-the-badge&logo=github&sort=semver) ![Downloads](https://img.shields.io/packagecontrol/dt/Jinja2?style=for-the-badge)
 ![Syntax tests](https://img.shields.io/github/workflow/status/Sublime-Instincts/BetterJinja/syntax_test?color=green&label=Syntax%20Tests&logo=github&logoColor=white&style=for-the-badge)
@@ -16,9 +16,9 @@ A Sublime Text package that offers enhanced syntax highlighting, snippets, compl
 ## Installation
 
 #### Package Control
-The best way is to install it via [Package Control](https://packagecontrol.io/). Once you have Package Control setup in Sublime Text, open the command palette and search for `Package Control: Install Package`. Search for `BetterJinja` and install it. Package Control will take care for of automatically updating the package for you if there are new releases.
+The best way is to install it via [Package Control](https://packagecontrol.io/). Once you have Package Control setup in Sublime Text, open the command palette and search for `Package Control: Install Package`. Search for `Jinja2` and install it. Package Control will take care for of automatically updating the package for you if there are new releases.
 
-You can also use `Package Control: Add Repository`. Copy the github url (without the `.git` at the end) and enter it into the input panel that pops up at the bottom when you select `Package Control: Add Repository`. Now use `Package Control: Install Package` and search for `BetterJinja` and install it.
+You can also use `Package Control: Add Repository`. Copy the github url (without the `.git` at the end) and enter it into the input panel that pops up at the bottom when you select `Package Control: Add Repository`. Now use `Package Control: Install Package` and search for `Jinja2` and install it.
 
 ## Documentation
 
@@ -64,7 +64,7 @@ If you already have these in your user settings, then just copy the Twig related
 
 ### Snippets
 
-`BetterJinja` only adds basic snippets for common code blocks. If you want more snippets, then please follow the official documentation on
+`Jinja2` only adds basic snippets for common code blocks. If you want more snippets, then please follow the official documentation on
 [snippets](https://www.sublimetext.com/docs/completions.html#snippets) and create your own.
 
 |  **Tab Trigger**  |           **Jinja Code Block**           |
@@ -84,7 +84,7 @@ If you already have these in your user settings, then just copy the Twig related
 
 If you want to ignore the snippets that are provided by default, you can use the `ignored_snippets` setting.
 
-`"ignored_snippets": ["BetterJinja/*"]`
+`"ignored_snippets": ["Jinja2/*"]`
 
 ## Issues & Feature requests.
 
@@ -94,7 +94,7 @@ Please follow the issue & feature request templates that have been setup while r
 
 ## Acknowledgements.
 
-The [syntax_test.yml](https://github.com/Sublime-Instincts/BetterTwig/.github/workflows/syntax_test.yml) is taken & used (with some modifications) from the official [Packages](https://github.com/sublimehq/Packages) repository. So full credit goes to them for it.
+The [syntax_test.yml](.github/workflows/syntax_test.yml) is taken & used (with some modifications) from the official [Packages](https://github.com/sublimehq/Packages) repository. So full credit goes to them for it.
 
 ## License
 The MIT License (MIT)

@@ -1,14 +1,14 @@
- ____       _   _                _ _       _       
-|  _ \     | | | |              | (_)     (_)      
-| |_) | ___| |_| |_ ___ _ __    | |_ _ __  _  __ _ 
-|  _ < / _ \ __| __/ _ \ '__|   | | | '_ \| |/ _` |
-| |_) |  __/ |_| ||  __/ | | |__| | | | | | | (_| |
-|____/ \___|\__|\__\___|_|  \____/|_|_| |_| |\__,_|
-                                         _/ |      
-                                        |__/       
+      _ _       _       ___
+     | (_)     (_)     |__ \
+     | |_ _ __  _  __ _   ) |
+ _   | | | '_ \| |/ _` | / /
+| |__| | | | | | | (_| |/ /_
+ \____/|_|_| |_| |\__,_|____|
+              _/ |
+             |__/                                    by Ashwin Shenoy
 ======================================================================
 
-BetterJinja is an enhanced syntax highlighting package for Jinja
+Jinja2 is an enhanced syntax highlighting package for Jinja
 templates for Sublime Text. It also provides snippets, completions, 
 automatic indentation for Jinja code blocks and more !
 
@@ -16,7 +16,7 @@ Quick start
 -----------
 
 If you are seeing this messages, that means you have already installed 
-BetterJinja, which means any of your jinja files will already be 
+Jinja2, which means any of your jinja files will already be
 receiving syntax highlighting.
 
 The following file extensions are supported :-
@@ -33,7 +33,7 @@ The following file extensions are supported :-
 Having Problems ?
 -----------------
 
-If you encounter any problems with BetterJinja, or you think that it 
+If you encounter any problems with Jinja2, or you think that it
 can be improved to make your work easier, please log an issue with the 
 issue tracker:
 
@@ -42,6 +42,6 @@ issue tracker:
 Get in Touch
 ------------
 
-BetterJinja is developed & maintained by Ashwin Shenoy. If you have 
-any feedback regarding BetterJinja, just send a mail on 
+Jinja2 is developed & maintained by Ashwin Shenoy. If you have
+any feedback regarding Jinja2, just send a mail on
 ashwinshenoy05@gmail.com . 

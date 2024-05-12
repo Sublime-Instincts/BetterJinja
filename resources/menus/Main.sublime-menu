@@ -12,7 +12,7 @@
                 "children":
                 [
                     {
-                        "caption": "BetterJinja",
+                        "caption": "Jinja2",
                         "children": [
                             {
                                 "caption": "Documentation",
