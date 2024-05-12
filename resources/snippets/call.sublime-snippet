@@ -1,10 +1,10 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 {% call ${1:function} %}
-    ${2:content}
+	${2:content}
 {% endcall %}
-    ]]></content>
-    <tabTrigger>jcall</tabTrigger>
-    <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
-    <description>Jinja call</description>
+]]></content>
+	<tabTrigger>jcall</tabTrigger>
+	<scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
+	<description>Jinja call</description>
 </snippet>

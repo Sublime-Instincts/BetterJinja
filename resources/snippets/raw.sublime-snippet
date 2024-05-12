@@ -1,10 +1,10 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 {% raw %}
-    ${1:content}
+	${1:content}
 {% endraw %}
-    ]]></content>
-    <tabTrigger>jraw</tabTrigger>
-    <scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
-    <description>Jinja raw block</description>
+]]></content>
+	<tabTrigger>jraw</tabTrigger>
+	<scope>text.jinja - comment - meta.string - meta.placeholder - meta.statement</scope>
+	<description>Jinja raw block</description>
 </snippet>
