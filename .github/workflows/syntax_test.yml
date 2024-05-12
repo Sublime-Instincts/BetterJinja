@@ -1,66 +1,68 @@
-name: syntax_test
+name: Syntax Tests
 
 on:
   push:
     branches:
-      - '*'
+      - '**'
     tags-ignore:
-      - '*'
+      - '**'
     paths:
-      - '**/syntax_test_*'
-      - '**/*.hidden-tmLanguage'
-      - '**/*.sublime-syntax'
-      - '**/*.tmLanguage'
-      - '**/*.tmPreferences'
       - '.github/workflows/syntax_test.yml'
+      - '**/syntax_test_*'
+      - '**/*.sublime-syntax'
+      - '**/*.tmPreferences'
   pull_request:
     branches:
-      - '*'
+      - '**'
     paths:
-      - '**/syntax_test_*'
-      - '**/*.hidden-tmLanguage'
-      - '**/*.sublime-syntax'
-      - '**/*.tmLanguage'
-      - '**/*.tmPreferences'
       - '.github/workflows/syntax_test.yml'
+      - '**/syntax_test_*'
+      - '**/*.sublime-syntax'
+      - '**/*.tmPreferences'
   workflow_dispatch:
 
 jobs:
   run_syntax_tests:
-    name: Test on Build ${{ matrix.sublime-build }} (${{ matrix.sublime-channel }})
+    name: Sublime Text ${{ matrix.build }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    continue-on-error: ${{ matrix.optional }}
     strategy:
-      max-parallel: 2
       fail-fast: false
       matrix:
         include:
-          - sublime-channel: stable
-            sublime-build: 4126
-            optional: false
-          - sublime-channel: dev
-            sublime-build: 4125
-            optional: false
+          - build: 4107
+            default_packages: v4107
+          - build: 4126
+            default_packages: v4126
+          - build: 4143
+            default_packages: v4143
+          - build: 4152
+            default_packages: v4152
+          - build: 4169
+            default_packages: v4169
+          - build: latest
+            default_packages: master
     steps:
-      - name: Git checkout
-        uses: actions/checkout@master
-      - name: Get binary for Build ${{ matrix.sublime-build }} (${{ matrix.sublime-channel }})
-        run: |
-          wget -O st_syntax_tests.tar.xz https://download.sublimetext.com/st_syntax_tests_build_${{ matrix.sublime-build }}_x64.tar.xz
+      - name: Checkout Default Packages
+        uses: actions/checkout@v4
+        with:
+          repository: sublimehq/Packages
+          ref: ${{ matrix.default_packages }}
+          path: st_syntax_tests/Data/Packages
+      - name: Delete default package tests
+        run: |-
+          find st_syntax_tests/Data/Packages/*/ -type f -name 'syntax_test*' -exec rm -v '{}' \;
+      - name: Checkout Jinja2
+        uses: actions/checkout@v4
+        with:
+          path: st_syntax_tests/Data/Packages/Jinja2
+      - name: Run Syntax Tests for Sublime Text ${{ matrix.build }}
+        run: |-
+          if [[ "${{ matrix.build }}" == "latest" ]]; then
+            wget -O st_syntax_tests.tar.xz https://download.sublimetext.com/latest/dev/linux/x64/syntax_tests
+          else
+            wget -O st_syntax_tests.tar.xz https://download.sublimetext.com/st_syntax_tests_build_${{ matrix.build }}_x64.tar.xz
+          fi
           tar xf st_syntax_tests.tar.xz
-          mv st_syntax_tests/* ./
-          rm -R st_syntax_tests st_syntax_tests.tar.xz
-      - name: Move root dirs & files into "Data/Packages/BetterJinja" subdir (except for syntax_tests)
-        run: |
-          mkdir -p Data/Packages/BetterJinja
-          find . -maxdepth 1 -mindepth 1 -not -name 'Data' \! -name 'syntax_tests' -exec mv '{}' Data/Packages/BetterJinja ';'
-      - name: Download the HTML syntax and move it to Data/Packages
-        run: |
-          wget -O HTML.sublime-syntax https://raw.githubusercontent.com/sublimehq/Packages/master/HTML/HTML.sublime-syntax
-          wget -O 'HTML (Plain).sublime-syntax' 'https://raw.githubusercontent.com/sublimehq/Packages/master/HTML/HTML%20(Plain).sublime-syntax'
-          mkdir -p Data/Packages/HTML
-          mv HTML.sublime-syntax ./Data/Packages/HTML
-          mv 'HTML (Plain).sublime-syntax' ./Data/Packages/HTML
-      - name: Run syntax tests
-        run: ./syntax_tests
+          cd st_syntax_tests
+          ./syntax_tests
