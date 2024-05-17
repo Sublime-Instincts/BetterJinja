@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endautoescape %}]]></content>
+	<tabTrigger>endautoescape</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja endautoescape tag</description>
+</snippet>

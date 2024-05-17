@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endtrans %}]]></content>
+	<tabTrigger>endtrans</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja endtrans tag</description>
+</snippet>

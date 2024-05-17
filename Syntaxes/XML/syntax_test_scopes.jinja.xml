@@ -1,0 +1,47 @@
+## SYNTAX TEST "XML (Jinja).sublime-syntax"
+
+  {% if true %}
+##^^^^^^^^^^^^^ meta.embedded.statement.jinja - meta.selector
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^ keyword.control.conditional.if.jinja
+##      ^^^^ constant.language.boolean.jinja
+##           ^^ punctuation.section.embedded.end.jinja
+
+  {% else %}
+##^^^^^^^^^^ meta.embedded.statement.jinja - meta.selector
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^^^ keyword.control.conditional.else.jinja
+##        ^^ punctuation.section.embedded.end.jinja
+
+  {% endif %}
+##^^^^^^^^^^^ meta.embedded.statement.jinja - meta.selector
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^^^^ keyword.other.endtag.jinja
+##         ^^ punctuation.section.embedded.end.jinja
+
+  <{{tag}} {{attr}}="{{value}}">
+##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.xml
+##^ punctuation.definition.tag.begin
+## ^^^^^^^ meta.embedded.expression.jinja
+## ^^ punctuation.section.embedded.begin.jinja
+##   ^^^ variable.other.jinja
+##      ^^ punctuation.section.embedded.end.jinja
+##         ^^^^^^^^ meta.embedded.expression.jinja
+##         ^^ punctuation.section.embedded.begin.jinja
+##           ^^^^ variable.other.jinja
+##               ^^ punctuation.section.embedded.end.jinja
+##                 ^ punctuation.separator.key-value.xml
+##                  ^ meta.string.xml string.quoted.double.xml punctuation.definition.string.begin.xml
+##                   ^^^^^^^^^ meta.embedded.expression.jinja
+##                   ^^ punctuation.section.embedded.begin.jinja
+##                     ^^^^^ variable.other.jinja
+##                          ^^ punctuation.section.embedded.end.jinja
+##                            ^ meta.string.xml string.quoted.double.xml punctuation.definition.string.end.xml
+##                             ^ punctuation.definition.tag.end
+
+  <my-{{tag}} />
+##^^^^^^^^^^^^^^ meta.tag.xml
+##^ punctuation.definition.tag.begin.opening.xml
+## ^^^ entity.name.tag.xml - meta.interpolation
+##    ^^^^^^^ entity.name.tag.xml meta.embedded.expression.jinja
+##            ^^ punctuation.definition.tag.end

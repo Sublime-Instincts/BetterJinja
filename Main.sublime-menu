@@ -1,0 +1,37 @@
+[
+	{
+		"id": "preferences",
+		"children":
+		[
+			{
+				"caption": "Package Settings",
+				"mnemonic": "P",
+				"id": "package-settings",
+				"children":
+				[
+					{
+						"caption": "Jinja2",
+						"children": [
+							{
+								"caption": "Documentation",
+								"command": "open_url",
+								"args": {
+									"url": "https://github.com/Sublime-Instincts/BetterJinja/blob/master/README.md"
+								}
+							},
+							{ "caption": "-", },
+							{
+								"caption": "Key Bindings",
+								"command": "edit_settings",
+								"args": {
+									"base_file": "${packages}/Jinja2/Default.sublime-keymap",
+									"default": "[\n\t${0}\n]\n"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

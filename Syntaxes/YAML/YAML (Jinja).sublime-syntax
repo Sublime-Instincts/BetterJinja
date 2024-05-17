@@ -1,0 +1,74 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: YAML (Jinja)
+scope: source.yaml.jinja
+version: 2
+
+extends: Packages/YAML/YAML.sublime-syntax
+
+file_extensions:
+  - yaml.jinja
+  - yaml.jinja2
+  - yaml.j2
+  - jinja.yaml
+  - jinja2.yaml
+  - j2.yaml
+  - yml.jinja
+  - yml.jinja2
+  - yml.j2
+  - jinja.yml
+  - jinja2.yml
+  - j2.yml
+
+variables:
+  ns_plain_first_plain_in: |- # c=plain-in
+    (?x:
+        [^\s{{c_indicator}}]
+      | [?:-] [^\s{{c_flow_indicator}}]
+      | (?:[?:-] )?{{  # begins with jinja interpolation
+
+    )
+
+  ns_plain_first_plain_out: |- # c=plain-out
+    (?x:
+        [^\s{{c_indicator}}]
+      | [?:-] \S
+      | (?:[?:-] )?{{  # begins with jinja interpolation
+    )
+
+contexts:
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.jinja
+
+  block-scalar-body:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  flow-scalar-plain-in-body:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  flow-scalar-plain-out-body:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  flow-scalar-double-quoted-body:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  flow-scalar-single-quoted-body:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  flow-collection:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#block-comments
+    - include: Text (Jinja).sublime-syntax#statement-blocks
+
+  flow-mapping:
+    - match: \{(?![{%#])
+      scope: punctuation.definition.mapping.begin.yaml
+      push: flow-mapping-body

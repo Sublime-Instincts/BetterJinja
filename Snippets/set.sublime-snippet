@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% set $1%}
+${TM_TEMPLATE_INDENT}$0
+{% endset %}
+]]></content>
+	<tabTrigger>jset</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja set statement</description>
+</snippet>

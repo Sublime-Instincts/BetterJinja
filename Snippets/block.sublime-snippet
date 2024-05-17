@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% block ${1:block_name} %}
+${TM_TEMPLATE_INDENT}$0
+{% endblock ${1:block_name} %}
+]]></content>
+	<tabTrigger>jblock</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja block statement</description>
+</snippet>

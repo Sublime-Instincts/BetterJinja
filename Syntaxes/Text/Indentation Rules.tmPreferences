@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+	<key>scope</key>
+	<string>text.jinja</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string><![CDATA[(?x)
+			^\s*\{%[-+]?\s*
+			# block end tags
+			( end(?: autoescape | block | call | filter | for | if | macro | raw | set | trans | with )
+			# intermediate block branches
+			| elif | else | pluralize )
+			\b.*\s*%\}\s*?$]]></string>
+		<key>increaseIndentPattern</key>
+		<string><![CDATA[(?x)
+			^\s*\{%[-+]?\s*
+			( # block begin tags
+			  ( autoescape | block | call | filter | for | if | macro | raw | trans | with
+			  # intermediate block branches
+			  | elif | else | pluralize
+			  ) \b.*
+			# set must not contain assignment to start a block
+			| set\b [^=]* )
+			%\}\s*?$]]></string>
+	</dict>
+</dict>
+</plist>

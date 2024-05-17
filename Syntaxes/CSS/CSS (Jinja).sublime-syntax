@@ -1,0 +1,92 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: CSS (Jinja)
+scope: source.css.jinja
+version: 2
+
+extends: Packages/CSS/CSS.sublime-syntax
+
+file_extensions:
+  - css.jinja
+  - css.jinja2
+  - css.j2
+  - jinja.css
+  - jinja2.css
+  - j2.css
+
+variables:
+
+  # CSS overrides
+
+  ident_start: (?:{{nmstart}}|{{)
+
+  # required until ST4173
+  selector_begin: (?={{selector_start}}|{{)
+  # required until ST4173
+  nested_selector_begin: (?={{nested_selector_start}}|{{)
+
+  tag_name_begin: (?=[[:alpha:]]|{{)
+
+  # CSS (Jinja) variables
+  #...
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  main:
+    # The top-level context must contain jinja statements only.
+    # Jinja expressions are excluded as they are consumed by child contexts
+    # such as selectors, property names or property values.
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - meta_scope: meta.template.jinja
+    - include: Text (Jinja).sublime-syntax#comments
+    - include: Text (Jinja).sublime-syntax#statement-lines
+    - include: Text (Jinja).sublime-syntax#statement-blocks
+
+  block-end:
+    # This context is included in each style-rule block context,
+    # which must contain jinja statements only.
+    # Jinja expressions are excluded as they are consumed by child contexts
+    # such as selectors, property names or property values.
+    - meta_append: true
+    - include: Text (Jinja).sublime-syntax#comments
+    - include: Text (Jinja).sublime-syntax#statement-lines
+    - include: Text (Jinja).sublime-syntax#statement-blocks
+
+  at-rule-block-body:
+    # required until ST4173
+    # This context is included in each style-rule block context,
+    # which must contain jinja statements only.
+    # Jinja expressions are excluded as they are consumed by child contexts
+    # such as selectors, property names or property values.
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: Text (Jinja).sublime-syntax#comments
+    - include: Text (Jinja).sublime-syntax#statement-lines
+    - include: Text (Jinja).sublime-syntax#statement-blocks
+
+  at-supports-group-body:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: Text (Jinja).sublime-syntax
+
+  property-lists:
+    # A `{{` indicates the beginning of a selector or property name context
+    # beginning with a Jinja expression rather than a style rule block.
+    - match: \{(?![{%#])
+      scope: punctuation.section.block.begin.css
+      push: property-list-body
+
+  property-list-body:
+    # required until ST4173
+    - meta_prepend: true
+    - meta_include_prototype: false
+
+  string-content:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations

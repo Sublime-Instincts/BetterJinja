@@ -1,0 +1,174 @@
+## SYNTAX TEST "HTML (Jinja).sublime-syntax"
+
+<html>
+<head>
+  {% if true %}
+##^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^ keyword.control.conditional.if.jinja
+##      ^^^^ constant.language.boolean.jinja
+##           ^^ punctuation.section.embedded.end.jinja
+
+  <style lang=text/{{css}}>
+##^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.style.begin.html
+##^ punctuation.definition.tag.begin.html
+## ^^^^^ entity.name.tag.style.html
+##       ^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html
+##       ^^^^ entity.other.attribute-name.html
+##           ^ punctuation.separator.key-value.html
+##            ^^^^^ meta.string.html string.unquoted.html - meta.interpolation
+##                 ^^^^^^^ meta.string.html meta.embedded.expression.jinja - string
+##                 ^^ punctuation.section.embedded.begin.jinja
+##                   ^^^ variable.other.jinja
+##                      ^^ punctuation.section.embedded.end.jinja
+
+    {% if borders == True %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^ source.css.embedded.html meta.embedded.statement.jinja - meta.selector
+
+    .selector > {{class}} {}
+##  ^^^^^^^^^^^^^^^^^^^^^^ source.css.embedded.html meta.selector.css
+##  ^^^^^^^^^ entity.other.attribute-name.class.css
+##            ^ keyword.operator.combinator.css
+##              ^^^^^^^^^ meta.embedded.expression.jinja
+##                        ^^ meta.property-list.css meta.block.css
+
+    .selector > {{class}} {
+      border-{{attribute}}: {{base + 10}};
+##    ^^^^^^^ meta.property-name.css support.type.property-name.css
+##           ^^^^^^^^^^^^^ meta.property-name.css support.type.property-name.css meta.embedded.expression.jinja
+##                        ^ punctuation.separator.key-value.css
+##                          ^^^^^^^^^^^^^ meta.property-value.css meta.embedded.expression.jinja
+    }
+##  ^ meta.property-list.css meta.block.css punctuation.section.block.end.css
+
+    {% endif %}
+##  ^^^^^^^^^^^ source.css.embedded.html meta.embedded.statement.jinja - meta.selector
+
+  </style>
+##^^^^^^^^ meta.tag.style.end.html
+##^^ punctuation.definition.tag.begin.html
+##  ^^^^^ entity.name.tag.style.html
+##       ^ punctuation.definition.tag.end.html
+
+  {% endif %}
+##^^^^^^^^^^^ meta.embedded.statement.jinja
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^^^^ keyword.other.endtag.jinja
+##         ^^ punctuation.section.embedded.end.jinja
+
+  <script>
+##^^^^^^^^ meta.tag.script.begin.html
+##^ punctuation.definition.tag.begin.html
+## ^^^^^^ entity.name.tag.script.html
+##       ^ punctuation.definition.tag.end.html
+
+  {% if true %}
+##^^^^^^^^^^^^^ source.js.embedded.html meta.embedded.statement.jinja
+##^^ punctuation.section.embedded.begin.jinja
+##           ^^ punctuation.section.embedded.end.jinja
+
+  var i = 0;
+##^^^^^^^^^^ source.js.embedded.html - meta.embedded.statement - meta.interpolation
+##^^^ keyword.declaration.js
+##    ^ variable.other.readwrite.js
+##      ^ keyword.operator.assignment.js
+##        ^ constant.numeric.value.js
+##         ^ punctuation.terminator.statement.js
+
+  function foo(i) {return {{temlate}} + i + "string {{var}}";}
+##                        ^^^^^^^^^^^ source.js.embedded.html meta.function.js meta.block.js meta.embedded.expression.jinja
+##                        ^^ punctuation.section.embedded.begin.jinja
+##                          ^^^^^^^ variable.other.jinja
+##                                 ^^ punctuation.section.embedded.end.jinja
+##                                    ^ keyword.operator.arithmetic.js
+##                                      ^ variable.other.readwrite.js
+##                                        ^ keyword.operator.arithmetic.js
+##                                          ^^^^^^^^ meta.string.js string.quoted.double.js
+##                                          ^ punctuation.definition.string.begin.js
+##                                                  ^^^^^^^ meta.string.js meta.embedded.expression.jinja - string
+##                                                  ^^ punctuation.section.embedded.begin.jinja
+##                                                    ^^^ variable.other.jinja
+##                                                       ^^ punctuation.section.embedded.end.jinja
+##                                                         ^ meta.string.js string.quoted.double.js punctuation.definition.string.end.js
+
+  {% endif %}
+##^^^^^^^^^^^ source.js.embedded.html meta.embedded.statement.jinja
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^^^^ keyword.other.endtag.jinja
+##         ^^ punctuation.section.embedded.end.jinja
+
+  </script>
+##^^^^^^^^^ meta.tag.script.end.html
+##^^ punctuation.definition.tag.begin.html
+##  ^^^^^^ entity.name.tag.script.html
+##        ^ punctuation.definition.tag.end.html
+
+<body>
+
+  <my-{{tag}} {{attr}}={{value}}/>
+##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.other.html
+##^ meta.tag.other.html punctuation.definition.tag.begin.html
+## ^^^ entity.name.tag.other.html - meta.interpolation
+##    ^^^^^^^ entity.name.tag.other.html meta.embedded.expression.jinja
+##    ^^ punctuation.section.embedded.begin.jinja
+##      ^^^ variable.other.jinja
+##         ^^ punctuation.section.embedded.end.jinja
+##            ^^^^^^^^ meta.attribute-with-value.html entity.other.attribute-name.html meta.embedded.expression.jinja
+##            ^^ punctuation.section.embedded.begin.jinja
+##              ^^^^ variable.other.jinja
+##                  ^^ punctuation.section.embedded.end.jinja
+##                    ^ meta.attribute-with-value.html punctuation.separator.key-value.html
+##                     ^^^^^^^^^ meta.attribute-with-value.html meta.string.html meta.embedded.expression.jinja
+##                     ^^ punctuation.section.embedded.begin.jinja
+##                       ^^^^^ variable.other.jinja
+##                            ^^ punctuation.section.embedded.end.jinja
+##                              ^^ punctuation.definition.tag.end.html
+
+  <{{tag}} {{attr}}={{value}}/>
+##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.other.html
+##^ meta.tag.other.html punctuation.definition.tag.begin.html
+## ^^^^^^^ entity.name.tag.other.html meta.embedded.expression.jinja
+## ^^ punctuation.section.embedded.begin.jinja
+##   ^^^ variable.other.jinja
+##      ^^ punctuation.section.embedded.end.jinja
+##         ^^^^^^^^ meta.attribute-with-value.html entity.other.attribute-name.html meta.embedded.expression.jinja
+##         ^^ punctuation.section.embedded.begin.jinja
+##           ^^^^ variable.other.jinja
+##               ^^ punctuation.section.embedded.end.jinja
+##                 ^ meta.attribute-with-value.html punctuation.separator.key-value.html
+##                  ^^^^^^^^^ meta.attribute-with-value.html meta.string.html meta.embedded.expression.jinja
+##                  ^^ punctuation.section.embedded.begin.jinja
+##                    ^^^^^ variable.other.jinja
+##                         ^^ punctuation.section.embedded.end.jinja
+##                           ^^ punctuation.definition.tag.end.html
+
+##  Raw block
+
+    {% raw %}
+##  ^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^^ keyword.other.tag.jinja
+##         ^^ punctuation.section.embedded.end.jinja
+##           ^ - meta.embedded - markup.raw
+
+      <ul>
+##   ^^^^^^^ markup.raw.block.jinja - meta.tag
+      {% for item in seq %}
+##   ^^^^^^^^^^^^^^^^^^^^^^^ markup.raw.block.jinja - meta.embedded
+          <li>{{ item }}</li>
+##       ^^^^^^^^^^^^^^^^^^^^^ markup.raw.block.jinja - meta.embedded - meta.tag
+      {% endfor %}
+##   ^^^^^^^^^^^^^^ markup.raw.block.jinja - meta.embedded
+      </ul>
+##   ^^^^^^^ markup.raw.block.jinja - meta.tag
+
+    {% endraw %}
+## <- - meta.embedded - markup.raw
+##^^ - meta.embedded - markup.raw
+##  ^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^^^^^ keyword.other.endtag.jinja
+##            ^^ punctuation.section.embedded.end.jinja
+
+</body>
+</html>

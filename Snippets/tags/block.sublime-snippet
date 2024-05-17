@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% block $1%}]]></content>
+	<tabTrigger>block</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja block tag</description>
+</snippet>

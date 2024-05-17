@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% filter ${1:filter_name} %}]]></content>
+	<tabTrigger>filter</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja filter tag</description>
+</snippet>

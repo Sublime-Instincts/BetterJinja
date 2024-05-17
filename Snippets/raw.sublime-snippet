@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% raw %}
+${TM_TEMPLATE_INDENT}$0
+{% endraw %}
+]]></content>
+	<tabTrigger>jraw</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja raw statement</description>
+</snippet>

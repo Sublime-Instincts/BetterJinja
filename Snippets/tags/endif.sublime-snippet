@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endif %}]]></content>
+	<tabTrigger>endif</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja endif tag</description>
+</snippet>

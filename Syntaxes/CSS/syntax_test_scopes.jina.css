@@ -1,0 +1,193 @@
+## SYNTAX TEST "CSS (Jinja).sublime-syntax"
+
+   {#  #}
+## ^^^^^^ meta.embedded.comment.jinja comment.block.jinja
+## ^^ punctuation.definition.comment.begin.jinja
+##     ^^ punctuation.definition.comment.end.jinja
+
+{# note: commented-out template because we no longer use this
+## <- meta.embedded.comment.jinja comment.block.jinja punctuation.definition.comment.begin.jinja
+
+    {% for user in users %}
+## ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.comment.jinja comment.block.jinja - meta.embedded.statement
+        ...
+    {% endfor %}
+## ^^^^^^^^^^^^^^ meta.embedded.comment.jinja comment.block.jinja - meta.embedded.statement
+#}
+## <- meta.embedded.comment.jinja comment.block.jinja punctuation.definition.comment.end.jinja
+
+  {% if true %}
+##^^^^^^^^^^^^^ meta.embedded.statement.jinja - meta.selector
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^ keyword.control.conditional.if.jinja
+##      ^^^^ constant.language.boolean.jinja
+##           ^^ punctuation.section.embedded.end.jinja
+
+  {% else %}
+##^^^^^^^^^^ meta.embedded.statement.jinja - meta.selector
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^^^ keyword.control.conditional.else.jinja
+##        ^^ punctuation.section.embedded.end.jinja
+
+  {% endif %}
+##^^^^^^^^^^^ meta.embedded.statement.jinja - meta.selector
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^^^^ keyword.other.endtag.jinja
+##         ^^ punctuation.section.embedded.end.jinja
+
+.selector {
+
+  {% if true %}
+##^^^^^^^^^^^^^ meta.property-list.css meta.block.css meta.embedded.statement.jinja - meta.selector
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^ keyword.control.conditional.if.jinja
+##      ^^^^ constant.language.boolean.jinja
+##           ^^ punctuation.section.embedded.end.jinja
+
+    {# colors #}
+## ^ meta.property-list.css meta.block.css - meta.embedded - comment
+##  ^^^^^^^^^^^^ meta.property-list.css meta.block.css meta.embedded.comment.jinja comment.block.jinja
+##              ^ meta.property-list.css meta.block.css - meta.embedded - comment
+
+    color: {{ color }};
+## ^^^^^^^^^^^^^^^^^^^^^ meta.property-list.css meta.block.css
+##  ^^^^^ meta.property-name.css support.type.property-name.css
+##       ^ punctuation.separator.key-value.css
+##         ^^^^^^^^^^^ meta.property-value.css meta.embedded.expression.jinja
+##         ^^ punctuation.section.embedded.begin.jinja
+##            ^^^^^ variable.other.jinja
+##                  ^^ punctuation.section.embedded.end.jinja
+##                    ^ punctuation.terminator.rule.css
+
+  {% endif %}
+##^^^^^^^^^^^ meta.property-list.css meta.block.css meta.embedded.statement.jinja
+##^^ punctuation.section.embedded.begin.jinja
+##   ^^^^^ keyword.other.endtag.jinja
+##         ^^ punctuation.section.embedded.end.jinja
+}
+
+  .selector > {{class}} {# comment #} [div={{ attr }}] {}
+##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.selector.css
+##^^^^^^^^^ entity.other.attribute-name.class.css
+##          ^ keyword.operator.combinator.css
+##            ^^^^^^^^^ meta.embedded.expression.jinja
+##                      ^^^^^^^^^^^^^ comment.block.jinja
+##                                    ^ punctuation.section.brackets.begin.css
+##                                     ^^^ entity.other.attribute-name.css
+##                                        ^ keyword.operator.logical.css
+##                                         ^^^^^^^^^^ meta.embedded.expression.jinja
+##                                                   ^ punctuation.section.brackets.end.css
+##                                                     ^^ meta.property-list.css meta.block.css
+
+  .selector > {{class}} {
+    border-{{attribute}}: "{{base + 10}}";
+##  ^^^^^^^ meta.property-name.css support.type.property-name.css
+##         ^^^^^^^^^^^^^ meta.property-name.css support.type.property-name.css meta.embedded.expression.jinja
+##                      ^ punctuation.separator.key-value.css
+##                        ^ meta.property-value.css meta.string.css string.quoted.double.css punctuation.definition.string.begin.css
+##                         ^^^^^^^^^^^^^ meta.property-value.css meta.string.css meta.embedded.expression.jinja
+##                                      ^ meta.property-value.css meta.string.css string.quoted.double.css punctuation.definition.string.end.css
+  }
+##^ meta.property-list.css meta.block.css punctuation.section.block.end.css
+
+    @media {{ media }} { {{ tag }} { {{ prop }}: {{ value }} }}
+##  ^^^^^^^^^^^^^^^^^^^ meta.at-rule.media.css - meta.block
+##                     ^^ meta.at-rule.media.css meta.block.css - meta.selector
+##                       ^^^^^^^^^ meta.at-rule.media.css meta.block.css meta.selector.css meta.embedded.expression.jinja
+##                                ^ meta.at-rule.media.css meta.block.css meta.selector.css - meta.embedded - meta.block meta.block
+##                                 ^^ meta.at-rule.media.css meta.block.css meta.property-list.css meta.block.css - meta.property-name
+##                                   ^^^^^^^^^^ meta.at-rule.media.css meta.block.css meta.property-list.css meta.block.css meta.property-name.css support.type.property-name.css meta.embedded.expression.jinja
+##                                             ^ meta.at-rule.media.css meta.block.css meta.property-list.css meta.block.css punctuation.separator.key-value.css
+##                                              ^ meta.at-rule.media.css meta.block.css meta.property-list.css meta.block.css meta.property-value.css - meta.embedded
+##                                               ^^^^^^^^^^^ meta.at-rule.media.css meta.block.css meta.property-list.css meta.block.css meta.property-value.css meta.embedded.expression.jinja
+##                                                          ^ meta.at-rule.media.css meta.block.css meta.property-list.css meta.block.css meta.property-value.css - meta.embedded
+##                                                           ^ meta.at-rule.media.css meta.block.css meta.property-list.css meta.block.css - meta.property-value - meta.embedded
+##                                                            ^ meta.at-rule.media.css meta.block.css punctuation.section.block.end.css - meta.block meta.block
+##                                                             ^ - meta.at-rule - meta.block
+##  ^ keyword.control.directive.css punctuation.definition.keyword.css
+##   ^^^^^ keyword.control.directive.css - punctuation
+##         ^^ punctuation.section.embedded.begin.jinja
+##            ^^^^^ variable.other.jinja
+##                  ^^ punctuation.section.embedded.end.jinja
+##                     ^ punctuation.section.block.begin.css
+##                       ^^ punctuation.section.embedded.begin.jinja
+##                          ^^^ variable.other.jinja
+##                              ^^ punctuation.section.embedded.end.jinja
+##                                 ^ punctuation.section.block.begin.css
+##                                   ^^ punctuation.section.embedded.begin.jinja
+##                                      ^^^^ variable.other.jinja
+##                                           ^^ punctuation.section.embedded.end.jinja
+##                                             ^ punctuation.separator.key-value.css
+##                                               ^^ punctuation.section.embedded.begin.jinja
+##                                                  ^^^^^ variable.other.jinja
+##                                                        ^^ punctuation.section.embedded.end.jinja
+##                                                           ^^ punctuation.section.block.end.css
+
+    @supports not ( and ( t{{ op }}: 2{{ unit }} ) ) { {# comment #} {{ tag_or_class }}:nth-{{ child }} { {{ prop }}: val{{ ue }}; } }
+##  ^^^^^^^^^^^^^^ meta.at-rule.supports.css - meta.group
+##                ^^^^^^ meta.at-rule.supports.css meta.group.css - meta.group meta.group
+##                      ^^ meta.at-rule.supports.css meta.group.css meta.group.css - meta.property-name
+##                        ^ meta.at-rule.supports.css meta.group.css meta.group.css meta.property-name.css - meta.embedded
+##                         ^^^^^^^^ meta.at-rule.supports.css meta.group.css meta.group.css meta.property-name.css support.type.property-name.css meta.embedded.expression.jinja
+##                                 ^ meta.at-rule.supports.css meta.group.css meta.group.css - meta.property-name - meta.property-value
+##                                  ^^ meta.at-rule.supports.css meta.group.css meta.group.css meta.property-value.css - meta.embedded
+##                                    ^^^^^^^^^^ meta.at-rule.supports.css meta.group.css meta.group.css meta.property-value.css meta.embedded.expression.jinja
+##                                              ^ meta.at-rule.supports.css meta.group.css meta.group.css meta.property-value.css - meta.embedded
+##                                               ^ meta.at-rule.supports.css meta.group.css meta.group.css - meta.property-value
+##                                                ^^ meta.at-rule.supports.css meta.group.css - meta.group meta.group
+##                                                  ^ meta.at-rule.supports.css - meta.block - meta.group
+##                                                   ^^ meta.at-rule.supports.css meta.block.css - meta.selector - meta.property-list - meta.embedded - comment
+##                                                     ^^^^^^^^^^^^^ meta.at-rule.supports.css meta.block.css meta.embedded.comment.jinja comment.block.jinja
+##                                                                  ^ meta.at-rule.supports.css meta.block.css - meta.selector - meta.property-list - meta.embedded - comment
+##                                                                   ^^^^^^^^^^^^^^^^^^ meta.at-rule.supports.css meta.block.css meta.selector.css meta.embedded.expression.jinja
+##                                                                                     ^^^^^ meta.at-rule.supports.css meta.block.css meta.selector.css - meta.embedded
+##                                                                                          ^^^^^^^^^^^ meta.at-rule.supports.css meta.block.css meta.selector.css meta.embedded.expression.jinja
+##                                                                                                     ^ meta.at-rule.supports.css meta.block.css meta.selector.css - meta.embedded - meta.property-list - meta.block meta.block
+##                                                                                                      ^^ meta.at-rule.supports.css meta.block.css meta.property-list.css meta.block.css - meta.property-value - meta.embedded
+##                                                                                                        ^^^^^^^^^^ meta.at-rule.supports.css meta.block.css meta.property-list.css meta.block.css meta.property-name.css meta.embedded.expression.jinja
+##                                                                                                                  ^ meta.at-rule.supports.css meta.block.css meta.property-list.css meta.block.css - meta.property-name - meta.property-value
+##                                                                                                                   ^^^^ meta.at-rule.supports.css meta.block.css meta.property-list.css meta.block.css meta.property-value.css - meta.embedded
+##                                                                                                                       ^^^^^^^^ meta.at-rule.supports.css meta.block.css meta.property-list.css meta.block.css meta.property-value.css meta.embedded.expression.jinja
+##                                                                                                                               ^^^ meta.at-rule.supports.css meta.block.css meta.property-list.css meta.block.css - meta.embedded
+##                                                                                                                                  ^^ meta.at-rule.supports.css meta.block.css - meta.property-list - meta.block meta.block
+##                                                                                                                                    ^ - meta.at-rule - meta.block
+##  ^ keyword.control.directive.css punctuation.definition.keyword.css
+##   ^^^^^^^^ keyword.control.directive.css - punctuation
+##            ^^^ keyword.operator.logical.css
+##                ^ punctuation.section.group.begin.css
+##                  ^^^ keyword.operator.logical.css
+##                      ^ punctuation.section.group.begin.css
+##                        ^^^^^^^^^ support.type.property-name.css
+##                         ^^ punctuation.section.embedded.begin.jinja
+##                            ^^ variable.other.jinja
+##                               ^^ punctuation.section.embedded.end.jinja
+##                                 ^ punctuation.separator.key-value.css
+##                                   ^ meta.number.integer.decimal.css constant.numeric.value.css
+##                                    ^^ punctuation.section.embedded.begin.jinja
+##                                       ^^^^ variable.other.jinja
+##                                            ^^ punctuation.section.embedded.end.jinja
+##                                               ^ punctuation.section.group.end.css
+##                                                 ^ punctuation.section.group.end.css
+##                                                   ^ punctuation.section.block.begin.css
+##                                                     ^^ punctuation.definition.comment.begin.jinja
+##                                                                ^^ punctuation.definition.comment.end.jinja
+##                                                                   ^^ punctuation.section.embedded.begin.jinja
+##                                                                      ^^^^^^^^^^^^ variable.other.jinja
+##                                                                                   ^^ punctuation.section.embedded.end.jinja
+##                                                                                     ^ punctuation.definition.pseudo-class.css
+##                                                                                      ^^^^^^^^^^^^^^^ entity.other.pseudo-class.css
+##                                                                                          ^^ punctuation.section.embedded.begin.jinja
+##                                                                                             ^^^^^ variable.other.jinja
+##                                                                                                   ^^ punctuation.section.embedded.end.jinja
+##                                                                                                      ^ punctuation.section.block.begin.css
+##                                                                                                        ^^ punctuation.section.embedded.begin.jinja
+##                                                                                                           ^^^^ variable.other.jinja
+##                                                                                                                ^^ punctuation.section.embedded.end.jinja
+##                                                                                                                  ^ punctuation.separator.key-value.css
+##                                                                                                                    ^^^^^^^^^^^ support.constant.property-value.css
+##                                                                                                                       ^^ punctuation.section.embedded.begin.jinja
+##                                                                                                                          ^^ variable.other.jinja
+##                                                                                                                             ^^ punctuation.section.embedded.end.jinja
+##                                                                                                                               ^ punctuation.terminator.rule.css
+##                                                                                                                                 ^ punctuation.section.block.end.css
+##                                                                                                                                   ^ punctuation.section.block.end.css

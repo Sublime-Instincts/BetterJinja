@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% autoescape $1%}]]></content>
+	<tabTrigger>autoescape</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja autoescape tag</description>
+</snippet>

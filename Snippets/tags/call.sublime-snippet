@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% call $1%}]]></content>
+	<tabTrigger>call</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja call tag</description>
+</snippet>

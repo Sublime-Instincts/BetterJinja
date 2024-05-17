@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% for ${1:item} in ${2:sequence} %}]]></content>
+	<tabTrigger>for</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja for tag</description>
+</snippet>

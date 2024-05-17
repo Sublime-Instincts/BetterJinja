@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endset %}]]></content>
+	<tabTrigger>endset</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja endset tag</description>
+</snippet>

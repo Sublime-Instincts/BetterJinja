@@ -1,0 +1,59 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: JSON (Jinja)
+scope: source.json.jinja
+version: 2
+
+extends: Packages/JSON/JSON.sublime-syntax
+
+file_extensions:
+  - json.jinja
+  - json.jinja2
+  - json.j2
+  - jinja.json
+  - jinja2.json
+  - j2.json
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.jinja
+
+  string-prototype:
+    # since ST4174
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  inside-string:
+    # until ST4173
+    # override whole context to apply `meta.string.json`
+    - meta_include_prototype: false
+    - meta_scope: meta.string.json string.quoted.double.json
+    - match: \"
+      scope: punctuation.definition.string.end.json
+      pop: 1
+    - match: \n
+      scope: invalid.illegal.unclosed-string.json
+      pop: 1
+    # string-escape (not avail in ST4174+)
+    - match: |-
+        (?x:                # turn on extended mode
+          \\                # a literal backslash
+          (?:               # ...followed by...
+            ["\\/bfnrt]     # one of these characters
+            |               # ...or...
+            u               # a u
+            [0-9a-fA-F]{4}  # and four hex digits
+          )
+        )
+      scope: constant.character.escape.json
+    - match: \\.
+      scope: invalid.illegal.unrecognized-string-escape.json
+    # finally interpolations
+    - include: Text (Jinja).sublime-syntax#interpolations

@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% with ${1:assignment} %}
+${TM_TEMPLATE_INDENT}$0
+{% endwith %}
+]]></content>
+	<tabTrigger>jwith</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Jinja with statement</description>
+</snippet>
