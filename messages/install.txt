@@ -12,7 +12,7 @@ Jinja2 package provides syntax definitions, snippets and completions
 for Jinja templates in Sublime Text.
 
 Supported languages are:
-    CSS, JavaScript, JSON, HTML, Markdown, Text, XML and YAML.
+    CSS, C++, JavaScript, JSON, HTML, Markdown, Text, XML and YAML.
 
 Quick start
 -----------
