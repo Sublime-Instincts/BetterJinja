@@ -23,6 +23,13 @@
 
 int foo(int i) {
 
+  char *msg = "My {{message}}!"
+//            ^^^^^^^^^^^^^^^^^ string.quoted.double.c
+//                ^^^^^^^^^^^ meta.embedded.expression.jinja
+//                ^^ punctuation.section.embedded.begin.jinja
+//                  ^^^^^^^ source.jinja.embedded variable.other.jinja
+//                         ^^ punctuation.section.embedded.end.jinja
+
   {% if true %}
 //^^^^^^^^^^^^^ meta.function.c++ meta.block.c++ meta.embedded.statement.jinja
 //^^ punctuation.section.embedded.begin.jinja
