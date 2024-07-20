@@ -24,7 +24,7 @@
 int foo(int i) {
 
   {% if true %}
-//^^^^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.jinja
+//^^^^^^^^^^^^^ meta.function.c++ meta.block.c++ meta.embedded.statement.jinja
 //^^ punctuation.section.embedded.begin.jinja
 //   ^^ keyword.control.conditional.if.jinja
 //      ^^^^ constant.language.boolean.jinja
@@ -33,7 +33,7 @@ int foo(int i) {
     i++;
 
   {% else %}
-//^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.jinja
+//^^^^^^^^^^ meta.function.c++ meta.block.c++ meta.embedded.statement.jinja
 //^^ punctuation.section.embedded.begin.jinja
 //   ^^^^ keyword.control.conditional.else.jinja
 //        ^^ punctuation.section.embedded.end.jinja
@@ -41,7 +41,7 @@ int foo(int i) {
     i--;
 
   {% endif %}
-//^^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.jinja
+//^^^^^^^^^^^ meta.function.c++ meta.block.c++ meta.embedded.statement.jinja
 //^^ punctuation.section.embedded.begin.jinja
 //   ^^^^^ keyword.other.endtag.jinja
 //         ^^ punctuation.section.embedded.end.jinja
