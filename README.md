@@ -4,12 +4,12 @@
 ![Syntax tests](https://img.shields.io/github/actions/workflow/status/Sublime-Instincts/BetterJinja/syntax_test.yml?color=green&label=Syntax%20Tests&logo=github&logoColor=white&style=for-the-badge)
 
 [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) syntax definitions, completions and snippets for [Sublime Text](https://www.sublimetext.com) 
-based on its bundled CSS, HTML, JavaScript, JSON, Markdown, XML and YAML syntaxes.
+based on its bundled C/C++, CSS, HTML, JavaScript, JSON, Markdown, XML and YAML syntaxes.
 
 ## Features
 
 - Syntax highlighting for Jinja2 templates  
-  _Supported languages: CSS, HTML, JavaScript, JSON, Markdown, XML and YAML_
+  _Supported languages: C/C++, CSS, HTML, JavaScript, JSON, Markdown, XML and YAML_
 - Syntax specific indentation for code blocks
 - Completions for built in tags, filters, functions, tests & loop variables.
 - Key bindings to make your life easier
