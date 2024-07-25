@@ -1,44 +1,39 @@
 {
-	"scope": "source.jinja - source.jinja meta.function-call.identifier",
+	// Do not append redunant parentheses when completing within function calls
+	"scope": "source.jinja meta.function-call.identifier",
 	"completions": [
 		{
 			"trigger": "range",
-			"contents": "range()",
 			"kind": ["function", "f", "Jinja function"],
 			"annotation": "Jinja function",
 			"details": "Return a list containing an arithmetic progression of integers.",
 		},
 		{
 			"trigger": "lipsum",
-			"contents": "lipsum()",
 			"kind": ["function", "f", "Jinja function"],
 			"annotation": "Jinja function",
 			"details": "Generates some lorem ipsum for the template.",
 		},
 		{
 			"trigger": "dict",
-			"contents": "dict()",
 			"kind": ["function", "f", "Jinja function"],
 			"annotation": "Jinja function",
 			"details": "A convenient alternative to dict literals.",
 		},
 		{
 			"trigger": "cycler",
-			"contents": "cycler()",
 			"kind": ["function", "f", "Jinja function"],
 			"annotation": "Jinja function",
 			"details": "Cycle through values by yielding them one at a time, then restarting once the end is reached.",
 		},
 		{
 			"trigger": "joiner",
-			"contents": "joiner()",
 			"kind": ["function", "f", "Jinja function"],
 			"annotation": "Jinja function",
 			"details": "A tiny helper that can be used to “join” multiple sections.",
 		},
 		{
 			"trigger": "namespace",
-			"contents": "namespace()",
 			"kind": ["function", "f", "Jinja function"],
 			"annotation": "Jinja function",
 			"details": "Creates a new container that allows attribute assignment using the <code>{% set %}</code> tag:",
