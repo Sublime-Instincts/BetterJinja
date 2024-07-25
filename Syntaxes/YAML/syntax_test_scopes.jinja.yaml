@@ -182,6 +182,22 @@ my-{{key}}: {{value}}
 #           ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
 #             ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
 
+{{ key }}: {{ value }}
+# <- meta.mapping.key.yaml meta.string.yaml meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+#^^^^^^^^ meta.mapping.key.yaml meta.string.yaml meta.embedded.expression.jinja
+#        ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#          ^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - meta.mapping.key
+
+{{ key: }}: {{ value: }}
+# <- meta.mapping.key.yaml meta.string.yaml meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+#^^^^^^^^^ meta.mapping.key.yaml meta.string.yaml meta.embedded.expression.jinja
+#         ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
+#           ^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - meta.mapping.key
+
+{{ no_key: }}
+# <- meta.string.yaml meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+#^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - meta.mapping.key
+
 {% if true %}
 # <- meta.embedded.statement.jinja punctuation.section.embedded.begin.jinja
 #^^^^^^^^^^^^ meta.embedded.statement.jinja
