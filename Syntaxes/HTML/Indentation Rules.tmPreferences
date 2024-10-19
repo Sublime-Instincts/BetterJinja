@@ -25,7 +25,8 @@
 			  ( end(?: autoescape | block | call | filter | for | if | macro | raw | set | trans | with )
 			  # intermediate block branches
 			  | elif | else | pluralize )
-			  \b.*\s*%\}\s*?$]]></string>
+			  \b.*\s*%\}\s*?$
+		]]></string>
 		<key>increaseIndentPattern</key>
 		<string><![CDATA[(?x)
 			# the beginning of the line followed by any amount of whitespace

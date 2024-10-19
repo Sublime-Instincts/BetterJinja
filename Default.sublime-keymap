@@ -1,14 +1,48 @@
 [
+	// Auto-pair braces also in front of , : ; so starting embeddings in CSS properties and values works well.
+
+	{
+		"keys": ["{"],
+		"command": "insert_snippet",
+		"args": {
+			"contents": "{$0}"
+		},
+		"context": [
+			{ "key": "selector", "operand": "meta.template.jinja - meta.template.jinja meta.embedded - meta.template.jinja string" },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
+			{ "key": "following_text", "operator": "regex_contains", "operand": "^(?:[ \t\\)\\]\\},:;]|$)", "match_all": true }
+		]
+	},
+
+	// Auto-pair braces also in front of closing ' and " in strings
+
+	{
+		"keys": ["{"],
+		"command": "insert_snippet",
+		"args": {
+			"contents": "{$0}"
+		},
+		"context": [
+			{ "key": "selector", "operand": "meta.template.jinja string" },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
+			{ "key": "following_text", "operator": "regex_contains", "operand": "^(?:[ \t\\)\\]\\}\"',:;]|$)", "match_all": true }
+		]
+	},
+
 	// Bindings for inserting and removing comment block.
 
 	// Expand {|} to {# | #} when # is pressed
 	{
 		"keys": ["#"],
 		"command": "insert_snippet",
-		"args": { "contents": "# ${0} #" },
+		"args": {
+			"contents": "# ${0} #"
+		},
 		"context": [
-			{ "key": "selector", "operand": "meta.template.jinja - (meta.embedded.comment.jnja, meta.embedded.statement.jinja, meta.embedded.expression.jinja)" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
+			{ "key": "selector", "operand": "meta.template.jinja - meta.template.jinja meta.embedded - meta.template.jinja comment - meta.template.jinja string" },
+			{ "key": "setting.auto_match_enabled" },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^}", "match_all": true }
 		]
@@ -27,30 +61,40 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.comment.jinja" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{#$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^#}", "match_all": true }
 		]
 	},
-	// Reduce {# | #} to | when backspace is pressed
+	// Expand {#|#} to {# | #} when space is pressed
+	{
+		"keys": [" "],
+		"command": "insert_snippet",
+		"args": {
+			"contents": " ${0} "
+		},
+		"context": [
+			{ "key": "selector", "operand": "meta.embedded.comment.jinja" },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{#$", "match_all": true },
+			{ "key": "following_text", "operator": "regex_contains", "operand": "^#}", "match_all": true }
+		]
+	},
+	// Reduce {# | #} to {#|#} when backspace is pressed
 	{
 		"keys": ["backspace"],
 		"command": "chain",
 		"args": {
 			"commands": [
 				{"command": "left_delete" },
-				{"command": "right_delete" },
-				{"command": "left_delete" },
-				{"command": "right_delete" },
-				{"command": "left_delete" },
 				{"command": "right_delete" }
 			]
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.comment.jinja" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{# $", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^ #}", "match_all": true }
 		]
@@ -62,10 +106,12 @@
 	{
 		"keys": ["%"],
 		"command": "insert_snippet",
-		"args": { "contents": "% ${0} %" },
+		"args": {
+			"contents": "% ${0} %"
+		},
 		"context": [
-			{ "key": "selector", "operand": "meta.template.jinja - (meta.embedded.comment.jnja, meta.embedded.statement.jinja, meta.embedded.expression.jinja, meta.string, comment)" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
+			{ "key": "selector", "operand": "meta.template.jinja - meta.template.jinja meta.embedded - meta.template.jinja comment - meta.template.jinja string" },
+			{ "key": "setting.auto_match_enabled" },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^}", "match_all": true }
 		]
@@ -84,30 +130,40 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.statement.jinja" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{%$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^%}", "match_all": true }
 		]
 	},
-	// Reduce {% | %} to | when backspace is pressed
+	// Expand {%|%} to {% | %} when space is pressed
+	{
+		"keys": [" "],
+		"command": "insert_snippet",
+		"args": {
+			"contents": " ${0} "
+		},
+		"context": [
+			{ "key": "selector", "operand": "meta.embedded.statement.jinja" },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{%$", "match_all": true },
+			{ "key": "following_text", "operator": "regex_contains", "operand": "^%}", "match_all": true }
+		]
+	},
+	// Reduce {% | %} to {%|%} when backspace is pressed
 	{
 		"keys": ["backspace"],
 		"command": "chain",
 		"args": {
 			"commands": [
 				{"command": "left_delete" },
-				{"command": "right_delete" },
-				{"command": "left_delete" },
-				{"command": "right_delete" },
-				{"command": "left_delete" },
 				{"command": "right_delete" }
 			]
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.statement.jinja" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{% $", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^ %}", "match_all": true }
 		]
@@ -119,12 +175,14 @@
 	{
 		"keys": ["{"],
 		"command": "insert_snippet",
-		"args": { "contents": "{ ${0} }" },
+		"args": {
+			"contents": "{ ${0} }"
+		},
 		"context": [
-			{ "key": "selector", "operand": "meta.template.jinja - (meta.embedded.comment.jnja, meta.embedded.statement.jinja, meta.embedded.expression.jinja)" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
+			{ "key": "selector", "operand": "meta.template.jinja - meta.template.jinja meta.embedded - meta.template.jinja comment - meta.template.jinja string" },
+			{ "key": "setting.auto_match_enabled" },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{$", "match_all": true },
-			{ "key": "following_text", "operator": "regex_contains", "operand": "}$", "match_all": true }
+			{ "key": "following_text", "operator": "regex_contains", "operand": "^}", "match_all": true }
 		]
 	},
 	// Reduce {{|}} to | when backspace is pressed
@@ -141,30 +199,40 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.expression.jinja" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^}}", "match_all": true }
 		]
 	},
-	// Reduce {{ | }} to | when backspace is pressed
+	// Expand {{|}} to {{ | }} when space is pressed
+	{
+		"keys": [" "],
+		"command": "insert_snippet",
+		"args": {
+			"contents": " ${0} "
+		},
+		"context": [
+			{ "key": "selector", "operand": "meta.embedded.statement.jinja" },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{{$", "match_all": true },
+			{ "key": "following_text", "operator": "regex_contains", "operand": "^}}", "match_all": true }
+		]
+	},
+	// Reduce {{ | }} to {{|}} when backspace is pressed
 	{
 		"keys": ["backspace"],
 		"command": "chain",
 		"args": {
 			"commands": [
 				{"command": "left_delete" },
-				{"command": "right_delete" },
-				{"command": "left_delete" },
-				{"command": "right_delete" },
-				{"command": "left_delete" },
 				{"command": "right_delete" }
 			]
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.expression.jinja" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{{ $", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^ }}", "match_all": true }
 		]
