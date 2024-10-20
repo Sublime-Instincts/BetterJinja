@@ -254,7 +254,7 @@ contexts:
       scope: punctuation.section.arguments.end.jinja
       pop: 1
     - match: ','
-      scope: punctuation.separator.parameters.twig
+      scope: punctuation.separator.parameters.jinja
     - match: '{{identifiers}}(?=\s*=)'
       scope: variable.parameter.jinja
     - include: expressions
@@ -412,7 +412,10 @@ contexts:
     - match: \"
       scope: punctuation.definition.string.end.jinja
       pop: 1
-    - include: string-content
+    - include: string-prototype
+    - include: escaped-characters
+    - include: string-placeholders
+    - include: string-interpolations
 
   single-quoted-string-body:
     - meta_include_prototype: false
@@ -420,12 +423,11 @@ contexts:
     - match: \'
       scope: punctuation.definition.string.end.jinja
       pop: 1
-    - include: string-content
-
-  string-content:
+    - include: string-prototype
     - include: escaped-characters
     - include: string-placeholders
-    - include: string-interpolations
+
+  string-prototype: []
 
   string-interpolations:
     - match: \{
