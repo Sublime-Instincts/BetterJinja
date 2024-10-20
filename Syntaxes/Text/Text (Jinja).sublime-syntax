@@ -378,9 +378,11 @@ contexts:
 ###[ LITERALS ]###############################################################
 
   constants:
-    - match: (?:[Tt]rue|[Ff]alse)\b
-      scope: constant.language.boolean.jinja
-    - match: (?:[Nn]one)\b
+    - match: '[Ff]alse\b'
+      scope: constant.language.boolean.false.jinja
+    - match: '[Tt]rue\b'
+      scope: constant.language.boolean.true.jinja
+    - match: '[Nn]one\b'
       scope: constant.language.null.jinja
 
   numbers:
