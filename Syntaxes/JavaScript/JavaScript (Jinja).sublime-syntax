@@ -25,6 +25,11 @@ contexts:
     - meta_prepend: true
     - meta_scope: meta.template.jinja
 
+  expressions:
+    # required until ST4178
+    - match: (?=\S)
+      push: [ expression-end, expression-begin ]
+
   string-content:
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax#interpolations

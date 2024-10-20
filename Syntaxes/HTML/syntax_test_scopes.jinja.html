@@ -9,6 +9,10 @@
 ##      ^^^^ constant.language.boolean.jinja
 ##           ^^ punctuation.section.embedded.end.jinja
 
+|==============================================================================
+| CSS Style Tags
+|==============================================================================
+
   <style lang=text/{{css}}>
 ##^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.style.begin.html
 ##^ punctuation.definition.tag.begin.html
@@ -55,6 +59,10 @@
 ##^^ punctuation.section.embedded.begin.jinja
 ##   ^^^^^ keyword.other.endtag.jinja
 ##         ^^ punctuation.section.embedded.end.jinja
+
+|==============================================================================
+| JavaScript Script Tags
+|==============================================================================
 
   <script>
 ##^^^^^^^^ meta.tag.script.begin.html
@@ -105,6 +113,10 @@
 
 <body>
 
+|==============================================================================
+| HTML Tags and Attributes Interpolation
+|==============================================================================
+
   <my-{{tag}} {{attr}}={{value}}/>
 ##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.other.html
 ##^ meta.tag.other.html punctuation.definition.tag.begin.html
@@ -142,7 +154,196 @@
 ##                         ^^ punctuation.section.embedded.end.jinja
 ##                           ^^ punctuation.definition.tag.end.html
 
-##  Raw block
+|==============================================================================
+| Tag Attributes
+|==============================================================================
+
+<div
+    {% if condition %}
+##^^^^^^^^^^^^^^^^^^^^^ meta.tag - meta.attribute-with-value
+##  ^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##    ^^^^^^^^^^^^^^ source.jinja.embedded
+##     ^^ keyword.control.conditional.if.jinja
+##        ^^^^^^^^^ variable.other.jinja
+##                  ^^ punctuation.section.embedded.end.jinja
+    attr="value"
+##  ^^^^^^^^^^^^ meta.attribute-with-value.html
+##  ^^^^ entity.other.attribute-name.html
+##      ^ punctuation.separator.key-value.html
+##       ^^^^^^^ meta.string.html string.quoted.double.html
+##       ^ punctuation.definition.string.begin.html
+##             ^ punctuation.definition.string.end.html
+
+    {{ attr }}={{ value }}
+##  ^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html
+##  ^^^^^^^^^^ entity.other.attribute-name.html meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##    ^^^^^^ source.jinja.embedded
+##     ^^^^ variable.other.jinja
+##          ^^ punctuation.section.embedded.end.jinja
+##            ^ punctuation.separator.key-value.html
+##             ^^^^^^^^^^^ meta.string.html meta.embedded.expression.jinja
+##             ^^ punctuation.section.embedded.begin.jinja
+##               ^^^^^^^ source.jinja.embedded
+##                ^^^^^ variable.other.jinja
+##                      ^^ punctuation.section.embedded.end.jinja
+
+    attr-{{ name }}="foo {{ bar ~ "baz #{buuz}!" }}"
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html
+##  ^^^^^ entity.other.attribute-name.html - meta.embedded
+##       ^^^^^^^^^^ entity.other.attribute-name.html meta.embedded.expression.jinja
+##                  ^^^^^ meta.string.html string.quoted.double.html
+##                       ^^ meta.string.html meta.embedded.expression.jinja - source.jinja
+##                         ^^^^^^^ meta.string.html meta.embedded.expression.jinja source.jinja.embedded - meta.string meta.string
+##                                ^^^^^^ meta.string.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja string.quoted.double.jinja - meta.interpolation
+##                                      ^^^^^^ meta.string.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja meta.interpolation.jinja
+##                                            ^^ meta.string.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja string.quoted.double.jinja - #eta.interpolation
+##                                              ^ meta.string.html meta.embedded.expression.jinja source.jinja.embedded - meta.string meta.string
+##                                               ^^ meta.string.html meta.embedded.expression.jinja - source.jinja - meta.string meta.string
+##                                                 ^ meta.string.html string.quoted.double.html - meta.embedded
+##                                                  ^ - meta.attribute-with-value
+##       ^^ punctuation.section.embedded.begin.jinja
+##         ^^^^^^ source.jinja.embedded
+##          ^^^^ variable.other.jinja
+##               ^^ punctuation.section.embedded.end.jinja
+##                 ^ punctuation.separator.key-value.html
+##                  ^ punctuation.definition.string.begin.html
+##                       ^^ punctuation.section.embedded.begin.jinja
+##                          ^^^ variable.other.jinja
+##                              ^ keyword.operator.concatenation.jinja
+##                                ^ punctuation.definition.string.begin.jinja
+##                                      ^ punctuation.section.interpolation.begin.jinja
+##                                       ^^^^ variable.other.jinja
+##                                           ^ punctuation.section.interpolation.end.jinja
+##                                            ^^ string.quoted.double.jinja
+##                                             ^ punctuation.definition.string.end.jinja
+##                                               ^^ punctuation.section.embedded.end.jinja
+##                                                 ^ punctuation.definition.string.end.html
+
+    {% endif %}
+##^^^^^^^^^^^^^^ meta.tag - meta.attribute-with-value
+##  ^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##    ^^^^^^^ source.jinja.embedded
+##     ^^^^^ keyword.other.endtag.jinja
+##           ^^ punctuation.section.embedded.end.jinja
+    >
+##^^^ meta.tag - meta.attribute-with-value
+##  ^ punctuation.definition.tag.end.html
+
+|==============================================================================
+| Inline Events
+|==============================================================================
+
+<div
+    onclick="on{{ "function-{name}" }}()"
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.event.html
+##  ^^^^^^^ entity.other.attribute-name.event.html
+##         ^ punctuation.separator.key-value.html
+##          ^ meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
+##           ^^ meta.string.html source.js.embedded.html variable.other.readwrite.js
+##             ^^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+##               ^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja source.jinja.embedded
+##                ^^^^^^^^^^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja string.quoted.double.jinja
+##                          ^^^^^^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja meta.interpolation.jinja
+##                                ^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja string.quoted.double.jinja punctuation.definition.string.end.jinja
+##                                 ^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja source.jinja.embedded
+##                                  ^^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja punctuation.section.embedded.end.jinja
+##                                    ^^ meta.string.html source.js.embedded.html meta.group.js
+##                                      ^ meta.string.html string.quoted.double.html punctuation.definition.string.end.html
+
+    onclick='on{{ 'function-{name}' }}()'
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.event.html
+##  ^^^^^^^ entity.other.attribute-name.event.html
+##         ^ punctuation.separator.key-value.html
+##          ^ meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
+##           ^^ meta.string.html source.js.embedded.html variable.other.readwrite.js
+##             ^^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+##               ^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja source.jinja.embedded
+##                ^^^^^^^^^^^^^^^^^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja string.quoted.single.jinja
+##                                 ^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja source.jinja.embedded
+##                                  ^^ meta.string.html source.js.embedded.html meta.embedded.expression.jinja punctuation.section.embedded.end.jinja
+##                                    ^^ meta.string.html source.js.embedded.html meta.group.js
+##                                      ^ meta.string.html string.quoted.single.html punctuation.definition.string.end.html
+    >
+##^^^ meta.tag - meta.attribute-with-value
+##  ^ punctuation.definition.tag.end.html
+
+|==============================================================================
+| Inline Styles
+|==============================================================================
+
+<div
+    style='{{ 'color: \'{value}\'' }}'
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.style.html
+##        ^ meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
+##         ^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+##           ^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded
+##            ^^^^^^^^^^^^^^^^^^^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja string.quoted.single.jinja
+##                                ^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded
+##                                 ^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja punctuation.section.embedded.end.jinja
+##                                   ^ meta.string.html string.quoted.single.html punctuation.definition.string.end.html
+##                                    ^ - meta.attribute-with-value
+
+    style="{{ "color: \"{value}\"" }}"
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.style.html
+##        ^ meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
+##         ^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+##           ^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded
+##            ^^^^^^^^^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja string.quoted.double.jinja
+##                    ^^ constant.character.escape.jinja
+##                      ^^^^^^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja meta.interpolation.jinja
+##                      ^ punctuation.section.interpolation.begin.jinja
+##                       ^^^^^ variable.other.jinja
+##                            ^ punctuation.section.interpolation.end.jinja
+##                             ^^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja string.quoted.double.jinja
+##                             ^^ constant.character.escape.jinja
+##                                ^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded
+##                                 ^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja punctuation.section.embedded.end.jinja
+##                                   ^ meta.string.html string.quoted.double.html punctuation.definition.string.end.html
+##                                    ^ - meta.attribute-with-value
+
+    style="color-{{ "{name}" }}: {{ "{value}" }}"
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.style.html
+##  ^^^^^ entity.other.attribute-name.style.html
+##       ^ punctuation.separator.key-value.html
+##        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.html
+##        ^ string.quoted.double.html punctuation.definition.string.begin.html
+##         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.css.embedded.html
+##         ^^^^^^^^^^^^^^^^^^^^ meta.property-name.css support.type.property-name.css
+##               ^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##               ^^ punctuation.section.embedded.begin.jinja
+##                 ^^^^^^^^^^ source.jinja.embedded
+##                  ^^^^^^^^ meta.string.jinja
+##                  ^ string.quoted.double.jinja punctuation.definition.string.begin.jinja
+##                   ^^^^^^ meta.interpolation.jinja
+##                   ^ punctuation.section.interpolation.begin.jinja
+##                    ^^^^ variable.other.jinja
+##                        ^ punctuation.section.interpolation.end.jinja
+##                         ^ string.quoted.double.jinja punctuation.definition.string.end.jinja
+##                           ^^ punctuation.section.embedded.end.jinja
+##                             ^ punctuation.separator.key-value.css
+##                              ^^^^^^^^^^^^^^^^ meta.property-value.css
+##                               ^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##                               ^^ punctuation.section.embedded.begin.jinja
+##                                 ^^^^^^^^^^^ source.jinja.embedded
+##                                  ^^^^^^^^^ meta.string.jinja
+##                                  ^ string.quoted.double.jinja punctuation.definition.string.begin.jinja
+##                                   ^^^^^^^ meta.interpolation.jinja
+##                                   ^ punctuation.section.interpolation.begin.jinja
+##                                    ^^^^^ variable.other.jinja
+##                                         ^ punctuation.section.interpolation.end.jinja
+##                                          ^ string.quoted.double.jinja punctuation.definition.string.end.jinja
+##                                            ^^ punctuation.section.embedded.end.jinja
+##                                              ^ string.quoted.double.html punctuation.definition.string.end.html
+    >
+##^^^ meta.tag - meta.attribute-with-value
+##  ^ punctuation.definition.tag.end.html
+
+|==============================================================================
+| Raw Blocks
+|==============================================================================
 
     {% raw %}
 ##  ^^^^^^^^^ meta.embedded.statement.jinja
