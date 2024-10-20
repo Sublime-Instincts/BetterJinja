@@ -203,7 +203,7 @@ my-{{key}}: {{value}}
 #^^^^^^^^^^^^ meta.embedded.statement.jinja
 #^ punctuation.section.embedded.begin.jinja
 #  ^^ keyword.control.conditional.if.jinja
-#     ^^^^ constant.language.boolean.jinja
+#     ^^^^ constant.language.boolean.true.jinja
 #          ^^ punctuation.section.embedded.end.jinja
 
 {% else %}
@@ -225,7 +225,7 @@ dict: {
 # ^^^^^^^^^^^^^ meta.mapping.yaml meta.embedded.statement.jinja
 # ^^ punctuation.section.embedded.begin.jinja
 #    ^^ keyword.control.conditional.if.jinja
-#       ^^^^ constant.language.boolean.jinja
+#       ^^^^ constant.language.boolean.true.jinja
 #            ^^ punctuation.section.embedded.end.jinja
 }
 
@@ -234,6 +234,6 @@ list: [
 # ^^^^^^^^^^^^^ meta.sequence.flow.yaml meta.embedded.statement.jinja
 # ^^ punctuation.section.embedded.begin.jinja
 #    ^^ keyword.control.conditional.if.jinja
-#       ^^^^ constant.language.boolean.jinja
+#       ^^^^ constant.language.boolean.true.jinja
 #            ^^ punctuation.section.embedded.end.jinja
 ]
