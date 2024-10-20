@@ -333,10 +333,10 @@ not a # for statement:
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##                                     ^^ punctuation.section.embedded.end.jinja
-##     ^^^^ constant.language.boolean.jinja
-##          ^^^^^ constant.language.boolean.jinja
-##                ^^^^ constant.language.boolean.jinja
-##                     ^^^^^ constant.language.boolean.jinja
+##     ^^^^ constant.language.boolean.true.jinja
+##          ^^^^^ constant.language.boolean.false.jinja
+##                ^^^^ constant.language.boolean.true.jinja
+##                     ^^^^^ constant.language.boolean.false.jinja
 ##                           ^^^^ constant.language.null.jinja
 ##                                ^^^^ constant.language.null.jinja
 
@@ -779,7 +779,7 @@ not a # for statement:
     {% if test is false %}
 ##                ^^^^^ support.function.test.jinja
     {% if test eq false %}
-##                ^^^^^ constant.language.boolean.jinja
+##                ^^^^^ constant.language.boolean.false.jinja
     {% if 1 is in [1, 2] %}
 ##             ^^ support.function.test.jinja
     {% if 1 in [1, 2] %}
@@ -796,7 +796,7 @@ not a # for statement:
 ##    ^^^^^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
 ##           ^ meta.function-call.arguments.jinja - meta.mapping punctuation.section.arguments.begin.jinja
 ##            ^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.jinja meta.mapping.jinja
-##                            ^^^^^ constant.language.boolean.jinja
+##                            ^^^^^ constant.language.boolean.false.jinja
 ##                                  ^ meta.function-call.arguments.jinja - meta.mapping punctuation.section.arguments.end.jinja
 
     | to_json(sort_keys=true)
@@ -806,6 +806,6 @@ not a # for statement:
 ##           ^ punctuation.section.arguments.begin.jinja
 ##            ^^^^^^^^^ variable.parameter.jinja
 ##                     ^ keyword.operator.assignment.jinja
-##                      ^^^^ constant.language.boolean.jinja
+##                      ^^^^ constant.language.boolean.true.jinja
 ##                          ^ punctuation.section.arguments.end.jinja
 }}

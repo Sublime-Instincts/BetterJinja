@@ -41,7 +41,7 @@
 //^^^^^^^^^^^^^ meta.embedded.statement.jinja
 //^^ punctuation.section.embedded.begin.jinja
 //   ^^ keyword.control.conditional.if.jinja
-//      ^^^^ constant.language.boolean.jinja
+//      ^^^^ constant.language.boolean.true.jinja
 //           ^^ punctuation.section.embedded.end.jinja
 
   {% else %}
