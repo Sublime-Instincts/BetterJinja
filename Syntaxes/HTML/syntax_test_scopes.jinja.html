@@ -111,6 +111,61 @@
 ##  ^^^^^^ entity.name.tag.script.html
 ##        ^ punctuation.definition.tag.end.html
 
+|==============================================================================
+| JSON Script Tags
+|==============================================================================
+
+<script type="application/json">
+    {
+      {% if true %}
+##    ^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##    ^^ punctuation.section.embedded.begin.jinja
+##       ^^ keyword.control.conditional.if.jinja
+##          ^^^^ constant.language.boolean.true.jinja
+##               ^^ punctuation.section.embedded.end.jinja
+
+      {% else %}
+##    ^^^^^^^^^^ meta.embedded.statement.jinja
+##    ^^ punctuation.section.embedded.begin.jinja
+##       ^^^^ keyword.control.conditional.else.jinja
+##            ^^ punctuation.section.embedded.end.jinja
+
+      {% endif %}
+##    ^^^^^^^^^^^ meta.embedded.statement.jinja
+##    ^^ punctuation.section.embedded.begin.jinja
+##       ^^^^^ keyword.other.endtag.jinja
+##             ^^ punctuation.section.embedded.end.jinja
+
+        "{{key}}": "{{value}}",
+##      ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.begin.json
+##       ^^^^^^^ meta.mapping.key.json meta.embedded.expression.jinja
+##       ^^ punctuation.section.embedded.begin.jinja
+##         ^^^ variable.other.jinja
+##            ^^ punctuation.section.embedded.end.jinja
+##              ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.end.json
+##               ^^ meta.mapping.json
+##                 ^ meta.mapping.value.json meta.string.json string.quoted.double.json punctuation.definition.string.begin.json
+##                  ^^^^^^^^^ meta.mapping.value.json meta.string.json - string
+##                  ^^ meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+##                    ^^^^^ meta.embedded.expression.jinja variable.other.jinja
+##                         ^^ meta.embedded.expression.jinja punctuation.section.embedded.end.jinja
+##                           ^ string.quoted.double.json punctuation.definition.string.end.json
+##                            ^ punctuation.separator.sequence.json
+
+        "key": [{{value}}, "{{value}}-string"],
+##             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.sequence.json
+##              ^^^^^^^^^ meta.embedded.expression.jinja
+##              ^^ punctuation.section.embedded.begin.jinja
+##                ^^^^^ variable.other.jinja
+##                     ^^ punctuation.section.embedded.end.jinja
+##                       ^ punctuation.separator.sequence.json
+##                         ^ string.quoted.double.json punctuation.definition.string.begin.json
+##                          ^^^^^^^^^ meta.string.json meta.embedded.expression.jinja - string
+##                                   ^^^^^^^^ meta.string.json string.quoted.double.json
+##                                          ^ punctuation.definition.string.end.json
+    }
+</script>
+
 <body>
 
 |==============================================================================
