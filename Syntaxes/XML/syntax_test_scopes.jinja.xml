@@ -16,7 +16,7 @@
   {% endif %}
 ##^^^^^^^^^^^ meta.embedded.statement.jinja - meta.selector
 ##^^ punctuation.section.embedded.begin.jinja
-##   ^^^^^ keyword.other.endtag.jinja
+##   ^^^^^ keyword.control.conditional.endif.jinja
 ##         ^^ punctuation.section.embedded.end.jinja
 
   <{{tag}} {{attr}}="{{value}}">

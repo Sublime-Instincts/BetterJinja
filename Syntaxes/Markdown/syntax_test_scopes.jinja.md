@@ -53,7 +53,7 @@
   {% endif %}
 //^^^^^^^^^^^ meta.embedded.statement.jinja
 //^^ punctuation.section.embedded.begin.jinja
-//   ^^^^^ keyword.other.endtag.jinja
+//   ^^^^^ keyword.control.conditional.endif.jinja
 //         ^^ punctuation.section.embedded.end.jinja
 
 // [ EXPRESSION BLOCKS ] //////////////////////////////////////////////////////

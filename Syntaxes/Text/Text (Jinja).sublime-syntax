@@ -22,15 +22,6 @@ variables:
 
   trim_block: '(?:[+-])'
 
-  builtin_tags: |-
-    (?x: autoescape | block | call | debug | do | extends | filter
-    | include | macro | pluralize | raw | recursive | scoped | set | trans
-    | with )
-
-  end_tags: |-
-    (?x: endapply | endautoescape | endblock | endcall | endembed | endfilter
-    | endfor | endif | endmacro | endraw | endset | endtrans | endwith )
-
   builtin_filters: |-
     (?x:
     # https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-filters
@@ -114,7 +105,9 @@ contexts:
     - match: ^\s*(#(?!#))
       captures:
         1: punctuation.section.embedded.jinja
-      push: statement-line-body
+      push:
+        - statement-line-body
+        - statement-begin
 
   statement-line-body:
     - meta_scope: meta.embedded.statement.jinja
@@ -139,7 +132,9 @@ contexts:
         3: punctuation.section.embedded.end.jinja
       set: raw-block
     - match: (?=\S)
-      set: statement-block-body
+      set:
+        - statement-block-body
+        - statement-begin
 
   statement-block-body:
     - meta_scope: meta.embedded.statement.jinja
@@ -167,6 +162,84 @@ contexts:
         4: punctuation.section.embedded.end.jinja
       pop: 1
 
+###[ STATEMENTS ]#############################################################
+
+  statement-begin:
+    # control keywords
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-control-structures
+    # conditional
+    - match: if\b
+      scope: keyword.control.conditional.if.jinja
+      pop: 1
+    - match: else\b
+      scope: keyword.control.conditional.else.jinja
+      pop: 1
+    - match: elif\b
+      scope: keyword.control.conditional.elseif.jinja
+      pop: 1
+    - match: endif\b
+      scope: keyword.control.conditional.endif.jinja
+      pop: 1
+    # loops
+    - match: for\b
+      scope: keyword.control.loop.for.jinja
+      pop: 1
+    - match: endfor\b
+      scope: keyword.control.loop.endfor.jinja
+      pop: 1
+    - match: continue\b
+      scope: keyword.control.flow.continue.jinja
+      pop: 1
+    - match: break\b
+      scope: keyword.control.flow.break.jinja
+      pop: 1
+
+    # import keywords
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#import
+    - match: import\b
+      scope: keyword.control.import.jinja
+      pop: 1
+    - match: from\b
+      scope: keyword.control.import.from.jinja
+      set: from-statement
+
+    # include keywords
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#include
+    - match: include\b
+      scope: keyword.control.import.jinja
+      set: include-statement
+
+    # any block tags
+    - match: end{{identifiers}}\b(?!\s*[=(])
+      scope: keyword.other.endtag.jinja
+      pop: 1
+    - match: set\b
+      scope: keyword.other.tag.jinja
+      pop: 1
+    - match: '{{identifiers}}\b(?!\s*[=(])'
+      scope: keyword.other.tag.jinja
+      pop: 1
+    - include: else-pop
+
+  from-statement:
+    - match: import\b
+      scope: keyword.control.import.jinja
+      pop: 1
+    - include: strings
+    - include: else-pop
+
+  include-statement:
+    - match: (ignore)(?:\s+(missing))?\b
+      captures:
+        1: keyword.other.jinja
+        2: keyword.other.jinja
+    - match: (with(?:out)?)(?:\s+(context))?\b
+      captures:
+        1: keyword.other.jinja
+        2: keyword.other.jinja
+    - include: strings
+    - include: else-pop
+
 ###[ EXPRESSIONS ]############################################################
 
   expression-blocks:
@@ -189,50 +262,9 @@ contexts:
     - include: constants
     - include: numbers
     - include: strings
-    - include: keywords
     - include: operators
     - include: function-calls
     - include: variables
-
-  keywords:
-    # control keywords
-    # https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-control-structures
-    - match: for\b
-      scope: keyword.control.loop.for.jinja
-    - match: if\b
-      scope: keyword.control.conditional.if.jinja
-    - match: else\b
-      scope: keyword.control.conditional.else.jinja
-    - match: elif\b
-      scope: keyword.control.conditional.elseif.jinja
-    - match: continue\b
-      scope: keyword.control.flow.continue.jinja
-    - match: break\b
-      scope: keyword.control.flow.break.jinja
-
-    # import keywords
-    # https://jinja.palletsprojects.com/en/3.1.x/templates/#import
-    - match: import\b
-      scope: keyword.control.import.jinja
-    - match: from\b
-      scope: keyword.control.import.from.jinja
-
-    # include keywords
-    # https://jinja.palletsprojects.com/en/3.1.x/templates/#include
-    - match: (ignore)(?:\s+(missing))?\b
-      captures:
-        1: keyword.other.jinja
-        2: keyword.other.jinja
-    - match: (with(?:out)?)(?:\s+(context))?\b
-      captures:
-        1: keyword.other.jinja
-        2: keyword.other.jinja
-
-    # block tags
-    - match: '{{builtin_tags}}\b'
-      scope: keyword.other.tag.jinja
-    - match: '{{end_tags}}\b'
-      scope: keyword.other.endtag.jinja
 
   function-calls:
     - match: '{{builtin_functions}}(?=\()'

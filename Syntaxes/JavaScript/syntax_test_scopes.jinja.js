@@ -16,7 +16,7 @@
   {% endif %}
 ##^^^^^^^^^^^ meta.embedded.statement.jinja
 ##^^ punctuation.section.embedded.begin.jinja
-##   ^^^^^ keyword.other.endtag.jinja
+##   ^^^^^ keyword.control.conditional.endif.jinja
 ##         ^^ punctuation.section.embedded.end.jinja
 
 function foo () {
@@ -37,7 +37,7 @@ function foo () {
   {% endif %}
 ##^^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.jinja
 ##^^ punctuation.section.embedded.begin.jinja
-##   ^^^^^ keyword.other.endtag.jinja
+##   ^^^^^ keyword.control.conditional.endif.jinja
 ##         ^^ punctuation.section.embedded.end.jinja
 
 }

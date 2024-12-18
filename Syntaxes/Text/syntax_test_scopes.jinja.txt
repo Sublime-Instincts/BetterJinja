@@ -13,7 +13,6 @@
 
 #  ## comment
 ## <- meta.embedded.statement.jinja punctuation.section.embedded.jinja - comment
-##^ - meta.embedded - comment
 ## ^^^^^^^^^^^ meta.embedded.comment.jinja comment.line.jinja
 ## ^^ punctuation.definition.comment.jinja
 ##   ^^^^^^^^^ - punctuation
@@ -37,25 +36,44 @@
 
 ## [ STATEMENT LINES ] ########################################################
 
-   # if elif else endif scoped
+   # if condition
 ## ^ meta.embedded.statement.jinja - source.jinja
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
+##  ^^^^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
 ## ^ punctuation.section.embedded.jinja
 ##   ^^ keyword.control.conditional.if.jinja
-##      ^^^^ keyword.control.conditional.elseif.jinja
-##           ^^^^ keyword.control.conditional.else.jinja
-##                ^^^^^ keyword.other.endtag.jinja
-##                      ^^^^^^ keyword.other.tag.jinja
+##      ^^^^^^^^^ variable.other.jinja
 
-   # for item in items endfor
+   # elif condition
 ## ^ meta.embedded.statement.jinja - source.jinja
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
+##  ^^^^^^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
+## ^ punctuation.section.embedded.jinja
+##   ^^^^ keyword.control.conditional.elseif.jinja
+##        ^^^^^^^^^ variable.other.jinja
+
+   # else
+## ^ meta.embedded.statement.jinja - source.jinja
+##  ^^^^^ meta.embedded.statement.jinja source.jinja.embedded
+## ^ punctuation.section.embedded.jinja
+##   ^^^^ keyword.control.conditional.else.jinja
+
+   # endif
+## ^ meta.embedded.statement.jinja - source.jinja
+##  ^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
+## ^ punctuation.section.embedded.jinja
+##   ^^^^^ keyword.control.conditional.endif.jinja
+
+   # for item in items
+## ^ meta.embedded.statement.jinja - source.jinja
+##  ^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
 ## ^ punctuation.section.embedded.jinja
 ##   ^^^ keyword.control.loop.for.jinja
 ##       ^^^^ variable.other.jinja
 ##            ^^ keyword.operator.iterator.in.jinja
 ##               ^^^^^ variable.other.jinja
-##                     ^^^^^^ keyword.other.endtag.jinja
+   # endfor
+## ^ meta.embedded.statement.jinja - source.jinja
+##  ^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
+##   ^^^^^^ keyword.control.loop.endfor.jinja
 
 # for href, caption in [('index.html', 'Index'),
                         ('about.html', 'About')]:
@@ -69,7 +87,7 @@
 
 # endfor ## comment
 ## <- meta.embedded.statement.jinja punctuation.section.embedded.jinja
-##^^^^^^ meta.embedded.statement.jinja source.jinja.embedded keyword.other.endtag.jinja
+##^^^^^^ meta.embedded.statement.jinja source.jinja.embedded keyword.control.loop.endfor.jinja
 ##       ^^^^^^^^^^^ meta.embedded.comment.jinja comment.line.jinja - meta.embedded.statement - source.jinja.embedded
 
 not a # for statement:
@@ -101,19 +119,17 @@ not a # for statement:
 ##    ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.jinja.embedded
 ##                               ^^ punctuation.section.embedded.end.jinja - source.jinja.embedded
 ##     ^^ keyword.control.conditional.if.jinja
-##        ^^^^ keyword.control.conditional.elseif.jinja
-##             ^^^^ keyword.control.conditional.else.jinja
-##                  ^^^^^ keyword.other.endtag.jinja
-##                        ^^^^^^ keyword.other.tag.jinja
+##        ^^^^^^^^^^^^^^^^^^^^^^ - keyword
 
     {% for item in items endfor %}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##                              ^^ punctuation.section.embedded.end.jinja
 ##     ^^^ keyword.control.loop.for.jinja
-##              ^^ keyword.operator.iterator.in.jinja
-##                       ^^^^^^ keyword.other.endtag.jinja
 ##         ^^^^ variable.other.jinja
+##              ^^ keyword.operator.iterator.in.jinja
+##                 ^^^^^ variable.other.jinja
+##                       ^^^^^^ - keyword
 
     {% autoescape %} {% endautoescape %}
 ##  ^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
@@ -227,16 +243,18 @@ not a # for statement:
 ##                                                             ^^ punctuation.section.embedded.end.jinja
 
     {% include "sidebar.html" ignore missing with context %}
-##     ^^^^^^^ keyword.other.tag.jinja
+##     ^^^^^^^ keyword.control.import.jinja
 ##                            ^^^^^^ keyword.other.jinja
 ##                                   ^^^^^^^ keyword.other.jinja
 ##                                           ^^^^ keyword.other.jinja
-##                                                ^^^^^^^  keyword.other.jinja
+##                                                ^^^^^^^ keyword.other.jinja
 
     {% include "sidebar.html" ignore missing without context %}
+##     ^^^^^^^ keyword.control.import.jinja
 ##                                           ^^^^^^^ keyword.other.jinja
 
     {% include ['special_sidebar.html', 'sidebar.html'] ignore missing %}
+##     ^^^^^^^ keyword.control.import.jinja
 ##             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.list.jinja
 ##             ^ meta.sequence.list.jinja punctuation.section.sequence.begin.jinja
 ##                                                    ^ meta.sequence.list.jinja punctuation.section.sequence.end.jinja

@@ -18,7 +18,7 @@
   {% endif %}
 //^^^^^^^^^^^ meta.embedded.statement.jinja
 //^^ punctuation.section.embedded.begin.jinja
-//   ^^^^^ keyword.other.endtag.jinja
+//   ^^^^^ keyword.control.conditional.endif.jinja
 //         ^^ punctuation.section.embedded.end.jinja
 
 int foo(int i) {
@@ -50,7 +50,7 @@ int foo(int i) {
   {% endif %}
 //^^^^^^^^^^^ meta.function.c++ meta.block.c++ meta.embedded.statement.jinja
 //^^ punctuation.section.embedded.begin.jinja
-//   ^^^^^ keyword.other.endtag.jinja
+//   ^^^^^ keyword.control.conditional.endif.jinja
 //         ^^ punctuation.section.embedded.end.jinja
 
     return 0;
