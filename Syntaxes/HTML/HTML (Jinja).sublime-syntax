@@ -15,6 +15,11 @@ file_extensions:
   - htm.jinja
   - htm.jinja2
   - htm.j2
+  # Django
+  - djt
+  - djhtml
+  - dj.html
+  - html.djt
 
 extends: Packages/HTML/HTML.sublime-syntax
 

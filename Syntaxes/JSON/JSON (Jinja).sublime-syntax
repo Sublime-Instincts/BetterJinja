@@ -14,6 +14,10 @@ file_extensions:
   - jinja.json
   - jinja2.json
   - j2.json
+  # Django
+  - djjson
+  - dj.json
+  - json.djt
 
 contexts:
 

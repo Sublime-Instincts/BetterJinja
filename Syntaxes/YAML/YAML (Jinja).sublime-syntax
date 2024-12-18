@@ -20,6 +20,13 @@ file_extensions:
   - jinja.yml
   - jinja2.yml
   - j2.yml
+  # Django
+  - djyml
+  - dj.yml
+  - yml.djt
+  - djyaml
+  - dj.yaml
+  - yaml.djt
 
 variables:
   ns_plain_first_plain_in: |- # c=plain-in
