@@ -103,17 +103,28 @@ contexts:
 
   statement-lines:
     - match: ^\s*(#(?!#))
+      scope: meta.embedded.statement.jinja
       captures:
         1: punctuation.section.embedded.jinja
-      push:
+      push: statement-line-begin
+
+  statement-line-begin:
+    - meta_include_prototype: false
+    - meta_content_scope: meta.embedded.statement.jinja source.jinja.embedded
+    - match: raw\b
+      scope: keyword.other.tag.jinja
+      set:
+        - raw-block
+        - statement-line-body
+    - match: (?=\S)
+      set:
         - statement-line-body
         - statement-begin
 
   statement-line-body:
-    - meta_scope: meta.embedded.statement.jinja
-    - meta_content_scope: source.jinja.embedded
+    - meta_scope: meta.embedded.statement.jinja source.jinja.embedded
     - match: \:?(?=\s*(?:##|$))
-      scope: source.jinja.embedded punctuation.section.block.jinja
+      scope: punctuation.section.block.jinja
       pop: 1
     - include: expressions
 
@@ -125,12 +136,11 @@ contexts:
   statement-block-begin:
     - meta_scope: meta.embedded.statement.jinja
     - meta_content_scope: source.jinja.embedded
-    - match: ((raw)\s*)({{trim_block}}?%})
-      captures:
-        1: source.jinja.embedded
-        2: keyword.other.tag.jinja
-        3: punctuation.section.embedded.end.jinja
-      set: raw-block
+    - match: raw\b
+      scope: source.jinja.embedded keyword.other.tag.jinja
+      set:
+        - raw-block
+        - statement-block-body
     - match: (?=\S)
       set:
         - statement-block-body
@@ -151,7 +161,7 @@ contexts:
       set: raw-block-body
 
   raw-block-body:
-    # All but final {% endraw %} is treated literal
+    # All but final `{% endraw %}` or `# endraw` is treated literal
     # https://jinja.palletsprojects.com/en/3.1.x/templates/#escaping
     - meta_content_scope: markup.raw.block.jinja
     - match: \s*(({%{{trim_block}}?)\s*(endraw)\s*({{trim_block}}?%}))
@@ -161,6 +171,11 @@ contexts:
         3: keyword.other.endtag.jinja
         4: punctuation.section.embedded.end.jinja
       pop: 1
+    - match: ^\s*(#(?!#))\s*(endraw)\b
+      captures:
+        1: punctuation.section.embedded.begin.jinja
+        2: keyword.other.endtag.jinja
+      set: statement-line-body
 
 ###[ STATEMENTS ]#############################################################
 

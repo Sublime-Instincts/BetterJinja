@@ -310,6 +310,21 @@ not a # for statement:
 ##     ^^^^^^ keyword.other.endtag.jinja
 ##            ^^ punctuation.section.embedded.end.jinja
 
+    # raw
+##^^^^^^^ meta.embedded.statement.jinja
+##  ^ punctuation.section.embedded.jinja
+##   ^^^^ source.jinja.embedded
+##    ^^^ keyword.other.tag.jinja
+
+        {% raw %} {{ var }}
+##     ^^^^^^^^^^^^^^^^^^^^^ markup.raw.block.jinja - meta.embedded
+
+    # endraw
+##^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
+##  ^ punctuation.section.embedded.begin.jinja
+##    ^^^^^^ keyword.other.endtag.jinja
+
+
 ## [ EXPRESSION BLOCKS ] ######################################################
 
     {{  }}
