@@ -132,87 +132,87 @@ not a # for statement:
 ##                       ^^^^^^ - keyword
 
     {% autoescape %} {% endautoescape %}
-##  ^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^^^^^^^^ keyword.other.tag.jinja
 ##                ^^ punctuation.section.embedded.end.jinja
 ##                   ^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
 ##                   ^^ punctuation.section.embedded.begin.jinja
-##                      ^^^^^^^^^^^^^ keyword.other.endtag.jinja
+##                      ^^^^^^^^^^^^^ keyword.other.endtag.jinja - meta.embedded meta.embedded
 ##                                    ^^ punctuation.section.embedded.end.jinja
 
     {% block %} {% endblock %}
-##  ^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^^^ keyword.other.tag.jinja
 ##           ^^ punctuation.section.embedded.end.jinja
-##              ^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##              ^^^^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
 ##              ^^ punctuation.section.embedded.begin.jinja
 ##                 ^^^^^^^^ keyword.other.endtag.jinja
 ##                          ^^ punctuation.section.embedded.end.jinja
 
     {% call %} {% endcall %}
-##  ^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^^ keyword.other.tag.jinja
 ##          ^^ punctuation.section.embedded.end.jinja
-##             ^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##             ^^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##             ^^ punctuation.section.embedded.begin.jinja
 ##                ^^^^^^^ keyword.other.endtag.jinja
 ##                        ^^ punctuation.section.embedded.end.jinja
 
     {% filter %} {% endfilter %}
-##  ^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^^^^ keyword.other.tag.jinja
 ##            ^^ punctuation.section.embedded.end.jinja
-##               ^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##               ^^^^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##               ^^ punctuation.section.embedded.begin.jinja
 ##                  ^^^^^^^^^ keyword.other.endtag.jinja
 ##                            ^^ punctuation.section.embedded.end.jinja
 
     {% macro %} {% endmacro %}
-##  ^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^^^ keyword.other.tag.jinja
 ##           ^^ punctuation.section.embedded.end.jinja
-##              ^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##              ^^^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##              ^^ punctuation.section.embedded.begin.jinja
 ##                 ^^^^^^^^ keyword.other.endtag.jinja
 ##                          ^^ punctuation.section.embedded.end.jinja
 
     {% raw %} {% endraw %}
-##  ^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^ keyword.other.tag.jinja
 ##         ^^ punctuation.section.embedded.end.jinja
-##            ^^^^^^^^^^^^ meta.embedded.statement.jinja
+##            ^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##            ^^ punctuation.section.embedded.begin.jinja
 ##               ^^^^^^ keyword.other.endtag.jinja
 ##                      ^^ punctuation.section.embedded.end.jinja
 
     {% set %} {% endset %}
-##  ^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^ keyword.other.tag.jinja
 ##         ^^ punctuation.section.embedded.end.jinja
-##            ^^^^^^^^^^^^ meta.embedded.statement.jinja
+##            ^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##            ^^ punctuation.section.embedded.begin.jinja
 ##               ^^^^^^ keyword.other.endtag.jinja
 ##                      ^^ punctuation.section.embedded.end.jinja
 
     {% trans %} {% endtrans %}
-##  ^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^^^ keyword.other.tag.jinja
 ##           ^^ punctuation.section.embedded.end.jinja
-##              ^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##              ^^^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##              ^^ punctuation.section.embedded.begin.jinja
 ##                 ^^^^^^^^ keyword.other.endtag.jinja
 ##                          ^^ punctuation.section.embedded.end.jinja
 
     {% extends "index.html" %}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##                          ^^ punctuation.section.embedded.end.jinja
 ##     ^^^^^^^ keyword.other.tag.jinja
@@ -221,7 +221,7 @@ not a # for statement:
 ##                        ^ punctuation.definition.string.end.jinja
 
     {% import 'forms.html' as forms %}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^^^^ keyword.control.import.jinja
 ##            ^^^^^^^^^^^^ meta.string.jinja string.quoted.single.jinja
@@ -230,7 +230,7 @@ not a # for statement:
 ##                                  ^^ punctuation.section.embedded.end.jinja
 
     {% from 'forms.html' import input as input_field, textarea %}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja  - meta.embedded meta.embedded
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^^ keyword.control.import.from.jinja
 ##          ^^^^^^^^^^^^ meta.string.jinja string.quoted.single.jinja

@@ -147,10 +147,9 @@ contexts:
         - statement-begin
 
   statement-block-body:
-    - meta_scope: meta.embedded.statement.jinja
-    - meta_content_scope: source.jinja.embedded
+    - meta_content_scope: meta.embedded.statement.jinja source.jinja.embedded
     - match: '{{trim_block}}?%\}'
-      scope: punctuation.section.embedded.end.jinja
+      scope: meta.embedded.statement.jinja punctuation.section.embedded.end.jinja
       pop: 1
     - include: expressions
 
