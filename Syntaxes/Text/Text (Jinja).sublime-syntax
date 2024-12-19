@@ -20,7 +20,7 @@ variables:
   floats: '({{digit}}+_?)?({{digit}}*)?(\.)({{digit}}+)([eE]?{{digit}}*)?'
   identifiers: '[a-zA-Z_][a-zA-Z0-9_]*'
 
-  trim_block: '(?:[+-])'
+  modifiers: '[-+]'
 
   builtin_filters: |-
     (?x:
@@ -52,6 +52,8 @@ variables:
 
   builtin_vars: |-
     (?x: loop )
+
+###############################################################################
 
 contexts:
   main:
@@ -129,7 +131,7 @@ contexts:
     - include: expressions
 
   statement-blocks:
-    - match: \{%{{trim_block}}?
+    - match: \{%{{modifiers}}?
       scope: punctuation.section.embedded.begin.jinja
       push: statement-block-begin
 
@@ -148,7 +150,7 @@ contexts:
 
   statement-block-body:
     - meta_content_scope: meta.embedded.statement.jinja source.jinja.embedded
-    - match: '{{trim_block}}?%\}'
+    - match: '{{modifiers}}?%\}'
       scope: meta.embedded.statement.jinja punctuation.section.embedded.end.jinja
       pop: 1
     - include: expressions
@@ -163,7 +165,7 @@ contexts:
     # All but final `{% endraw %}` or `# endraw` is treated literal
     # https://jinja.palletsprojects.com/en/3.1.x/templates/#escaping
     - meta_content_scope: markup.raw.block.jinja
-    - match: \s*(({%{{trim_block}}?)\s*(endraw)\s*({{trim_block}}?%}))
+    - match: \s*(({%{{modifiers}}?)\s*(endraw)\s*({{modifiers}}?%}))
       captures:
         1: meta.embedded.statement.jinja
         2: punctuation.section.embedded.begin.jinja
