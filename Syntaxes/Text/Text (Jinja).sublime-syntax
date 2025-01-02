@@ -271,9 +271,9 @@ contexts:
     - include: expressions
 
   expressions:
-    - include: groups-or-tuples
+    - include: dictionaries
     - include: lists
-    - include: mappings
+    - include: parens
     - include: constants
     - include: numbers
     - include: strings
@@ -335,9 +335,42 @@ contexts:
 
 ###[ COLLECTIONS ]############################################################
 
-  groups-or-tuples:
+  dictionaries:
+    - match: \{
+      scope: punctuation.section.mapping.begin.jinja
+      push: dictionary-body
+
+  dictionary-body:
+    - meta_scope: meta.mapping.jinja
+    - include: block-pop
+    - match: \}
+      scope: punctuation.section.mapping.end.jinja
+      pop: 1
+    - match: ','
+      scope: punctuation.separator.mapping.pair.jinja
+    - match: ':'
+      scope: punctuation.separator.mapping.key-value.jinja
+      set: dictionary-value
+    - match: (?=\S)
+      set: dictionary-key
+
+  dictionary-key:
+    - meta_content_scope: meta.mapping.key.jinja
+    - match: (?=[,:}])
+      set: dictionary-body
+    - include: block-pop
+    - include: expressions
+
+  dictionary-value:
+    - meta_content_scope: meta.mapping.value.jinja
+    - match: (?=[,:}])
+      set: dictionary-body
+    - include: block-pop
+    - include: expressions
+
+  parens:
     - match: (?=\()
-      branch_point: group-or-tuple
+      branch_point: parens
       branch:
         - group
         - tuple
@@ -354,7 +387,7 @@ contexts:
       scope: punctuation.section.group.end.jinja
       pop: 1
     - match: (?=,)
-      fail: group-or-tuple
+      fail: parens
     - include: block-pop
     - include: expressions
 
@@ -383,23 +416,6 @@ contexts:
       scope: punctuation.section.sequence.end.jinja
       pop: 1
     - include: block-pop
-    - include: expressions
-
-  mappings:
-    - match: \{
-      scope: punctuation.section.mapping.begin.jinja
-      push: mapping-body
-
-  mapping-body:
-    - meta_scope: meta.mapping.jinja
-    - include: block-pop
-    - match: \}
-      scope: punctuation.section.mapping.end.jinja
-      pop: 1
-    - match: ':'
-      scope: punctuation.separator.mapping.key-value.jinja
-    - match: ','
-      scope: punctuation.separator.mapping.pair.jinja
     - include: expressions
 
 ###[ OPERATORS ]##############################################################
