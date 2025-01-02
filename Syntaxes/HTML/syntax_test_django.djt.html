@@ -41,6 +41,26 @@
 ##^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded keyword.other.endtag.jinja
 
 
+## [ DJANGO CUSTOM TAGS ] #####################################################
+
+    {% mytemplate condition < 10 %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##    ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.jinja.embedded
+##     ^^^^^^^^^^ keyword.other.tag.jinja
+##                ^^^^^^^^^ variable.other.readwrite.jinja
+##                          ^ keyword.operator.symbol.jinja keyword.operator.comparison.jinja
+##                            ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+##                               ^^ punctuation.section.embedded.end.jinja
+
+    {% endmytemplate %}
+##  ^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##    ^^^^^^^^^^^^^^^ source.jinja.embedded
+##     ^^^^^^^^^^^^^ keyword.other.endtag.jinja
+##                   ^^ punctuation.section.embedded.end.jinja
+
+
 ## [ DJANGO FILTERS ] #########################################################
 
     {{ somevariable|cut:"0" }}
