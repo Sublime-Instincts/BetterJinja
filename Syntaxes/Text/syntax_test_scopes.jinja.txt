@@ -68,7 +68,7 @@
 ## ^ punctuation.section.embedded.jinja
 ##   ^^^ keyword.control.loop.for.jinja
 ##       ^^^^ variable.other.readwrite.jinja
-##            ^^ keyword.operator.iterator.in.jinja
+##            ^^ keyword.operator.iteration.in.jinja
 ##               ^^^^^ variable.other.readwrite.jinja
    # endfor
 ## ^ meta.embedded.statement.jinja - source.jinja
@@ -127,7 +127,7 @@ not a # for statement:
 ##                              ^^ punctuation.section.embedded.end.jinja
 ##     ^^^ keyword.control.loop.for.jinja
 ##         ^^^^ variable.other.readwrite.jinja
-##              ^^ keyword.operator.iterator.in.jinja
+##              ^^ keyword.operator.iteration.in.jinja
 ##                 ^^^^^ variable.other.readwrite.jinja
 ##                       ^^^^^^ - keyword
 
@@ -879,7 +879,7 @@ not a # for statement:
 ##         ^^^ variable.other.readwrite.jinja
 ##            ^ punctuation.separator.sequence.jinja
 ##              ^^^^^^^^ meta.sequence.tuple.jinja
-##                       ^^ keyword.operator.iterator.in.jinja
+##                       ^^ keyword.operator.iteration.in.jinja
 ##                          ^^^^^^^ variable.other.object.jinja
 ##                                 ^ punctuation.accessor.dot.jinja
 ##                                  ^^^^^ meta.function-call.identifier.jinja variable.function.method.jinja
@@ -900,7 +900,7 @@ not a # for statement:
     {% if 1 is in [1, 2] %}
 ##             ^^ support.function.test.jinja
     {% if 1 in [1, 2] %}
-##          ^^ keyword.operator.iterator.in.jinja
+##          ^^ keyword.operator.iteration.in.jinja
 
     {% set foo = -1 %}
 ##               ^ keyword.operator.arithmetic.jinja

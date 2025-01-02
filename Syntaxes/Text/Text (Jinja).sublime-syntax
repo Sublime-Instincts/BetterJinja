@@ -386,7 +386,7 @@ contexts:
     - match: as\b
       scope: keyword.operator.word.jinja keyword.operator.assignment.as.jinja
     - match: in\b
-      scope: keyword.operator.word.jinja keyword.operator.iterator.in.jinja
+      scope: keyword.operator.word.jinja keyword.operator.iteration.in.jinja
     - match: (?:and|or|not)\b
       scope: keyword.operator.word.jinja keyword.operator.logical.jinja
     - match: (is)(?:\s+(not))?\b
