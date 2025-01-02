@@ -415,10 +415,8 @@ contexts:
       scope: keyword.operator.word.jinja keyword.operator.iteration.in.jinja
     - match: (?:and|or|not)\b
       scope: keyword.operator.word.jinja keyword.operator.logical.jinja
-    - match: (is)(?:\s+(not))?\b
-      captures:
-        1: keyword.operator.word.jinja keyword.operator.logical.jinja
-        2: keyword.operator.word.jinja keyword.operator.logical.jinja
+    - match: is\b
+      scope: keyword.operator.word.jinja keyword.operator.logical.jinja
       push: expect-test-function
     # symbolic operators
     - match: \~
@@ -434,6 +432,8 @@ contexts:
       scope: punctuation.separator.sequence.jinja
 
   expect-test-function:
+    - match: not\b
+      scope: keyword.operator.word.jinja keyword.operator.logical.jinja
     - match: '{{builtin_tests}}\b'
       scope: meta.function-call.identifier.jinja support.function.test.jinja
       set: function-call-argument-list
