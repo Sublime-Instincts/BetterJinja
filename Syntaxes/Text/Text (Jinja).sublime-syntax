@@ -281,8 +281,34 @@ contexts:
     - include: numbers
     - include: strings
     - include: operators
+    - include: filters
     - include: function-calls
     - include: variables
+
+###[ FILTERS ]################################################################
+
+  filters:
+    - match: \|
+      scope: keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
+      push:
+        - filter-meta
+        - filter-name
+
+  filter-meta:
+    - meta_include_prototype: false
+    - meta_scope: meta.filter.jinja
+    - include: immediately-pop
+
+  filter-name:
+    - match: '{{builtin_filters}}\b'
+      scope: meta.function-call.identifier.jinja support.function.filter.jinja
+      set: function-call-argument-list
+    - match: '{{ident}}\b'
+      scope: meta.function-call.identifier.jinja variable.function.filter.jinja
+      set: function-call-argument-list
+    - include: else-pop
+
+###[ FUNCTION CALLS ]#########################################################
 
   function-calls:
     - match: '{{builtin_functions}}(?=\()'
@@ -403,21 +429,9 @@ contexts:
       scope: keyword.operator.symbol.jinja keyword.operator.assignment.jinja
     - match: '[*/]{2}|[-+*/%]'
       scope: keyword.operator.symbol.jinja keyword.operator.arithmetic.jinja
-    - match: \|
-      scope: keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
-      push: expect-filter-function
     # punctuations
     - match: ','
       scope: punctuation.separator.sequence.jinja
-
-  expect-filter-function:
-    - match: '{{builtin_filters}}\b'
-      scope: meta.function-call.identifier.jinja support.function.filter.jinja
-      set: function-call-argument-list
-    - match: '{{ident}}\b'
-      scope: meta.function-call.identifier.jinja variable.function.filter.jinja
-      set: function-call-argument-list
-    - include: else-pop
 
   expect-test-function:
     - match: '{{builtin_tests}}\b'

@@ -263,6 +263,7 @@ not a # for statement:
 ##                                   ^ meta.sequence.list.jinja string.quoted.single.jinja punctuation.definition.string.end.jinja
 
     {% | list %}
+##     ^^^^^^ meta.filter.jinja
 ##     ^ keyword.operator.assignment.pipe.jinja
 ##       ^^^^ support.function.filter.jinja
 
@@ -755,21 +756,25 @@ not a # for statement:
 
     {{ "foo &lt; bar" | e }}
 ##     ^^^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
+##                    ^^^ meta.filter.jinja
 ##                    ^ keyword.operator.assignment.pipe.jinja
 ##                      ^ meta.function-call.identifier.jinja support.function.filter.jinja
 
     {{ "foo < bar" | safe }}
 ##     ^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
+##                 ^^^^^^ meta.filter.jinja
 ##                 ^ keyword.operator.assignment.pipe.jinja
 ##                   ^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 
     {{ foo | list }}
 ##     ^^^ variable.other.readwrite.jinja
+##         ^^^^^^ meta.filter.jinja
 ##         ^ keyword.operator.assignment.pipe.jinja
 ##           ^^^^ support.function.filter.jinja
 
     {{ foo | my_list }}
 ##     ^^^ variable.other.readwrite.jinja
+##         ^^^^^^^^^ meta.filter.jinja
 ##         ^ keyword.operator.assignment.pipe.jinja
 ##           ^^^^^^^ variable.function.filter.jinja
 
@@ -778,6 +783,7 @@ not a # for statement:
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##    ^^^^^^^^^^^^^^^^ source.jinja.embedded
 ##     ^^^^ variable.other.readwrite.jinja
+##         ^^^^^^^^^^^ meta.filter.jinja
 ##         ^ keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
 ##          ^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 ##              ^^^^^^ meta.function-call.arguments.jinja
@@ -789,6 +795,7 @@ not a # for statement:
 
     {{ foo | default([]) | list | join(', ') }}
 ##     ^^^ variable.other.readwrite.jinja
+##         ^^^^^^^^^^^^^ meta.filter.jinja
 ##         ^ keyword.operator.assignment.pipe.jinja
 ##           ^^^^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 ##                  ^^^^ meta.function-call.arguments.jinja
@@ -796,8 +803,10 @@ not a # for statement:
 ##                   ^ meta.sequence.list.jinja punctuation.section.sequence.begin.jinja
 ##                    ^ meta.sequence.list.jinja punctuation.section.sequence.end.jinja
 ##                     ^ punctuation.section.arguments.end.jinja
+##                       ^^^^^^ meta.filter.jinja
 ##                       ^ keyword.operator.assignment.pipe.jinja
 ##                         ^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
+##                              ^^^^^^^^^^^^ meta.filter.jinja
 ##                              ^ keyword.operator.assignment.pipe.jinja
 ##                                ^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 ##                                    ^^^^^^ meta.function-call.arguments.jinja
@@ -809,10 +818,12 @@ not a # for statement:
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^ variable.other.readwrite.jinja
+##       ^^^^^^^ meta.filter.jinja
 ##       ^ keyword.operator.assignment.pipe.jinja
 ##         ^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 ##            ^ meta.function-call.arguments.jinja punctuation.section.arguments.begin.jinja
 ##             ^ meta.function-call.arguments.jinja punctuation.section.arguments.end.jinja
+##               ^^^^^^^^^^^^^ meta.filter.jinja
 ##               ^ keyword.operator.assignment.pipe.jinja
 ##                 ^^^^^^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 ##                          ^ meta.function-call.arguments.jinja punctuation.section.arguments.begin.jinja
@@ -820,11 +831,13 @@ not a # for statement:
 ##                             ^^ punctuation.section.embedded.end.jinja
 
     {{ subl_cfg.config | dict2items }}
+##                     ^^^^^^^^^^^^ meta.filter.jinja
 ##                     ^ keyword.operator.assignment.pipe.jinja
 ##                       ^^^^^^^^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
 
     {{ foo | int is in range(10) }}
 ##     ^^^ variable.other.readwrite.jinja
+##         ^^^^^ meta.filter.jinja
 ##         ^ keyword.operator.assignment.pipe.jinja
 ##           ^^^ support.function.filter.jinja
 ##               ^^ keyword.operator.logical.jinja

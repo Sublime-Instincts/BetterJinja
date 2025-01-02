@@ -1,5 +1,5 @@
 {
-	"scope": "source.jinja meta.function-call.identifier",
+	"scope": "source.jinja meta.filter meta.function-call.identifier",
 	"completions": [
 		{
 			"trigger": "abs",
