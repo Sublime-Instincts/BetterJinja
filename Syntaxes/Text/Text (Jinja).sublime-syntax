@@ -327,7 +327,7 @@ contexts:
       scope: punctuation.section.arguments.end.jinja
       pop: 1
     - match: ','
-      scope: punctuation.separator.parameters.jinja
+      scope: punctuation.separator.arguments.jinja
     - match: '{{ident}}(?=\s*=)'
       scope: variable.parameter.jinja
     - include: block-pop

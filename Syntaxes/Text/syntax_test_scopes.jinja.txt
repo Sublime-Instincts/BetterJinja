@@ -277,7 +277,7 @@ not a # for statement:
 ##              ^^^^ variable.parameter.jinja
 ##                   ^ keyword.operator.assignment.jinja
 ##                     ^^^^^^ variable.other.readwrite.jinja
-##                           ^ punctuation.separator.parameters.jinja
+##                           ^ punctuation.separator.arguments.jinja
 ##                             ^^^^ variable.parameter.jinja
 ##                                  ^ keyword.operator.assignment.jinja
 ##                                    ^^^^^^ variable.other.readwrite.jinja
