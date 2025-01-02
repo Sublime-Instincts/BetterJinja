@@ -559,6 +559,9 @@ contexts:
     - match: \(
       scope: punctuation.section.arguments.begin.jinja
       set: function-call-argument-list-body
+    - match: ':'
+      scope: punctuation.separator.arguments.jinja.django
+      pop: 1
     - include: immediately-pop
 
   function-call-argument-list-body:

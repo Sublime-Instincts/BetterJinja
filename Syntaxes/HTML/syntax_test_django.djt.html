@@ -39,3 +39,17 @@
 # endcomment
 ## <- meta.embedded.statement.jinja punctuation.section.embedded.begin.jinja
 ##^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded keyword.other.endtag.jinja
+
+
+## [ DJANGO FILTERS ] #########################################################
+
+    {{ somevariable|cut:"0" }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##    ^^^^^^^^^^^^^^^^^^^^^^ source.jinja.embedded
+##     ^^^^^^^^^^^^ variable.other.readwrite.jinja
+##                 ^ keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
+##                  ^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
+##                     ^ punctuation.separator.arguments.jinja.django
+##                      ^^^ meta.string.jinja string.quoted.double.jinja
+##                          ^^ punctuation.section.embedded.end.jinja
