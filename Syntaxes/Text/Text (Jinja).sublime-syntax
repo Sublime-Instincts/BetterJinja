@@ -57,129 +57,372 @@ variables:
 contexts:
   main:
     - meta_scope: meta.template.jinja
-    - include: comments
-    - include: statement-lines
-    - include: statement-blocks
-    - include: expression-blocks
+    - include: jinja
 
   interpolations:
+    # to be included in strings to clear string scope within tags
     - match: (?={[{%#])
       push: interpolation-body
 
   interpolation-body:
-    - clear_scopes: 1  # remove `string` scope
-    - include: block-comments
-    - include: statement-blocks
-    - include: expression-blocks
+    - clear_scopes: 1
+    - meta_include_prototype: false
+    - include: jinja-comment-tags
+    - include: jinja-statement-tags
+    - include: jinja-expression-tags
     - include: immediately-pop
 
-###[ COMMENTS ]###############################################################
+  jinja:
+    - include: jinja-comment-lines
+    - include: jinja-statement-lines
+    - include: jinja-comment-tags
+    - include: jinja-statement-tags
+    - include: jinja-expression-tags
 
-  comments:
-    - include: block-comments
-    - include: line-comments
+###[ JINJA COMMENT LINES ]#####################################################
 
-  block-comments:
+  jinja-comment-lines:
+    - match: \#\#
+      scope: punctuation.definition.comment.jinja
+      push: jinja-comment-line-body
+
+  jinja-comment-line-body:
+    - meta_scope: meta.embedded.comment.jinja comment.line.jinja
+    - match: $\n?
+      pop: 1
+
+###[ JINJA COMMENT TAGS ]######################################################
+
+  jinja-comment-tags:
     - match: \{\#
       scope: punctuation.definition.comment.begin.jinja
-      push: block-comment-body
+      push: jinja-comment-tag-body
 
-  block-comment-body:
+  jinja-comment-tag-body:
     - meta_scope: meta.embedded.comment.jinja comment.block.jinja
     - match: \#\}
       scope: punctuation.definition.comment.end.jinja
       pop: 1
 
-  line-comments:
-    - match: \#\#
-      scope: punctuation.definition.comment.jinja
-      push: line-comment-body
+###[ JINJA STATEMENT LINES ]###################################################
 
-  line-comment-body:
-    - meta_scope: meta.embedded.comment.jinja comment.line.jinja
-    - match: $\n?
-      pop: 1
-
-###[ STATEMENTS ]#############################################################
-
-  statement-lines:
+  jinja-statement-lines:
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#line-statements
     - match: ^\s*(#(?!#))
       scope: meta.embedded.statement.jinja
       captures:
         1: punctuation.section.embedded.jinja
-      push: statement-line-begin
+      push:
+        - jinja-statement-line-end
+        - jinja-statement-line-begin
 
-  statement-line-begin:
+  jinja-statement-line-begin:
     - meta_include_prototype: false
-    - meta_content_scope: meta.embedded.statement.jinja source.jinja.embedded
-    - match: raw\b
-      scope: keyword.other.tag.jinja
-      set:
-        - raw-block
-        - statement-line-body
-    - match: (?=\S)
-      set:
-        - statement-line-body
-        - statement-begin
+    - include: control-statement
+    - include: block-statement-line
+    - include: import-statement-line
+    - include: macro-statement-line
+    - include: raw-statement-line
+    - include: set-statement-line
+    - include: other-statement
+    - include: else-pop
+    - include: eol-pop
 
-  statement-line-body:
-    - meta_scope: meta.embedded.statement.jinja source.jinja.embedded
+  jinja-statement-line-end:
+    - meta_content_scope: meta.embedded.statement.jinja source.jinja.embedded
     - match: \:?(?=\s*(?:##|$))
-      scope: punctuation.section.block.jinja
+      scope: meta.embedded.statement.jinja source.jinja.embedded punctuation.section.block.jinja
       pop: 1
     - include: expressions
 
-  statement-blocks:
+###[ JINJA STATEMENT TAGS ]####################################################
+
+  jinja-statement-tags:
     - match: \{%{{modifiers}}?
-      scope: punctuation.section.embedded.begin.jinja
-      push: statement-block-begin
+      scope: meta.embedded.statement.jinja punctuation.section.embedded.begin.jinja
+      push:
+        - jinja-statement-tag-end
+        - jinja-statement-tag-begin
 
-  statement-block-begin:
-    - meta_scope: meta.embedded.statement.jinja
-    - meta_content_scope: source.jinja.embedded
-    - match: raw\b
-      scope: source.jinja.embedded keyword.other.tag.jinja
-      set:
-        - raw-block
-        - statement-block-body
-    - match: (?=\S)
-      set:
-        - statement-block-body
-        - statement-begin
+  jinja-statement-tag-begin:
+    - include: control-statement
+    - include: block-statement-tag
+    - include: import-statement-tag
+    - include: macro-statement-tag
+    - include: raw-statement-tag
+    - include: set-statement-tag
+    - include: other-statement
+    - include: else-pop
 
-  statement-block-body:
+  jinja-statement-tag-end:
     - meta_content_scope: meta.embedded.statement.jinja source.jinja.embedded
     - match: '{{modifiers}}?%\}'
       scope: meta.embedded.statement.jinja punctuation.section.embedded.end.jinja
       pop: 1
     - include: expressions
 
+###[ JINJA EXPRESSION TAGS ]###################################################
+
+  jinja-expression-tags:
+    - match: \{{2}
+      scope: meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
+      push: jinja-expression-tag-body
+
+  jinja-expression-tag-body:
+    - meta_content_scope: meta.embedded.expression.jinja source.jinja.embedded
+    - match: \}{2}
+      scope: meta.embedded.expression.jinja punctuation.section.embedded.end.jinja
+      pop: 1
+    - include: expressions
+
+###[ IMPORT DECLARATIONS ]#####################################################
+
+  import-statement-line:
+    # extends keyword
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#extends
+    - match: extends\b
+      scope: keyword.control.import.extends.jinja
+      set: import-statement-line-body
+    # import keywords
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#import
+    - match: import\b
+      scope: keyword.control.import.jinja
+      set: import-statement-line-body
+    - match: from\b
+      scope: keyword.control.import.from.jinja
+      set:
+        - import-statement-line-body
+        - from-statement-line-body
+    # include keywords
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#include
+    - match: include\b
+      scope: keyword.control.import.jinja
+      set: import-statement-line-body
+
+  from-statement-line-body:
+    - include: from-statement-tag-body
+    - include: eol-pop
+
+  import-statement-line-body:
+    - meta_scope: meta.import.jinja
+    - include: import-keywords
+    - include: expressions
+    - include: eol-pop
+
+  import-statement-tag:
+    # extends keyword
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#extends
+    - match: extends\b
+      scope: keyword.control.import.extends.jinja
+      set: import-statement-tag-body
+    # import keywords
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#import
+    - match: import\b
+      scope: keyword.control.import.jinja
+      set: import-statement-tag-body
+    - match: from\b
+      scope: keyword.control.import.from.jinja
+      set:
+        - import-statement-tag-body
+        - from-statement-tag-body
+    # include keywords
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#include
+    - match: include\b
+      scope: keyword.control.import.jinja
+      set: import-statement-tag-body
+
+  from-statement-tag-body:
+    - match: import\b
+      scope: keyword.control.import.jinja
+      pop: 1
+    - include: strings
+    - include: else-pop
+
+  import-statement-tag-body:
+    - meta_scope: meta.import.jinja
+    - include: block-pop
+    - include: import-keywords
+    - include: expressions
+
+  import-keywords:
+    - match: (ignore)(?:\s+(missing))?\b
+      captures:
+        1: keyword.other.jinja
+        2: keyword.other.jinja
+    - match: (with(?:out)?)(?:\s+(context))?\b
+      captures:
+        1: keyword.other.jinja
+        2: keyword.other.jinja
+
+###[ BLOCK DECLARATIONS ]######################################################
+
+  block-statement-line:
+    - match: block\b
+      scope: keyword.declaration.block.jinja
+      set: block-statement-line-name
+    - match: endblock\b
+      scope: keyword.declaration.block.end.jinja
+      pop: 1
+
+  block-statement-line-name:
+    - include: block-statement-tag-name
+    - include: eol-pop
+
+  block-statement-tag:
+    - match: block\b
+      scope: keyword.declaration.block.jinja
+      set: block-statement-tag-name
+    - match: endblock\b
+      scope: keyword.declaration.block.end.jinja
+      pop: 1
+
+  block-statement-tag-name:
+    - match: '{{ident}}\b'
+      scope: entity.name.section.block.jinja
+      pop: 1
+    - include: else-pop
+
+###[ MACRO DECLARATIONS ]######################################################
+
+  macro-statement-line:
+    - match: macro\b
+      scope: meta.function.jinja keyword.declaration.macro.jinja
+      set:
+        - macro-statement-line-parameter-list
+        - macro-statement-line-name
+    - match: endmacro\b
+      scope: keyword.declaration.macro.end.jinja
+      pop: 1
+
+  macro-statement-line-name:
+    - include: macro-statement-tag-name
+    - include: eol-pop
+
+  macro-statement-line-parameter-list:
+    - meta_content_scope: meta.function.identifier.jinja
+    - include: macro-statement-tag-parameter-list
+    - include: eol-pop
+
+  macro-statement-tag:
+    - match: macro\b
+      scope: meta.function.jinja keyword.declaration.macro.jinja
+      set:
+        - macro-statement-tag-parameter-list
+        - macro-statement-tag-name
+    - match: endmacro\b
+      scope: keyword.declaration.macro.end.jinja
+      pop: 1
+
+  macro-statement-tag-name:
+    - match: '{{ident}}\b'
+      scope: entity.name.function.macro.jinja
+      pop: 1
+    - include: else-pop
+
+  macro-statement-tag-parameter-list:
+    - meta_content_scope: meta.function.identifier.jinja
+    - match: \(
+      scope: punctuation.section.parameters.begin.jinja
+      set: macro-statement-tag-parameter-list-body
+    - include: else-pop
+
+  macro-statement-tag-parameter-list-body:
+    - meta_scope: meta.function.parameters.jinja
+    - match: \)
+      scope: punctuation.section.parameters.end.jinja
+      pop: 1
+    - match: ','
+      scope: punctuation.separator.parameters.jinja
+    - match: '[:=]'
+      scope: keyword.operator.assignment.jinja
+      push: parameter-value
+    - match: '{{ident}}\b'
+      scope: variable.parameter.jinja
+    - include: block-pop
+
+  parameter-value:
+    - match: (?=[,)])
+      pop: 1
+    - include: block-pop
+    - include: expressions
+
+###[ RAW BLOCK DECLARATIONS ]##################################################
+
+  raw-statement-line:
+    # https://jinja.palletsprojects.com/en/3.1.x/templates/#line-statements
+    - match: raw\b
+      scope: keyword.other.tag.jinja
+      pop: 2  # skip default `statement-line-end`
+      push:
+        - raw-block
+        - jinja-statement-line-end
+
+  raw-statement-tag:
+    - match: raw\b
+      scope: keyword.other.tag.jinja
+      pop: 2 # skip default `statement-tag-end`
+      push:
+        - raw-block
+        - jinja-statement-tag-end
+
   raw-block:
     - meta_include_prototype: false
     # start block at new line or with next non-whitespace
-    - match: ^|(?=\S)
+    - match: ^|(?=\s*\S)
       set: raw-block-body
 
   raw-block-body:
     # All but final `{% endraw %}` or `# endraw` is treated literal
     # https://jinja.palletsprojects.com/en/3.1.x/templates/#escaping
     - meta_content_scope: markup.raw.block.jinja
-    - match: \s*(({%{{modifiers}}?)\s*(endraw)\s*({{modifiers}}?%}))
+    - match: (?:^\s*)?(({%{{modifiers}}?)(\s*(endraw\b)))
       captures:
         1: meta.embedded.statement.jinja
         2: punctuation.section.embedded.begin.jinja
-        3: keyword.other.endtag.jinja
-        4: punctuation.section.embedded.end.jinja
-      pop: 1
-    - match: ^\s*(#(?!#))\s*(endraw)\b
+        3: source.jinja.embedded
+        4: keyword.other.endtag.jinja
+      set: jinja-statement-tag-end
+    - match: ^\s*(#)(\s*(endraw\b))
+      scope: meta.embedded.statement.jinja
       captures:
         1: punctuation.section.embedded.begin.jinja
-        2: keyword.other.endtag.jinja
-      set: statement-line-body
+        2: source.jinja.embedded
+        3: keyword.other.endtag.jinja
+      set: jinja-statement-line-end
 
-###[ STATEMENTS ]#############################################################
+###[ VARIABLE DECLARATIONS ]###################################################
 
-  statement-begin:
+  set-statement-line:
+    - match: set\b
+      scope: meta.declaration.jinja keyword.declaration.variable.jinja
+      set: set-statement-line-name
+    - match: endset\b
+      scope: keyword.declaration.variable.jinja
+      pop: 1
+
+  set-statement-line-name:
+    - meta_content_scope: meta.declaration.identifier.jinja
+    - include: set-statement-tag-name
+    - include: eol-pop
+
+  set-statement-tag:
+    - match: set\b
+      scope: meta.declaration.jinja keyword.declaration.variable.jinja
+      set: set-statement-tag-name
+    - match: endset\b
+      scope: keyword.declaration.variable.jinja
+      pop: 1
+
+  set-statement-tag-name:
+    - meta_content_scope: meta.declaration.identifier.jinja
+    - include: separators
+    - include: tuples
+    - include: variables
+    - include: else-pop
+
+###[ CONTROL STATEMENTS ]######################################################
+
+  control-statement:
     # control keywords
     # https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-control-structures
     # conditional
@@ -209,66 +452,18 @@ contexts:
       scope: keyword.control.flow.break.jinja
       pop: 1
 
-    # import keywords
-    # https://jinja.palletsprojects.com/en/3.1.x/templates/#import
-    - match: import\b
-      scope: keyword.control.import.jinja
-      pop: 1
-    - match: from\b
-      scope: keyword.control.import.from.jinja
-      set: from-statement
+###[ OTHER STATEMENTS ]########################################################
 
-    # include keywords
-    # https://jinja.palletsprojects.com/en/3.1.x/templates/#include
-    - match: include\b
-      scope: keyword.control.import.jinja
-      set: include-statement
-
+  other-statement:
     # any block tags
     - match: end{{ident}}\b(?!\s*[=(])
       scope: keyword.other.endtag.jinja
       pop: 1
-    - match: set\b
-      scope: keyword.other.tag.jinja
-      pop: 1
     - match: '{{ident}}\b(?!\s*[=(])'
       scope: keyword.other.tag.jinja
       pop: 1
-    - include: else-pop
 
-  from-statement:
-    - match: import\b
-      scope: keyword.control.import.jinja
-      pop: 1
-    - include: strings
-    - include: else-pop
-
-  include-statement:
-    - match: (ignore)(?:\s+(missing))?\b
-      captures:
-        1: keyword.other.jinja
-        2: keyword.other.jinja
-    - match: (with(?:out)?)(?:\s+(context))?\b
-      captures:
-        1: keyword.other.jinja
-        2: keyword.other.jinja
-    - include: strings
-    - include: else-pop
-
-###[ EXPRESSIONS ]############################################################
-
-  expression-blocks:
-    - match: \{{2}
-      scope: punctuation.section.embedded.begin.jinja
-      push: expression-block-body
-
-  expression-block-body:
-    - meta_scope: meta.embedded.expression.jinja
-    - meta_content_scope: source.jinja.embedded
-    - match: \}{2}
-      scope: punctuation.section.embedded.end.jinja
-      pop: 1
-    - include: expressions
+###[ EXPRESSIONS ]#############################################################
 
   expressions:
     - include: dictionaries
@@ -278,11 +473,12 @@ contexts:
     - include: numbers
     - include: strings
     - include: operators
+    - include: separators
     - include: filters
     - include: function-calls
     - include: variables
 
-###[ FILTERS ]################################################################
+###[ FILTERS ]#################################################################
 
   filters:
     - match: \|
@@ -305,7 +501,7 @@ contexts:
       set: function-call-argument-list
     - include: else-pop
 
-###[ FUNCTION CALLS ]#########################################################
+###[ FUNCTION CALLS ]##########################################################
 
   function-calls:
     - match: '{{builtin_functions}}(?=\()'
@@ -333,7 +529,7 @@ contexts:
     - include: block-pop
     - include: expressions
 
-###[ COLLECTIONS ]############################################################
+###[ COLLECTIONS ]#############################################################
 
   dictionaries:
     - match: \{
@@ -404,6 +600,11 @@ contexts:
     - include: block-pop
     - include: expressions
 
+  tuples:
+    - match: \(
+      scope: punctuation.section.sequence.begin.jinja
+      push: tuple-body
+
   tuple:
     - meta_include_prototype: false
     - match: \(
@@ -418,7 +619,7 @@ contexts:
     - include: block-pop
     - include: expressions
 
-###[ OPERATORS ]##############################################################
+###[ OPERATORS ]###############################################################
 
   operators:
     # alphanumeric operators
@@ -440,7 +641,8 @@ contexts:
       scope: keyword.operator.symbol.jinja keyword.operator.assignment.jinja
     - match: '[*/]{2}|[-+*/%]'
       scope: keyword.operator.symbol.jinja keyword.operator.arithmetic.jinja
-    # punctuations
+
+  separators:
     - match: ','
       scope: punctuation.separator.sequence.jinja
 
@@ -455,7 +657,7 @@ contexts:
       set: function-call-argument-list
     - include: else-pop
 
-###[ LITERALS ]###############################################################
+###[ LITERALS ]################################################################
 
   constants:
     - match: '[Ff]alse\b'
@@ -570,7 +772,7 @@ contexts:
     - match: \\N\{[-a-zA-Z ]+\}
       scope: constant.character.escape.unicode.name.jinja
 
-###[ VARIABLES ]##############################################################
+###[ VARIABLES ]###############################################################
 
   variables:
     - match: _\b
@@ -667,7 +869,7 @@ contexts:
       scope: punctuation.separator.slice.jinja
     - include: expressions
 
-###[ PROTOTYPES ]#############################################################
+###[ PROTOTYPES ]##############################################################
 
   else-pop:
     - match: (?=\S)
@@ -679,4 +881,8 @@ contexts:
 
   block-pop:
     - match: (?={{modifiers}}?[%}]})
+      pop: 1
+
+  eol-pop:
+    - match: (?=\:?\s*(?:##|$))
       pop: 1

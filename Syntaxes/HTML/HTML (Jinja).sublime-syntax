@@ -131,9 +131,10 @@ contexts:
   tag-attributes:
     # Include jinja statement tags to prevent them being scoped meta.attribute-with-value
     - meta_prepend: true
-    - include: Text (Jinja).sublime-syntax#comments
-    - include: Text (Jinja).sublime-syntax#statement-lines
-    - include: Text (Jinja).sublime-syntax#statement-blocks
+    - include: Text (Jinja).sublime-syntax#jinja-comment-lines
+    - include: Text (Jinja).sublime-syntax#jinja-statement-lines
+    - include: Text (Jinja).sublime-syntax#jinja-comment-tags
+    - include: Text (Jinja).sublime-syntax#jinja-statement-tags
 
   tag-event-attribute-value:
     - meta_include_prototype: false

@@ -44,9 +44,10 @@ contexts:
     - meta_prepend: true
     - meta_include_prototype: false
     - meta_scope: meta.template.jinja
-    - include: Text (Jinja).sublime-syntax#comments
-    - include: Text (Jinja).sublime-syntax#statement-lines
-    - include: Text (Jinja).sublime-syntax#statement-blocks
+    - include: Text (Jinja).sublime-syntax#jinja-comment-lines
+    - include: Text (Jinja).sublime-syntax#jinja-statement-lines
+    - include: Text (Jinja).sublime-syntax#jinja-comment-tags
+    - include: Text (Jinja).sublime-syntax#jinja-statement-tags
 
   block-end:
     # This context is included in each style-rule block context,
@@ -54,9 +55,10 @@ contexts:
     # Jinja expressions are excluded as they are consumed by child contexts
     # such as selectors, property names or property values.
     - meta_append: true
-    - include: Text (Jinja).sublime-syntax#comments
-    - include: Text (Jinja).sublime-syntax#statement-lines
-    - include: Text (Jinja).sublime-syntax#statement-blocks
+    - include: Text (Jinja).sublime-syntax#jinja-comment-lines
+    - include: Text (Jinja).sublime-syntax#jinja-statement-lines
+    - include: Text (Jinja).sublime-syntax#jinja-comment-tags
+    - include: Text (Jinja).sublime-syntax#jinja-statement-tags
 
   at-rule-block-body:
     # required until ST4173
@@ -66,9 +68,10 @@ contexts:
     # such as selectors, property names or property values.
     - meta_prepend: true
     - meta_include_prototype: false
-    - include: Text (Jinja).sublime-syntax#comments
-    - include: Text (Jinja).sublime-syntax#statement-lines
-    - include: Text (Jinja).sublime-syntax#statement-blocks
+    - include: Text (Jinja).sublime-syntax#jinja-comment-lines
+    - include: Text (Jinja).sublime-syntax#jinja-statement-lines
+    - include: Text (Jinja).sublime-syntax#jinja-comment-tags
+    - include: Text (Jinja).sublime-syntax#jinja-statement-tags
 
   at-supports-group-body:
     - meta_prepend: true
