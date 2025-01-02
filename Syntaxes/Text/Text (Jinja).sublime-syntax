@@ -55,9 +55,6 @@ variables:
     # https://jinja.palletsprojects.com/en/3.1.x/templates/#i18n
     | _ | gettext | ngettext )
 
-  builtin_vars: |-
-    (?x: loop )
-
 ###############################################################################
 
 contexts:
@@ -558,6 +555,9 @@ contexts:
   variables:
     - match: _\b
       scope: variable.language.anonymous.jinja
+    - match: loop\b
+      scope: variable.language.loop.jinja
+      push: loop-members
     - match: (?={{ident_start}})
       branch_point: variable
       branch:
@@ -569,11 +569,19 @@ contexts:
         - accessor
         - member
 
+  loop-members:
+    - match: \.
+      scope: punctuation.accessor.dot.jinja
+    - match: (?:index|index0|revindex|revindex0|first|last|length|parent)\b
+      scope: variable.language.member.jinja
+      set: subscription
+    - match: '{{ident}}'
+      scope: variable.other.member.jinja
+      set: subscription
+    - include: immediately-pop
+
   unqualified-variable:
     - meta_include_prototype: false
-    - match: '{{builtin_vars}}\b'
-      scope: variable.language.jinja
-      set: subscription
     - match: '{{ident}}\b'
       scope: variable.other.readwrite.jinja
       set:

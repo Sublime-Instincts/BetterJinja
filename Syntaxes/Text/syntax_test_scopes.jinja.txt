@@ -683,9 +683,9 @@ not a # for statement:
     {{ loop.index }}
 ##  ^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##     ^^^^ variable.language.jinja
+##     ^^^^ variable.language.loop.jinja
 ##         ^ punctuation.accessor.dot.jinja
-##          ^^^^^ variable.other.member.jinja
+##          ^^^^^ variable.language.member.jinja
 ##                ^^ punctuation.section.embedded.end.jinja
 
     {{ my_loop.index }}
