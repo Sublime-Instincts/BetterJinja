@@ -23,7 +23,7 @@
 ##            ^^^^^ meta.string.html string.unquoted.html - meta.interpolation
 ##                 ^^^^^^^ meta.string.html meta.embedded.expression.jinja - string
 ##                 ^^ punctuation.section.embedded.begin.jinja
-##                   ^^^ variable.other.jinja
+##                   ^^^ variable.other.readwrite.jinja
 ##                      ^^ punctuation.section.embedded.end.jinja
 
     {% if borders == True %}
@@ -86,7 +86,7 @@
   function foo(i) {return {{temlate}} + i + "string {{var}}";}
 ##                        ^^^^^^^^^^^ source.js.embedded.html meta.function.js meta.block.js meta.embedded.expression.jinja
 ##                        ^^ punctuation.section.embedded.begin.jinja
-##                          ^^^^^^^ variable.other.jinja
+##                          ^^^^^^^ variable.other.readwrite.jinja
 ##                                 ^^ punctuation.section.embedded.end.jinja
 ##                                    ^ keyword.operator.arithmetic.js
 ##                                      ^ variable.other.readwrite.js
@@ -95,7 +95,7 @@
 ##                                          ^ punctuation.definition.string.begin.js
 ##                                                  ^^^^^^^ meta.string.js meta.embedded.expression.jinja - string
 ##                                                  ^^ punctuation.section.embedded.begin.jinja
-##                                                    ^^^ variable.other.jinja
+##                                                    ^^^ variable.other.readwrite.jinja
 ##                                                       ^^ punctuation.section.embedded.end.jinja
 ##                                                         ^ meta.string.js string.quoted.double.js punctuation.definition.string.end.js
 
@@ -140,14 +140,14 @@
 ##      ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.begin.json
 ##       ^^^^^^^ meta.mapping.key.json meta.embedded.expression.jinja
 ##       ^^ punctuation.section.embedded.begin.jinja
-##         ^^^ variable.other.jinja
+##         ^^^ variable.other.readwrite.jinja
 ##            ^^ punctuation.section.embedded.end.jinja
 ##              ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.end.json
 ##               ^^ meta.mapping.json
 ##                 ^ meta.mapping.value.json meta.string.json string.quoted.double.json punctuation.definition.string.begin.json
 ##                  ^^^^^^^^^ meta.mapping.value.json meta.string.json - string
 ##                  ^^ meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
-##                    ^^^^^ meta.embedded.expression.jinja variable.other.jinja
+##                    ^^^^^ meta.embedded.expression.jinja variable.other.readwrite.jinja
 ##                         ^^ meta.embedded.expression.jinja punctuation.section.embedded.end.jinja
 ##                           ^ string.quoted.double.json punctuation.definition.string.end.json
 ##                            ^ punctuation.separator.sequence.json
@@ -156,7 +156,7 @@
 ##             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.sequence.json
 ##              ^^^^^^^^^ meta.embedded.expression.jinja
 ##              ^^ punctuation.section.embedded.begin.jinja
-##                ^^^^^ variable.other.jinja
+##                ^^^^^ variable.other.readwrite.jinja
 ##                     ^^ punctuation.section.embedded.end.jinja
 ##                       ^ punctuation.separator.sequence.json
 ##                         ^ string.quoted.double.json punctuation.definition.string.begin.json
@@ -178,16 +178,16 @@
 ## ^^^ entity.name.tag.other.html - meta.interpolation
 ##    ^^^^^^^ entity.name.tag.other.html meta.embedded.expression.jinja
 ##    ^^ punctuation.section.embedded.begin.jinja
-##      ^^^ variable.other.jinja
+##      ^^^ variable.other.readwrite.jinja
 ##         ^^ punctuation.section.embedded.end.jinja
 ##            ^^^^^^^^ meta.attribute-with-value.html entity.other.attribute-name.html meta.embedded.expression.jinja
 ##            ^^ punctuation.section.embedded.begin.jinja
-##              ^^^^ variable.other.jinja
+##              ^^^^ variable.other.readwrite.jinja
 ##                  ^^ punctuation.section.embedded.end.jinja
 ##                    ^ meta.attribute-with-value.html punctuation.separator.key-value.html
 ##                     ^^^^^^^^^ meta.attribute-with-value.html meta.string.html meta.embedded.expression.jinja
 ##                     ^^ punctuation.section.embedded.begin.jinja
-##                       ^^^^^ variable.other.jinja
+##                       ^^^^^ variable.other.readwrite.jinja
 ##                            ^^ punctuation.section.embedded.end.jinja
 ##                              ^^ punctuation.definition.tag.end.html
 
@@ -196,16 +196,16 @@
 ##^ meta.tag.other.html punctuation.definition.tag.begin.html
 ## ^^^^^^^ entity.name.tag.other.html meta.embedded.expression.jinja
 ## ^^ punctuation.section.embedded.begin.jinja
-##   ^^^ variable.other.jinja
+##   ^^^ variable.other.readwrite.jinja
 ##      ^^ punctuation.section.embedded.end.jinja
 ##         ^^^^^^^^ meta.attribute-with-value.html entity.other.attribute-name.html meta.embedded.expression.jinja
 ##         ^^ punctuation.section.embedded.begin.jinja
-##           ^^^^ variable.other.jinja
+##           ^^^^ variable.other.readwrite.jinja
 ##               ^^ punctuation.section.embedded.end.jinja
 ##                 ^ meta.attribute-with-value.html punctuation.separator.key-value.html
 ##                  ^^^^^^^^^ meta.attribute-with-value.html meta.string.html meta.embedded.expression.jinja
 ##                  ^^ punctuation.section.embedded.begin.jinja
-##                    ^^^^^ variable.other.jinja
+##                    ^^^^^ variable.other.readwrite.jinja
 ##                         ^^ punctuation.section.embedded.end.jinja
 ##                           ^^ punctuation.definition.tag.end.html
 
@@ -220,7 +220,7 @@
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##    ^^^^^^^^^^^^^^ source.jinja.embedded
 ##     ^^ keyword.control.conditional.if.jinja
-##        ^^^^^^^^^ variable.other.jinja
+##        ^^^^^^^^^ variable.other.readwrite.jinja
 ##                  ^^ punctuation.section.embedded.end.jinja
     attr="value"
 ##  ^^^^^^^^^^^^ meta.attribute-with-value.html
@@ -235,13 +235,13 @@
 ##  ^^^^^^^^^^ entity.other.attribute-name.html meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##    ^^^^^^ source.jinja.embedded
-##     ^^^^ variable.other.jinja
+##     ^^^^ variable.other.readwrite.jinja
 ##          ^^ punctuation.section.embedded.end.jinja
 ##            ^ punctuation.separator.key-value.html
 ##             ^^^^^^^^^^^ meta.string.html meta.embedded.expression.jinja
 ##             ^^ punctuation.section.embedded.begin.jinja
 ##               ^^^^^^^ source.jinja.embedded
-##                ^^^^^ variable.other.jinja
+##                ^^^^^ variable.other.readwrite.jinja
 ##                      ^^ punctuation.section.embedded.end.jinja
 
     attr-{{ name }}="foo {{ bar ~ "baz #{buuz}!" }}"
@@ -260,16 +260,16 @@
 ##                                                  ^ - meta.attribute-with-value
 ##       ^^ punctuation.section.embedded.begin.jinja
 ##         ^^^^^^ source.jinja.embedded
-##          ^^^^ variable.other.jinja
+##          ^^^^ variable.other.readwrite.jinja
 ##               ^^ punctuation.section.embedded.end.jinja
 ##                 ^ punctuation.separator.key-value.html
 ##                  ^ punctuation.definition.string.begin.html
 ##                       ^^ punctuation.section.embedded.begin.jinja
-##                          ^^^ variable.other.jinja
+##                          ^^^ variable.other.readwrite.jinja
 ##                              ^ keyword.operator.concatenation.jinja
 ##                                ^ punctuation.definition.string.begin.jinja
 ##                                      ^ punctuation.section.interpolation.begin.jinja
-##                                       ^^^^ variable.other.jinja
+##                                       ^^^^ variable.other.readwrite.jinja
 ##                                           ^ punctuation.section.interpolation.end.jinja
 ##                                            ^^ string.quoted.double.jinja
 ##                                             ^ punctuation.definition.string.end.jinja
@@ -350,7 +350,7 @@
 ##                    ^^ constant.character.escape.jinja
 ##                      ^^^^^^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja meta.interpolation.jinja
 ##                      ^ punctuation.section.interpolation.begin.jinja
-##                       ^^^^^ variable.other.jinja
+##                       ^^^^^ variable.other.readwrite.jinja
 ##                            ^ punctuation.section.interpolation.end.jinja
 ##                             ^^^ meta.string.html source.css.embedded.html meta.embedded.expression.jinja source.jinja.embedded meta.string.jinja string.quoted.double.jinja
 ##                             ^^ constant.character.escape.jinja
@@ -374,7 +374,7 @@
 ##                  ^ string.quoted.double.jinja punctuation.definition.string.begin.jinja
 ##                   ^^^^^^ meta.interpolation.jinja
 ##                   ^ punctuation.section.interpolation.begin.jinja
-##                    ^^^^ variable.other.jinja
+##                    ^^^^ variable.other.readwrite.jinja
 ##                        ^ punctuation.section.interpolation.end.jinja
 ##                         ^ string.quoted.double.jinja punctuation.definition.string.end.jinja
 ##                           ^^ punctuation.section.embedded.end.jinja
@@ -387,7 +387,7 @@
 ##                                  ^ string.quoted.double.jinja punctuation.definition.string.begin.jinja
 ##                                   ^^^^^^^ meta.interpolation.jinja
 ##                                   ^ punctuation.section.interpolation.begin.jinja
-##                                    ^^^^^ variable.other.jinja
+##                                    ^^^^^ variable.other.readwrite.jinja
 ##                                         ^ punctuation.section.interpolation.end.jinja
 ##                                          ^ string.quoted.double.jinja punctuation.definition.string.end.jinja
 ##                                            ^^ punctuation.section.embedded.end.jinja

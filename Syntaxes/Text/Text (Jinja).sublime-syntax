@@ -18,7 +18,12 @@ variables:
   digit: '[0-9]'
   integers: '({{digit}}*_)?({{digit}}+)'
   floats: '({{digit}}+_?)?({{digit}}*)?(\.)({{digit}}+)([eE]?{{digit}}*)?'
-  identifiers: '[a-zA-Z_][a-zA-Z0-9_]*'
+
+  ident: (?:{{ident_start}}{{ident_part}}*)
+  ident_start: '[a-zA-Z_]'
+  ident_part: '[a-zA-Z0-9_]*'
+
+  dot_accessor: (?:\.(?!\.))
 
   modifiers: '[-+]'
 
@@ -226,13 +231,13 @@ contexts:
       set: include-statement
 
     # any block tags
-    - match: end{{identifiers}}\b(?!\s*[=(])
+    - match: end{{ident}}\b(?!\s*[=(])
       scope: keyword.other.endtag.jinja
       pop: 1
     - match: set\b
       scope: keyword.other.tag.jinja
       pop: 1
-    - match: '{{identifiers}}\b(?!\s*[=(])'
+    - match: '{{ident}}\b(?!\s*[=(])'
       scope: keyword.other.tag.jinja
       pop: 1
     - include: else-pop
@@ -286,7 +291,7 @@ contexts:
     - match: '{{builtin_functions}}(?=\()'
       scope: meta.function-call.identifier.jinja support.function.global.jinja
       push: function-call-argument-list
-    - match: '{{identifiers}}(?=\()'
+    - match: '{{ident}}(?=\()'
       scope: meta.function-call.identifier.jinja variable.function.jinja
       push: function-call-argument-list
 
@@ -303,7 +308,7 @@ contexts:
       pop: 1
     - match: ','
       scope: punctuation.separator.parameters.jinja
-    - match: '{{identifiers}}(?=\s*=)'
+    - match: '{{ident}}(?=\s*=)'
       scope: variable.parameter.jinja
     - include: block-pop
     - include: expressions
@@ -405,8 +410,6 @@ contexts:
       scope: keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
       push: expect-filter-function
     # punctuations
-    - match: \.
-      scope: punctuation.accessor.dot.jinja
     - match: ','
       scope: punctuation.separator.sequence.jinja
 
@@ -414,7 +417,7 @@ contexts:
     - match: '{{builtin_filters}}\b'
       scope: meta.function-call.identifier.jinja support.function.filter.jinja
       set: function-call-argument-list
-    - match: '{{identifiers}}\b'
+    - match: '{{ident}}\b'
       scope: meta.function-call.identifier.jinja variable.function.filter.jinja
       set: function-call-argument-list
     - include: else-pop
@@ -423,7 +426,7 @@ contexts:
     - match: '{{builtin_tests}}\b'
       scope: meta.function-call.identifier.jinja support.function.test.jinja
       set: function-call-argument-list
-    - match: '{{identifiers}}\b'
+    - match: '{{ident}}\b'
       scope: meta.function-call.identifier.jinja variable.function.test.jinja
       set: function-call-argument-list
     - include: else-pop
@@ -514,7 +517,7 @@ contexts:
     - match: |-
         (?x)
         %
-          ( \( ({{identifiers}}) \) )? # mapping key
+          ( \( ({{ident}}) \) )? # mapping key
           \#?            # alternate form
           0?             # pad with zeros
           \-?            # left-adjust
@@ -555,27 +558,97 @@ contexts:
   variables:
     - match: _\b
       scope: variable.language.anonymous.jinja
+    - match: (?={{ident_start}})
+      branch_point: variable
+      branch:
+        - unqualified-variable
+        - qualified-variable
+    - match: '{{dot_accessor}}'
+      scope: punctuation.accessor.dot.jinja
+      push:
+        - accessor
+        - member
+
+  unqualified-variable:
+    - meta_include_prototype: false
     - match: '{{builtin_vars}}\b'
       scope: variable.language.jinja
-      push: maybe-item-access
-    - match: '{{identifiers}}\b'
-      scope: variable.other.jinja
-      push: maybe-item-access
-
-  maybe-item-access:
-    - match: \[
-      scope: punctuation.section.brackets.begin.jinja
-      set: item-access-body
+      set: subscription
+    - match: '{{ident}}\b'
+      scope: variable.other.readwrite.jinja
+      set:
+        - variable-check
+        - subscription
     - include: immediately-pop
 
-  item-access-body:
-    - meta_scope: meta.brackets.jinja
-    - match: \]
-      scope: punctuation.section.brackets.end.jinja
+  variable-check:
+    - match: (?={{dot_accessor}})
+      fail: variable
+    - include: immediately-pop
+
+  qualified-variable:
+    - meta_include_prototype: false
+    - match: '{{ident}}\b'
+      scope: variable.other.object.jinja
+      set:
+        - accessor
+        - subscription
+    - include: immediately-pop
+
+  accessor:
+    - meta_include_prototype: false
+    - meta_scope: meta.path.jinja
+    - match: '{{dot_accessor}}'
+      scope: punctuation.accessor.dot.jinja
+      push: member
+    - include: immediately-pop
+
+  member:
+    - match: '{{ident}}(?=\()'
+      scope: meta.function-call.identifier.jinja variable.function.method.jinja
+      set:
+        - subscription
+        - function-call-argument-list
+    - match: (?={{ident_start}})
+      branch_point: property
+      branch:
+        - property
+        - object
       pop: 1
+    - include: subscription
+
+  object:
+    - match: '{{ident}}\b'
+      scope: variable.other.object.jinja
+      set: subscription
+    - include: immediately-pop
+
+  property:
+    - match: '{{ident}}\b'
+      scope: variable.other.member.jinja
+      set:
+        - property-check
+        - subscription
+    - include: immediately-pop
+
+  property-check:
+    - match: (?={{dot_accessor}})
+      fail: property
+    - include: immediately-pop
+
+  subscription:
+    - match: \[
+      scope: punctuation.section.subscription.begin.jinja
+      set: subscription-body
+    - include: immediately-pop
+
+  subscription-body:
+    - meta_scope: meta.subscription.jinja
+    - match: \]
+      scope: punctuation.section.subscription.end.jinja
+      set: subscription
     - match: ':'
       scope: punctuation.separator.slice.jinja
-    - include: block-pop
     - include: expressions
 
 ###[ PROTOTYPES ]#############################################################

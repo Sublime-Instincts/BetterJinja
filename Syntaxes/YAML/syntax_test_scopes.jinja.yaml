@@ -25,7 +25,7 @@ key: "{{value}}"
 #    ^ meta.string.yaml string.quoted.double.yaml punctuation.definition.string.begin.yaml
 #     ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
 #     ^^ punctuation.section.embedded.begin.jinja
-#       ^^^^^ variable.other.jinja
+#       ^^^^^ variable.other.readwrite.jinja
 #            ^^ punctuation.section.embedded.end.jinja
 #              ^ meta.string.yaml string.quoted.double.yaml punctuation.definition.string.end.yaml
 #               ^ - meta.mapping - meta.string - meta.embedded
@@ -37,7 +37,7 @@ key: '{{value}}'
 #    ^ meta.string.yaml string.quoted.single.yaml punctuation.definition.string.begin.yaml
 #     ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
 #     ^^ punctuation.section.embedded.begin.jinja
-#       ^^^^^ variable.other.jinja
+#       ^^^^^ variable.other.readwrite.jinja
 #            ^^ punctuation.section.embedded.end.jinja
 #              ^ meta.string.yaml string.quoted.single.yaml punctuation.definition.string.end.yaml
 #               ^ - meta.mapping - meta.string - meta.embedded
@@ -48,7 +48,7 @@ key: {{value}}
 #  ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
 #    ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
 #    ^^ punctuation.section.embedded.begin.jinja
-#      ^^^^^ variable.other.jinja
+#      ^^^^^ variable.other.readwrite.jinja
 #           ^^ punctuation.section.embedded.end.jinja
 #             ^ - meta.mapping - meta.string - meta.embedded
 
@@ -59,7 +59,7 @@ key: my-{{value}}
 #    ^^^ meta.string.yaml string.unquoted.plain.out.yaml - meta.embedded
 #       ^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
 #       ^^ punctuation.section.embedded.begin.jinja
-#         ^^^^^ variable.other.jinja
+#         ^^^^^ variable.other.readwrite.jinja
 #              ^^ punctuation.section.embedded.end.jinja
 #                ^ - meta.mapping - meta.string - meta.embedded
 
@@ -69,7 +69,7 @@ key: {{my}}-value
 #  ^ meta.mapping.yaml punctuation.separator.key-value.mapping.yaml
 #    ^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
 #    ^^ punctuation.section.embedded.begin.jinja
-#      ^^ variable.other.jinja
+#      ^^ variable.other.readwrite.jinja
 #        ^^ punctuation.section.embedded.end.jinja
 #          ^^^^^^ meta.string.yaml string.unquoted.plain.out.yaml - meta.embedded
 #                ^ - meta.mapping - meta.string - meta.embedded
@@ -79,7 +79,7 @@ key: |
   # <- meta.string.yaml meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
   #^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja - string
   #^ punctuation.section.embedded.begin.jinja
-  # ^^^^^ variable.other.jinja
+  # ^^^^^ variable.other.readwrite.jinja
   #      ^^ punctuation.section.embedded.end.jinja
   #        ^ meta.string.yaml string.unquoted.block.yaml - meta.embedded
   string {{other}} value
@@ -102,7 +102,7 @@ key:
 # ^ punctuation.definition.block.sequence.item.yaml
 #   ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
 #   ^^ punctuation.section.embedded.begin.jinja
-#      ^^^^^ variable.other.jinja
+#      ^^^^^ variable.other.readwrite.jinja
 #            ^ keyword.operator.arithmetic.jinja
 #              ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 #                 ^^ punctuation.section.embedded.end.jinja
@@ -114,7 +114,7 @@ key:
 #                                      ^^^^^^ meta.string.yaml - meta.embedded
 #   ^^^^^^^^^^^^^^^^ - string
 #   ^^ punctuation.section.embedded.begin.jinja
-#      ^^^^^ variable.other.jinja
+#      ^^^^^ variable.other.readwrite.jinja
 #            ^ keyword.operator.arithmetic.jinja
 #              ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 #                 ^^ punctuation.section.embedded.end.jinja
@@ -128,7 +128,7 @@ key:
 #   ^^^^^^^ meta.string.yaml string.unquoted.plain.out.yaml
 #          ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
 #          ^^ punctuation.section.embedded.begin.jinja
-#             ^^^^^ variable.other.jinja
+#             ^^^^^ variable.other.readwrite.jinja
 #                   ^ keyword.operator.arithmetic.jinja
 #                     ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 #                        ^^ punctuation.section.embedded.end.jinja
@@ -139,7 +139,7 @@ key: [
 #^^^^^^^^^^^^^^^^^^^ meta.sequence.flow.yaml
 # ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
 # ^^ punctuation.section.embedded.begin.jinja
-#    ^^^^^ variable.other.jinja
+#    ^^^^^ variable.other.readwrite.jinja
 #          ^ keyword.operator.arithmetic.jinja
 #            ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 #               ^^ punctuation.section.embedded.end.jinja
@@ -149,7 +149,7 @@ key: [
 #^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.flow.yaml
 # ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
 # ^^ punctuation.section.embedded.begin.jinja
-#    ^^^^^ variable.other.jinja
+#    ^^^^^ variable.other.readwrite.jinja
 #          ^ keyword.operator.arithmetic.jinja
 #            ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 #               ^^ punctuation.section.embedded.end.jinja
@@ -161,7 +161,7 @@ key: [
 # ^^^^^^ meta.string.yaml string.unquoted.plain.in.yaml
 #       ^^^^^^^^^^^^^^^^ meta.string.yaml meta.embedded.expression.jinja
 #       ^^ punctuation.section.embedded.begin.jinja
-#          ^^^^^ variable.other.jinja
+#          ^^^^^ variable.other.readwrite.jinja
 #                ^ keyword.operator.arithmetic.jinja
 #                  ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 #                     ^^ punctuation.section.embedded.end.jinja

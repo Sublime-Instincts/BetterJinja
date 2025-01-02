@@ -24,17 +24,17 @@
 ##^ punctuation.definition.tag.begin
 ## ^^^^^^^ meta.embedded.expression.jinja
 ## ^^ punctuation.section.embedded.begin.jinja
-##   ^^^ variable.other.jinja
+##   ^^^ variable.other.readwrite.jinja
 ##      ^^ punctuation.section.embedded.end.jinja
 ##         ^^^^^^^^ meta.embedded.expression.jinja
 ##         ^^ punctuation.section.embedded.begin.jinja
-##           ^^^^ variable.other.jinja
+##           ^^^^ variable.other.readwrite.jinja
 ##               ^^ punctuation.section.embedded.end.jinja
 ##                 ^ punctuation.separator.key-value.xml
 ##                  ^ meta.string.xml string.quoted.double.xml punctuation.definition.string.begin.xml
 ##                   ^^^^^^^^^ meta.embedded.expression.jinja
 ##                   ^^ punctuation.section.embedded.begin.jinja
-##                     ^^^^^ variable.other.jinja
+##                     ^^^^^ variable.other.readwrite.jinja
 ##                          ^^ punctuation.section.embedded.end.jinja
 ##                            ^ meta.string.xml string.quoted.double.xml punctuation.definition.string.end.xml
 ##                             ^ punctuation.definition.tag.end

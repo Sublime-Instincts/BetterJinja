@@ -27,7 +27,7 @@ int foo(int i) {
 //            ^^^^^^^^^^^^^^^^^ string.quoted.double.c
 //                ^^^^^^^^^^^ meta.embedded.expression.jinja
 //                ^^ punctuation.section.embedded.begin.jinja
-//                  ^^^^^^^ source.jinja.embedded variable.other.jinja
+//                  ^^^^^^^ source.jinja.embedded variable.other.readwrite.jinja
 //                         ^^ punctuation.section.embedded.end.jinja
 
   {% if true %}

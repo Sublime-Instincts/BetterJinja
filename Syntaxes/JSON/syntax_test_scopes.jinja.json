@@ -24,14 +24,14 @@
 ##  ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.begin.json
 ##   ^^^^^^^ meta.mapping.key.json meta.embedded.expression.jinja
 ##   ^^ punctuation.section.embedded.begin.jinja
-##     ^^^ variable.other.jinja
+##     ^^^ variable.other.readwrite.jinja
 ##        ^^ punctuation.section.embedded.end.jinja
 ##          ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.end.json
 ##           ^^ meta.mapping.json
 ##             ^ meta.mapping.value.json meta.string.json string.quoted.double.json punctuation.definition.string.begin.json
 ##              ^^^^^^^^^ meta.mapping.value.json meta.string.json - string
 ##              ^^ meta.embedded.expression.jinja punctuation.section.embedded.begin.jinja
-##                ^^^^^ meta.embedded.expression.jinja variable.other.jinja
+##                ^^^^^ meta.embedded.expression.jinja variable.other.readwrite.jinja
 ##                     ^^ meta.embedded.expression.jinja punctuation.section.embedded.end.jinja
 ##                       ^ string.quoted.double.json punctuation.definition.string.end.json
 ##                        ^ punctuation.separator.sequence.json
@@ -40,7 +40,7 @@
 ##         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.sequence.json
 ##          ^^^^^^^^^ meta.embedded.expression.jinja
 ##          ^^ punctuation.section.embedded.begin.jinja
-##            ^^^^^ variable.other.jinja
+##            ^^^^^ variable.other.readwrite.jinja
 ##                 ^^ punctuation.section.embedded.end.jinja
 ##                   ^ punctuation.separator.sequence.json
 ##                     ^ string.quoted.double.json punctuation.definition.string.begin.json

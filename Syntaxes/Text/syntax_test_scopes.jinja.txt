@@ -41,14 +41,14 @@
 ##  ^^^^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
 ## ^ punctuation.section.embedded.jinja
 ##   ^^ keyword.control.conditional.if.jinja
-##      ^^^^^^^^^ variable.other.jinja
+##      ^^^^^^^^^ variable.other.readwrite.jinja
 
    # elif condition
 ## ^ meta.embedded.statement.jinja - source.jinja
 ##  ^^^^^^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
 ## ^ punctuation.section.embedded.jinja
 ##   ^^^^ keyword.control.conditional.elseif.jinja
-##        ^^^^^^^^^ variable.other.jinja
+##        ^^^^^^^^^ variable.other.readwrite.jinja
 
    # else
 ## ^ meta.embedded.statement.jinja - source.jinja
@@ -67,9 +67,9 @@
 ##  ^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
 ## ^ punctuation.section.embedded.jinja
 ##   ^^^ keyword.control.loop.for.jinja
-##       ^^^^ variable.other.jinja
+##       ^^^^ variable.other.readwrite.jinja
 ##            ^^ keyword.operator.iterator.in.jinja
-##               ^^^^^ variable.other.jinja
+##               ^^^^^ variable.other.readwrite.jinja
    # endfor
 ## ^ meta.embedded.statement.jinja - source.jinja
 ##  ^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
@@ -126,9 +126,9 @@ not a # for statement:
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##                              ^^ punctuation.section.embedded.end.jinja
 ##     ^^^ keyword.control.loop.for.jinja
-##         ^^^^ variable.other.jinja
+##         ^^^^ variable.other.readwrite.jinja
 ##              ^^ keyword.operator.iterator.in.jinja
-##                 ^^^^^ variable.other.jinja
+##                 ^^^^^ variable.other.readwrite.jinja
 ##                       ^^^^^^ - keyword
 
     {% autoescape %} {% endautoescape %}
@@ -226,7 +226,7 @@ not a # for statement:
 ##     ^^^^^^ keyword.control.import.jinja
 ##            ^^^^^^^^^^^^ meta.string.jinja string.quoted.single.jinja
 ##                         ^^ keyword.operator.assignment.as.jinja
-##                            ^^^^^ variable.other.jinja
+##                            ^^^^^ variable.other.readwrite.jinja
 ##                                  ^^ punctuation.section.embedded.end.jinja
 
     {% from 'forms.html' import input as input_field, textarea %}
@@ -235,11 +235,11 @@ not a # for statement:
 ##     ^^^^ keyword.control.import.from.jinja
 ##          ^^^^^^^^^^^^ meta.string.jinja string.quoted.single.jinja
 ##                       ^^^^^^ keyword.control.import.jinja
-##                              ^^^^^ variable.other.jinja
+##                              ^^^^^ variable.other.readwrite.jinja
 ##                                    ^^ keyword.operator.assignment.as.jinja
-##                                       ^^^^^^^^^^^ variable.other.jinja
+##                                       ^^^^^^^^^^^ variable.other.readwrite.jinja
 ##                                                  ^ punctuation.separator.sequence.jinja
-##                                                    ^^^^^^^^ variable.other.jinja
+##                                                    ^^^^^^^^ variable.other.readwrite.jinja
 ##                                                             ^^ punctuation.section.embedded.end.jinja
 
     {% include "sidebar.html" ignore missing with context %}
@@ -275,17 +275,17 @@ not a # for statement:
 ##             ^ punctuation.section.arguments.begin.jinja
 ##              ^^^^ variable.parameter.jinja
 ##                   ^ keyword.operator.assignment.jinja
-##                     ^^^^^^ variable.other.jinja
+##                     ^^^^^^ variable.other.readwrite.jinja
 ##                           ^ punctuation.separator.parameters.jinja
 ##                             ^^^^ variable.parameter.jinja
 ##                                  ^ keyword.operator.assignment.jinja
-##                                    ^^^^^^ variable.other.jinja
+##                                    ^^^^^^ variable.other.readwrite.jinja
 ##                                          ^ punctuation.section.arguments.end.jinja
 
     {% set ns = namespace() %}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
 ##     ^^^ keyword.other.tag.jinja
-##         ^^ variable.other.jinja
+##         ^^ variable.other.readwrite.jinja
 ##            ^ keyword.operator.assignment.jinja
 ##              ^^^^^^^^^ meta.function-call.identifier.jinja support.function.global.jinja
 ##                       ^ meta.function-call.arguments.jinja punctuation.section.arguments.begin.jinja
@@ -514,7 +514,7 @@ not a # for statement:
 ##     ^^^^^ meta.string.jinja string.quoted.double.jinja
 ##          ^^^^^ meta.string.jinja meta.interpolation.jinja
 ##          ^ punctuation.section.interpolation.begin.jinja
-##           ^^^  variable.other.jinja
+##           ^^^  variable.other.readwrite.jinja
 ##              ^ punctuation.section.interpolation.end.jinja
 ##               ^^^^^ meta.string.jinja string.quoted.double.jinja
 ##                     ^^ punctuation.section.embedded.end.jinja
@@ -561,7 +561,7 @@ not a # for statement:
 ##     ^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
 ##             ^^ constant.other.placeholder.jinja
 ##                  ^ keyword.operator.arithmetic.jinja
-##                    ^^^^ variable.other.jinja
+##                    ^^^^ variable.other.readwrite.jinja
 
     {{ "Hello, %(you)s!" % (you,) }}
 ##     ^^^^^^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
@@ -570,7 +570,7 @@ not a # for statement:
 ##                       ^ keyword.operator.arithmetic.jinja
 ##                         ^^^^^^ meta.sequence.tuple.jinja
 ##                         ^ punctuation.section.sequence.begin.jinja
-##                          ^^^ variable.other.jinja
+##                          ^^^ variable.other.readwrite.jinja
 ##                             ^ punctuation.separator.sequence.jinja
 ##                              ^ punctuation.section.sequence.end.jinja
 
@@ -597,6 +597,9 @@ not a # for statement:
 ##                           ^^ storage.modifier.conversion.jinja
 ##                             ^ punctuation.section.interpolation.end.jinja
 ##                              ^^ meta.string.jinja string.quoted.double.jinja
+##                                ^ punctuation.accessor.dot.jinja
+##                                 ^^^^^^ meta.function-call.identifier.jinja variable.function.method.jinja
+##                                       ^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.jinja
 
     ## format spec given as constant
     {{ "Hello\u1012 {me:.1f}".format(me=10.213) }}
@@ -610,11 +613,14 @@ not a # for statement:
 ##           ^^^^^^ constant.character.escape.unicode.16bit.jinja
 ##                  ^^^^^^^^ - string
 ##                  ^ punctuation.section.interpolation.begin.jinja
-##                   ^^ variable.other.jinja
+##                   ^^ variable.other.readwrite.jinja
 ##                     ^ punctuation.separator.format-spec.jinja
 ##                      ^^^ constant.other.format-spec.jinja
 ##                         ^ punctuation.section.interpolation.end.jinja
 ##                          ^ string.quoted.double.jinja punctuation.definition.string.end.jinja
+##                           ^ punctuation.accessor.dot.jinja
+##                            ^^^^^^ meta.function-call.identifier.jinja variable.function.method.jinja
+##                                  ^^^^^^^^^^^ meta.function-call.arguments.jinja
 
     ## format spec given as interpolation
     {{ "Hello\u1012 {me!a:{digits}f}".format(me, digits) }}
@@ -629,35 +635,49 @@ not a # for statement:
 ##           ^^^^^^ constant.character.escape.unicode.16bit.jinja
 ##                  ^^^^^^^^^^^^^^^^ - string
 ##                  ^ punctuation.section.interpolation.begin.jinja
-##                   ^^ variable.other.jinja
+##                   ^^ variable.other.readwrite.jinja
 ##                     ^^ storage.modifier.conversion.jinja
 ##                       ^ punctuation.separator.format-spec.jinja
 ##                        ^ punctuation.section.interpolation.begin.jinja
-##                         ^^^^^^ variable.other.jinja
+##                         ^^^^^^ variable.other.readwrite.jinja
 ##                               ^ punctuation.section.interpolation.end.jinja
 ##                                ^ constant.other.format-spec.jinja
 ##                                 ^ punctuation.section.interpolation.end.jinja
 ##                                  ^ string.quoted.double.jinja punctuation.definition.string.end.jinja
-##
+##                                   ^ punctuation.accessor.dot.jinja
+##                                    ^^^^^^ meta.function-call.identifier.jinja variable.function.method.jinja
+##                                          ^^^^^^^^^^^^ meta.function-call.arguments.jinja
 
     {{ foo[0] }}
 ##  ^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##     ^^^ variable.other.jinja
-##        ^^^ meta.brackets.jinja
-##        ^ punctuation.section.brackets.begin.jinja
+##     ^^^ variable.other.readwrite.jinja
+##        ^^^ meta.subscription.jinja
+##        ^ punctuation.section.subscription.begin.jinja
 ##         ^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
-##          ^ punctuation.section.brackets.end.jinja
+##          ^ punctuation.section.subscription.end.jinja
 ##            ^^ punctuation.section.embedded.end.jinja
+
+    {{ foo[1:20] }}
+##  ^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^^ variable.other.readwrite.jinja
+##        ^^^^^^ meta.subscription.jinja
+##        ^ punctuation.section.subscription.begin.jinja
+##         ^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+##          ^ punctuation.separator.slice.jinja
+##           ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+##             ^ punctuation.section.subscription.end.jinja
+##               ^^ punctuation.section.embedded.end.jinja
 
     {{ foo["bar"] }}
 ##  ^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##     ^^^ variable.other.jinja
-##        ^^^^^^^ meta.brackets.jinja
-##        ^ punctuation.section.brackets.begin.jinja
+##     ^^^ variable.other.readwrite.jinja
+##        ^^^^^^^ meta.subscription.jinja
+##        ^ punctuation.section.subscription.begin.jinja
 ##         ^^^^^ meta.string.jinja string.quoted.double.jinja
-##              ^ punctuation.section.brackets.end.jinja
+##              ^ punctuation.section.subscription.end.jinja
 ##                ^^ punctuation.section.embedded.end.jinja
 
     {{ loop.index }}
@@ -665,16 +685,45 @@ not a # for statement:
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##     ^^^^ variable.language.jinja
 ##         ^ punctuation.accessor.dot.jinja
-##          ^^^^^ variable.other.jinja
+##          ^^^^^ variable.other.member.jinja
 ##                ^^ punctuation.section.embedded.end.jinja
 
     {{ my_loop.index }}
 ##  ^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##     ^^^^^^^ variable.other.jinja
+##     ^^^^^^^^^^^^^ meta.path.jinja
+##     ^^^^^^^ variable.other.object.jinja
 ##            ^ punctuation.accessor.dot.jinja
-##             ^^^^^ variable.other.jinja
+##             ^^^^^ variable.other.member.jinja
 ##                   ^^ punctuation.section.embedded.end.jinja
+
+    {{ my_loop.foo.bar.baz }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^^^^^^^^^^^^^^^^^^ meta.path.jinja
+##     ^^^^^^^ variable.other.object.jinja
+##            ^ punctuation.accessor.dot.jinja
+##             ^^^ variable.other.object.jinja
+##                ^ punctuation.accessor.dot.jinja
+##                 ^^^ variable.other.object.jinja
+##                    ^ punctuation.accessor.dot.jinja
+##                     ^^^ variable.other.member.jinja
+##                         ^^ punctuation.section.embedded.end.jinja
+
+    {{ my_loop.foo[10].bar().baz }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.path.jinja
+##     ^^^^^^^ variable.other.object.jinja
+##            ^ punctuation.accessor.dot.jinja
+##             ^^^ variable.other.object.jinja
+##                ^^^^ meta.subscription.jinja
+##                    ^ punctuation.accessor.dot.jinja
+##                     ^^^ meta.function-call.identifier.jinja variable.function.method.jinja
+##                        ^^ meta.function-call.arguments.jinja
+##                          ^ punctuation.accessor.dot.jinja
+##                           ^^^ variable.other.member.jinja
+##                               ^^ punctuation.section.embedded.end.jinja
 
     {{ _ }}
 ##  ^^^^^^^ meta.embedded.expression.jinja
@@ -715,12 +764,12 @@ not a # for statement:
 ##                   ^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 
     {{ foo | list }}
-##     ^^^ variable.other.jinja
+##     ^^^ variable.other.readwrite.jinja
 ##         ^ keyword.operator.assignment.pipe.jinja
 ##           ^^^^ support.function.filter.jinja
 
     {{ foo | my_list }}
-##     ^^^ variable.other.jinja
+##     ^^^ variable.other.readwrite.jinja
 ##         ^ keyword.operator.assignment.pipe.jinja
 ##           ^^^^^^^ variable.function.filter.jinja
 
@@ -728,7 +777,7 @@ not a # for statement:
 ##  ^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##    ^^^^^^^^^^^^^^^^ source.jinja.embedded
-##     ^^^^ variable.other.jinja
+##     ^^^^ variable.other.readwrite.jinja
 ##         ^ keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
 ##          ^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 ##              ^^^^^^ meta.function-call.arguments.jinja
@@ -739,7 +788,7 @@ not a # for statement:
 ##                    ^^ punctuation.section.embedded.end.jinja
 
     {{ foo | default([]) | list | join(', ') }}
-##     ^^^ variable.other.jinja
+##     ^^^ variable.other.readwrite.jinja
 ##         ^ keyword.operator.assignment.pipe.jinja
 ##           ^^^^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 ##                  ^^^^ meta.function-call.arguments.jinja
@@ -759,7 +808,7 @@ not a # for statement:
     {{ a | abs() | striptags() }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##     ^ variable.other.jinja
+##     ^ variable.other.readwrite.jinja
 ##       ^ keyword.operator.assignment.pipe.jinja
 ##         ^^^ meta.function-call.identifier.jinja support.function.filter.jinja
 ##            ^ meta.function-call.arguments.jinja punctuation.section.arguments.begin.jinja
@@ -775,7 +824,7 @@ not a # for statement:
 ##                       ^^^^^^^^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
 
     {{ foo | int is in range(10) }}
-##     ^^^ variable.other.jinja
+##     ^^^ variable.other.readwrite.jinja
 ##         ^ keyword.operator.assignment.pipe.jinja
 ##           ^^^ support.function.filter.jinja
 ##               ^^ keyword.operator.logical.jinja
@@ -787,23 +836,23 @@ not a # for statement:
 ##                             ^ punctuation.section.arguments.end.jinja
 
     {{ foo is defined }}
-##     ^^^ variable.other.jinja
+##     ^^^ variable.other.readwrite.jinja
 ##         ^^ keyword.operator.logical.jinja
 ##            ^^^^^^^ support.function.test.jinja
 
     {{ foo is my_test }}
-##     ^^^ variable.other.jinja
+##     ^^^ variable.other.readwrite.jinja
 ##         ^^ keyword.operator.logical.jinja
 ##            ^^^^^^^ variable.function.test.jinja
 
     {{ foo is not defined }}
-##     ^^^ variable.other.jinja
+##     ^^^ variable.other.readwrite.jinja
 ##         ^^ keyword.operator.logical.jinja
 ##            ^^^ keyword.operator.logical.jinja
 ##                ^^^^^^^ support.function.test.jinja
 
     {{ foo is not my_test }}
-##     ^^^ variable.other.jinja
+##     ^^^ variable.other.readwrite.jinja
 ##         ^^ keyword.operator.logical.jinja
 ##            ^^^ keyword.operator.logical.jinja
 ##                ^^^^^^^ variable.function.test.jinja
@@ -817,23 +866,23 @@ not a # for statement:
 ##     ^^^ keyword.other.tag.jinja
 ##         ^^^^^^ meta.sequence.tuple.jinja
 ##         ^ punctuation.section.sequence.begin.jinja
-##          ^ variable.other.jinja
+##          ^ variable.other.readwrite.jinja
 ##           ^ punctuation.separator.sequence.jinja
-##             ^ variable.other.jinja
+##             ^ variable.other.readwrite.jinja
 ##              ^ punctuation.section.sequence.end.jinja
 ##                ^ keyword.operator.assignment.jinja
-##                  ^^^^ variable.other.jinja
+##                  ^^^^ variable.other.readwrite.jinja
 
     {% for key, (v1, v2) in my_dict.items() %}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
 ##     ^^^ keyword.control.loop.for.jinja
-##         ^^^ variable.other.jinja
+##         ^^^ variable.other.readwrite.jinja
 ##            ^ punctuation.separator.sequence.jinja
 ##              ^^^^^^^^ meta.sequence.tuple.jinja
 ##                       ^^ keyword.operator.iterator.in.jinja
-##                          ^^^^^^^ variable.other.jinja
+##                          ^^^^^^^ variable.other.object.jinja
 ##                                 ^ punctuation.accessor.dot.jinja
-##                                  ^^^^^ meta.function-call.identifier.jinja variable.function.jinja
+##                                  ^^^^^ meta.function-call.identifier.jinja variable.function.method.jinja
 ##                                       ^ meta.function-call.arguments.jinja punctuation.section.arguments.begin.jinja
 ##                                        ^ meta.function-call.arguments.jinja punctuation.section.arguments.end.jinja
 
