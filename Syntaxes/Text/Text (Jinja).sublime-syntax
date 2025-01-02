@@ -305,6 +305,7 @@ contexts:
       scope: punctuation.separator.parameters.jinja
     - match: '{{identifiers}}(?=\s*=)'
       scope: variable.parameter.jinja
+    - include: block-pop
     - include: expressions
 
 ###[ COLLECTIONS ]############################################################
@@ -329,6 +330,7 @@ contexts:
       pop: 1
     - match: (?=,)
       fail: group-or-tuple
+    - include: block-pop
     - include: expressions
 
   tuple:
@@ -342,6 +344,7 @@ contexts:
     - match: \)
       scope: punctuation.section.sequence.end.jinja
       pop: 1
+    - include: block-pop
     - include: expressions
 
   lists:
@@ -354,6 +357,7 @@ contexts:
     - match: \]
       scope: punctuation.section.sequence.end.jinja
       pop: 1
+    - include: block-pop
     - include: expressions
 
   mappings:
@@ -363,6 +367,7 @@ contexts:
 
   mapping-body:
     - meta_scope: meta.mapping.jinja
+    - include: block-pop
     - match: \}
       scope: punctuation.section.mapping.end.jinja
       pop: 1
@@ -570,6 +575,7 @@ contexts:
       pop: 1
     - match: ':'
       scope: punctuation.separator.slice.jinja
+    - include: block-pop
     - include: expressions
 
 ###[ PROTOTYPES ]#############################################################
@@ -580,4 +586,8 @@ contexts:
 
   immediately-pop:
     - match: ''
+      pop: 1
+
+  block-pop:
+    - match: (?={{modifiers}}?[%}]})
       pop: 1

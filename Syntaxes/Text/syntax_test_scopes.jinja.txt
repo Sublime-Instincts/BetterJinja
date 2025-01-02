@@ -332,6 +332,27 @@ not a # for statement:
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##      ^^ punctuation.section.embedded.end.jinja
 
+    {{ ( }}
+##  ^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^ meta.group.jinja
+##     ^ punctuation.section.group.begin.jinja
+##       ^^ punctuation.section.embedded.end.jinja
+
+    {{ [ }}
+##  ^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^ meta.sequence.list.jinja
+##     ^ punctuation.section.sequence.begin.jinja
+##       ^^ punctuation.section.embedded.end.jinja
+
+    {{ { }}
+##  ^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^ meta.mapping.jinja
+##     ^ punctuation.section.mapping.begin.jinja
+##       ^^ punctuation.section.embedded.end.jinja
+
     {{ + - * / ** // % }}
 ##  ^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
@@ -702,6 +723,20 @@ not a # for statement:
 ##     ^^^ variable.other.jinja
 ##         ^ keyword.operator.assignment.pipe.jinja
 ##           ^^^^^^^ variable.function.filter.jinja
+
+    {{ list|join(', ' }}  {# incomplete groups don't break highlighting #}
+##  ^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##    ^^^^^^^^^^^^^^^^ source.jinja.embedded
+##     ^^^^ variable.other.jinja
+##         ^ keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
+##          ^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
+##              ^^^^^^ meta.function-call.arguments.jinja
+##              ^ punctuation.section.arguments.begin.jinja
+##               ^^^^ meta.string.jinja string.quoted.single.jinja
+##               ^ punctuation.definition.string.begin.jinja
+##                  ^ punctuation.definition.string.end.jinja
+##                    ^^ punctuation.section.embedded.end.jinja
 
     {{ foo | default([]) | list | join(', ') }}
 ##     ^^^ variable.other.jinja
