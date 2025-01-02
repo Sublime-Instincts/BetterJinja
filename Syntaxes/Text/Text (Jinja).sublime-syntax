@@ -368,6 +368,19 @@ contexts:
     - include: block-pop
     - include: expressions
 
+  lists:
+    - match: \[
+      scope: punctuation.section.sequence.begin.jinja
+      push: list-body
+
+  list-body:
+    - meta_scope: meta.sequence.list.jinja
+    - match: \]
+      scope: punctuation.section.sequence.end.jinja
+      pop: 1
+    - include: block-pop
+    - include: expressions
+
   parens:
     - match: (?=\()
       branch_point: parens
@@ -400,19 +413,6 @@ contexts:
   tuple-body:
     - meta_scope: meta.sequence.tuple.jinja
     - match: \)
-      scope: punctuation.section.sequence.end.jinja
-      pop: 1
-    - include: block-pop
-    - include: expressions
-
-  lists:
-    - match: \[
-      scope: punctuation.section.sequence.begin.jinja
-      push: list-body
-
-  list-body:
-    - meta_scope: meta.sequence.list.jinja
-    - match: \]
       scope: punctuation.section.sequence.end.jinja
       pop: 1
     - include: block-pop
