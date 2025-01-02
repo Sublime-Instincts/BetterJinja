@@ -15,9 +15,6 @@ file_extensions:
   - j2.txt
 
 variables:
-  digit: '[0-9]'
-  integers: '({{digit}}*_)?({{digit}}+)'
-  floats: '({{digit}}+_?)?({{digit}}*)?(\.)({{digit}}+)([eE]?{{digit}}*)?'
 
   ident: (?:{{ident_start}}{{ident_part}}*)
   ident_start: '[a-zA-Z_]'
@@ -453,19 +450,12 @@ contexts:
       scope: constant.language.null.jinja
 
   numbers:
-    - match: '{{floats}}'
-      scope: meta.number.float.decimal.jinja
+    - match: (?:\d[\d_]*)?(\.)\d+(?:[eE]\d*)?
+      scope: meta.number.float.decimal.jinja constant.numeric.value.jinja
       captures:
-        1: constant.numeric.value.jinja
-        2: constant.numeric.value.jinja
-        3: punctuation.separator.decimal.jinja
-        4: constant.numeric.value.jinja
-        5: constant.numeric.value.exponent.jinja
-    - match: '{{integers}}'
-      scope: meta.number.integer.decimal.jinja
-      captures:
-        1: constant.numeric.value.jinja
-        2: constant.numeric.value.jinja
+        1: punctuation.separator.decimal.jinja
+    - match: \d[\d_]*
+      scope: meta.number.integer.decimal.jinja constant.numeric.value.jinja
 
   strings:
     - match: \"

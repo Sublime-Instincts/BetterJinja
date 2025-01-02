@@ -380,56 +380,44 @@ not a # for statement:
     {{ = ~ }}
 ##  ^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##         ^^ punctuation.section.embedded.end.jinja
 ##     ^ keyword.operator.assignment.jinja
 ##       ^ keyword.operator.concatenation.jinja
+##         ^^ punctuation.section.embedded.end.jinja
 
     {{ true false True False none None }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##                                     ^^ punctuation.section.embedded.end.jinja
 ##     ^^^^ constant.language.boolean.true.jinja
 ##          ^^^^^ constant.language.boolean.false.jinja
 ##                ^^^^ constant.language.boolean.true.jinja
 ##                     ^^^^^ constant.language.boolean.false.jinja
 ##                           ^^^^ constant.language.null.jinja
 ##                                ^^^^ constant.language.null.jinja
+##                                     ^^ punctuation.section.embedded.end.jinja
 
     {{ 123 123_456 }}
 ##  ^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##                 ^^ punctuation.section.embedded.end.jinja
 ##     ^^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 ##         ^^^^^^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+##                 ^^ punctuation.section.embedded.end.jinja
 
     {{ 42.3 0.3 .5 42.1e2 123_456.789 123_456.789e1 }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
 ##                                                  ^^ punctuation.section.embedded.end.jinja
-##     ^^^^ meta.number.float.decimal.jinja
-##     ^^ constant.numeric.value.jinja
+##     ^^^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
 ##       ^ punctuation.separator.decimal.jinja
-##        ^ constant.numeric.value.jinja
-##          ^^^ meta.number.float.decimal.jinja
-##          ^ constant.numeric.value.jinja
+##          ^^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
 ##           ^ punctuation.separator.decimal.jinja
-##            ^ constant.numeric.value.jinja
-##              ^^ meta.number.float.decimal.jinja
+##              ^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
 ##              ^ punctuation.separator.decimal.jinja
-##               ^ constant.numeric.value.jinja
-##                 ^^^^^^ meta.number.float.decimal.jinja
-##                 ^^ constant.numeric.value.jinja
+##                 ^^^^^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
 ##                   ^ punctuation.separator.decimal.jinja
-##                    ^ constant.numeric.value.jinja
-##                     ^^ constant.numeric.value.exponent.jinja
-##                        ^^^^^^^^^^^ meta.number.float.decimal.jinja
-##                        ^^^^^^^ constant.numeric.value.jinja
+##                        ^^^^^^^^^^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
 ##                               ^ punctuation.separator.decimal.jinja
-##                                ^^^ constant.numeric.value.jinja
-##                                    ^^^^^^^^^^^^^ meta.number.float.decimal.jinja
+##                                    ^^^^^^^^^^^^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
 ##                                           ^ punctuation.separator.decimal.jinja
-##                                            ^^^ constant.numeric.value.jinja
-##                                               ^^ constant.numeric.value.exponent.jinja
 
 
     {{ "Hello, World" 'Hello, World' }}
@@ -449,57 +437,64 @@ not a # for statement:
 ##                         ^^ punctuation.section.embedded.end.jinja
 ##     ^^^^^^^^^^^^^^^^^^^ meta.sequence.list.jinja
 ##     ^ punctuation.section.sequence.begin.jinja
-##                       ^ punctuation.section.sequence.end.jinja
 ##      ^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
-##                  ^^^^^ meta.number.float.decimal.jinja
 ##       ^ punctuation.separator.sequence.jinja
+##                  ^^^^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
+##                       ^ punctuation.section.sequence.end.jinja
 
     {{ ["a", 'c'] }}
 ##  ^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##                ^^ punctuation.section.embedded.end.jinja
 ##      ^^^ meta.string.jinja string.quoted.double.jinja
-##           ^^^ meta.string.jinja  string.quoted.single.jinja
 ##         ^ punctuation.separator.sequence.jinja
+##           ^^^ meta.string.jinja  string.quoted.single.jinja
+##                ^^ punctuation.section.embedded.end.jinja
 
     {{ (1, 0.5, 'a', "b") }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##                        ^^ punctuation.section.embedded.end.jinja
 ##     ^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.jinja
 ##     ^ punctuation.section.sequence.begin.jinja
-##                      ^ punctuation.section.sequence.end.jinja
 ##      ^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
-##         ^^^ meta.number.float.decimal.jinja
+##       ^ punctuation.separator.sequence.jinja
+##         ^^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
 ##              ^^^ meta.string.jinja string.quoted.single.jinja
 ##                   ^^^ meta.string.jinja  string.quoted.double.jinja
-##       ^ punctuation.separator.sequence.jinja
+##                      ^ punctuation.section.sequence.end.jinja
+##                        ^^ punctuation.section.embedded.end.jinja
 
     {{ (1 + 2) (1 not in [1, 2, 3]) }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##                                  ^^ punctuation.section.embedded.end.jinja
 ##     ^^^^^^^ meta.group.jinja
 ##     ^ punctuation.section.group.begin.jinja
 ##           ^ meta.group.jinja punctuation.section.group.end.jinja
 ##             ^^^^^^^^^^^^^^^^^^^^ meta.group.jinja
 ##             ^ punctuation.section.group.begin.jinja
 ##                                ^ punctuation.section.group.end.jinja
+##                                  ^^ punctuation.section.embedded.end.jinja
 
     {{ { "a": "b", 'c': 'd', "e": 123, "f": 123.456 } }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
-##                                                    ^^ punctuation.section.embedded.end.jinja
 ##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.jinja
 ##     ^ punctuation.section.mapping.begin.jinja
-##                                                  ^ punctuation.section.mapping.end.jinja
 ##       ^^^ meta.string.jinja string.quoted.double.jinja
-##                 ^^^ meta.string.jinja  string.quoted.single.jinja
 ##          ^ punctuation.separator.mapping.key-value.jinja
+##            ^^^ meta.string.jinja string.quoted.double.jinja
 ##               ^ punctuation.separator.mapping.pair.jinja
-##                 ^^^ meta.string.jinja  string.quoted.single.jinja
+##                 ^^^ meta.string.jinja string.quoted.single.jinja
+##                      ^^^ meta.string.jinja string.quoted.single.jinja
+##                         ^ punctuation.separator.mapping.pair.jinja
+##                           ^^^ meta.string.jinja string.quoted.double.jinja
+##                              ^ punctuation.separator.mapping.key-value.jinja
 ##                                ^^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
-##                                          ^^^^^^^ meta.number.float.decimal.jinja
+##                                   ^ punctuation.separator.mapping.pair.jinja
+##                                     ^^^ meta.string.jinja string.quoted.double.jinja
+##                                        ^ punctuation.separator.mapping.key-value.jinja
+##                                          ^^^^^^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
+##                                                  ^ punctuation.section.mapping.end.jinja
+##                                                    ^^ punctuation.section.embedded.end.jinja
 
     {{ not and or }}
 ##  ^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
@@ -528,7 +523,7 @@ not a # for statement:
 ##          ^ punctuation.section.interpolation.begin.jinja
 ##           ^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
 ##             ^ keyword.operator.arithmetic.jinja
-##               ^^^ meta.number.float.decimal.jinja
+##               ^^^ meta.number.float.decimal.jinja constant.numeric.value.jinja
 ##                  ^ punctuation.section.interpolation.end.jinja
 ##                   ^^^^^ meta.string.jinja string.quoted.double.jinja
 ##                         ^^ punctuation.section.embedded.end.jinja
