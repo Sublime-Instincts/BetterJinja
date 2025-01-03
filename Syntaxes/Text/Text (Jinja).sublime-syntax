@@ -499,6 +499,12 @@ contexts:
 ###[ OTHER STATEMENTS ]########################################################
 
   other-statement:
+    # filter block tags
+    - match: filter\b
+      scope: keyword.other.tag.jinja
+      set:
+        - filter-meta
+        - filter-name
     # any block tags
     - match: end{{ident}}\b(?!\s*[=(])
       scope: keyword.other.endtag.jinja
@@ -544,6 +550,7 @@ contexts:
       scope: meta.function-call.identifier.jinja variable.function.filter.jinja
       set: function-call-argument-list
     - include: else-pop
+    - include: eol-pop
 
 ###[ FUNCTION CALLS ]##########################################################
 

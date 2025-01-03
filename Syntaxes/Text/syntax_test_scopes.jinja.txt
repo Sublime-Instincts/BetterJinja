@@ -370,7 +370,6 @@ not a # for statement:
 ##                             ^^^^^^^ keyword.other.jinja
 ##                                    ^ - meta.embedded
 
-
 ### [ MACRO DECLARATNONS ]#####################################################
 
     {% macro %} {% endmacro %}
@@ -493,6 +492,81 @@ not a # for statement:
 ##    ^^^^^^ keyword.other.endtag.jinja
 
 
+### [ FILTER STATEMENTS ]######################################################
+
+    {% filter %} {% endfilter %}
+##  ^^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^^^^^ keyword.other.tag.jinja
+##            ^^ punctuation.section.embedded.end.jinja
+##               ^^^^^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
+##               ^^ punctuation.section.embedded.begin.jinja
+##                  ^^^^^^^^^ keyword.other.endtag.jinja
+##                            ^^ punctuation.section.embedded.end.jinja
+
+    {% filter upper %}
+##  ^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##    ^ source.jinja.embedded - meta.filter.jinja
+##     ^^^^^^^^^^^^ source.jinja.embedded meta.filter.jinja
+##     ^^^^^^ keyword.other.tag.jinja
+##            ^^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
+##                 ^ source.jinja.embedded - meta.filter.jinja
+##                  ^^ punctuation.section.embedded.end.jinja
+
+    {% filter custom %}
+##  ^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##    ^ source.jinja.embedded - meta.filter.jinja
+##     ^^^^^^^^^^^^^ source.jinja.embedded meta.filter.jinja
+##     ^^^^^^ keyword.other.tag.jinja
+##            ^^^^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
+##                  ^ source.jinja.embedded - meta.filter.jinja
+##                   ^^ punctuation.section.embedded.end.jinja
+
+    # filter
+##^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^ punctuation.section.embedded.jinja
+##   ^^^^^^^ source.jinja.embedded
+##    ^^^^^^ meta.filter.jinja keyword.other.tag.jinja
+
+    # endfilter
+##^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^ punctuation.section.embedded.jinja
+##   ^^^^^^^^^^ source.jinja.embedded
+##    ^^^^^^^^^ keyword.other.endtag.jinja
+
+    # filter upper
+##^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^ punctuation.section.embedded.jinja
+##   ^ source.jinja.embedded - meta.filter.jinja
+##    ^^^^^^^^^^^^ source.jinja.embedded meta.filter.jinja
+##    ^^^^^^ keyword.other.tag.jinja
+##           ^^^^^ meta.function-call.identifier.jinja support.function.filter.jinja
+
+    # filter custom
+##^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^ punctuation.section.embedded.jinja
+##   ^ source.jinja.embedded - meta.filter.jinja
+##    ^^^^^^^^^^^^^ source.jinja.embedded meta.filter.jinja
+##    ^^^^^^ keyword.other.tag.jinja
+##           ^^^^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
+
+    # filter custom(arg + 10)
+##^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##  ^ punctuation.section.embedded.jinja
+##   ^ source.jinja.embedded - meta.filter.jinja
+##    ^^^^^^^^^^^^^^^^^^^^^^^ source.jinja.embedded meta.filter.jinja
+##    ^^^^^^ keyword.other.tag.jinja
+##           ^^^^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
+##                 ^^^^^^^^^^ meta.function-call.arguments.jinja
+##                 ^ punctuation.section.arguments.begin.jinja
+##                  ^^^ variable.other.readwrite.jinja
+##                      ^ keyword.operator.symbol.jinja keyword.operator.arithmetic.jinja
+##                        ^^ meta.number.integer.decimal.jinja constant.numeric.value.jinja
+##                          ^ punctuation.section.arguments.end.jinja
+
+
 ### [ SET STATEMENTS ]#########################################################
 
     {% set %} {% endset %}
@@ -612,16 +686,6 @@ not a # for statement:
 ##             ^^ punctuation.section.embedded.begin.jinja
 ##                ^^^^^^^ keyword.other.endtag.jinja
 ##                        ^^ punctuation.section.embedded.end.jinja
-
-    {% filter %} {% endfilter %}
-##  ^^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
-##  ^^ punctuation.section.embedded.begin.jinja
-##     ^^^^^^ keyword.other.tag.jinja
-##            ^^ punctuation.section.embedded.end.jinja
-##               ^^^^^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
-##               ^^ punctuation.section.embedded.begin.jinja
-##                  ^^^^^^^^^ keyword.other.endtag.jinja
-##                            ^^ punctuation.section.embedded.end.jinja
 
     {% trans %} {% endtrans %}
 ##  ^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
