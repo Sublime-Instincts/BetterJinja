@@ -1309,6 +1309,7 @@ not a # for statement:
 ##                ^^^^^ support.function.test.jinja
 
     {% if test eq false %}
+##             ^^ - keyword - support.function - variable.function
 ##                ^^^^^ constant.language.boolean.false.jinja
 
     {% if 1 is in [1, 2] %}
