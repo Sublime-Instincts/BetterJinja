@@ -576,8 +576,7 @@ contexts:
     - match: _\b
       scope: variable.language.anonymous.jinja
     - match: loop\b
-      scope: variable.language.loop.jinja
-      push: loop-members
+      scope: meta.path.jinja variable.language.loop.jinja
     - match: (?={{ident_start}})
       branch_point: variable
       branch:
@@ -588,17 +587,6 @@ contexts:
       push:
         - accessor
         - member
-
-  loop-members:
-    - match: \.
-      scope: punctuation.accessor.dot.jinja
-    - match: (?:index|index0|revindex|revindex0|first|last|length|parent)\b
-      scope: variable.language.member.jinja
-      set: subscription
-    - match: '{{ident}}'
-      scope: variable.other.member.jinja
-      set: subscription
-    - include: immediately-pop
 
   unqualified-variable:
     - meta_include_prototype: false

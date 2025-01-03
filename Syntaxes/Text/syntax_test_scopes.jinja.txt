@@ -683,10 +683,22 @@ not a # for statement:
     {{ loop.index }}
 ##  ^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^^^^^^^^^ meta.path.jinja
 ##     ^^^^ variable.language.loop.jinja
 ##         ^ punctuation.accessor.dot.jinja
-##          ^^^^^ variable.language.member.jinja
+##          ^^^^^ variable.other.member.jinja
 ##                ^^ punctuation.section.embedded.end.jinja
+
+    {{ loop.changed() }}
+##  ^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^^^^^^^^^^^^^ meta.path.jinja
+##     ^^^^ variable.language.loop.jinja
+##         ^ punctuation.accessor.dot.jinja
+##          ^^^^^^^ meta.function-call.identifier.jinja variable.function.method.jinja
+##                 ^ meta.function-call.arguments.jinja punctuation.section.arguments.begin.jinja
+##                  ^ meta.function-call.arguments.jinja punctuation.section.arguments.end.jinja
+##                    ^^ punctuation.section.embedded.end.jinja
 
     {{ my_loop.index }}
 ##  ^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
