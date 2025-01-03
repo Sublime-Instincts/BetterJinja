@@ -286,7 +286,7 @@
 			"contents": "title()",
 			"kind": ["markup", "f", "Jinja filter"],
 			"annotation": "Jinja filter",
-			"details": "Return a titlecased version of the value.",
+			"details": "Return a title-cased version of the value.",
 		},
 		{
 			"trigger": "tojson",

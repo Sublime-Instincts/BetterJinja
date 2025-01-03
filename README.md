@@ -78,7 +78,7 @@ Completion behaviour of the primary syntax applies to normal content.
 Default behaviour of ST involves distinction between `source` and `text` scopes.
 
 - `source` (CSS, JavaScript, JSON, YAML): completions display while typing.
-- `text` (HTML, Markdwon, Text, XML): only snippets expand by pressing <kbd>tab</kbd> key.
+- `text` (HTML, Markdown, Text, XML): only snippets expand by pressing <kbd>tab</kbd> key.
 
 Content of `{% %}` and `{{ }}` tags is scoped `source.jinja` to enable completions while typing.
 

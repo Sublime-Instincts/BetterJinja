@@ -83,21 +83,21 @@
 ##        ^ constant.numeric.value.js
 ##         ^ punctuation.terminator.statement.js
 
-  function foo(i) {return {{temlate}} + i + "string {{var}}";}
-##                        ^^^^^^^^^^^ source.js.embedded.html meta.function.js meta.block.js meta.embedded.expression.jinja
+  function foo(i) {return {{template}} + i + "string {{var}}";}
+##                        ^^^^^^^^^^^^ source.js.embedded.html meta.function.js meta.block.js meta.embedded.expression.jinja
 ##                        ^^ punctuation.section.embedded.begin.jinja
-##                          ^^^^^^^ variable.other.readwrite.jinja
-##                                 ^^ punctuation.section.embedded.end.jinja
-##                                    ^ keyword.operator.arithmetic.js
-##                                      ^ variable.other.readwrite.js
-##                                        ^ keyword.operator.arithmetic.js
-##                                          ^^^^^^^^ meta.string.js string.quoted.double.js
-##                                          ^ punctuation.definition.string.begin.js
-##                                                  ^^^^^^^ meta.string.js meta.embedded.expression.jinja - string
-##                                                  ^^ punctuation.section.embedded.begin.jinja
-##                                                    ^^^ variable.other.readwrite.jinja
-##                                                       ^^ punctuation.section.embedded.end.jinja
-##                                                         ^ meta.string.js string.quoted.double.js punctuation.definition.string.end.js
+##                          ^^^^^^^^ variable.other.readwrite.jinja
+##                                  ^^ punctuation.section.embedded.end.jinja
+##                                     ^ keyword.operator.arithmetic.js
+##                                       ^ variable.other.readwrite.js
+##                                         ^ keyword.operator.arithmetic.js
+##                                           ^^^^^^^^ meta.string.js string.quoted.double.js
+##                                           ^ punctuation.definition.string.begin.js
+##                                                   ^^^^^^^ meta.string.js meta.embedded.expression.jinja - string
+##                                                   ^^ punctuation.section.embedded.begin.jinja
+##                                                     ^^^ variable.other.readwrite.jinja
+##                                                        ^^ punctuation.section.embedded.end.jinja
+##                                                          ^ meta.string.js string.quoted.double.js punctuation.definition.string.end.js
 
   {% endif %}
 ##^^^^^^^^^^^ source.js.embedded.html meta.embedded.statement.jinja

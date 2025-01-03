@@ -1,0 +1,6 @@
+# See https://github.com/check-spelling/check-spelling/wiki/Configuration-Examples:-excludes
+(?:^|/)(?i)LICEN[CS]E
+(?:^|/)\.github/actions/spelling
+(?:^|/)\.gitattributes$
+(?:^|/)\.gitignore$
+(?:^|/)pyproject.toml

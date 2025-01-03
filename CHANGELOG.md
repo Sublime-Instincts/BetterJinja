@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Snippets for commonly used Jinja blocks.
 - The main syntax file along with syntax test for the scopes.
 - Auto completions for builtin tags, filters, tests and functions. 
-- Abiility to use <kbd>ctrl + /</kbd> for Jinja line comments & <kbd>ctrl + shift + /</kbd> for block comments.
+- Ability to use <kbd>ctrl + /</kbd> for Jinja line comments & <kbd>ctrl + shift + /</kbd> for block comments.
 
 ## [1.1.0] - 2022-03-27
 
@@ -41,5 +41,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.0]
 
 - Reorganize whole package
-- Rewrite all syntax definitons extending ST's (CSS, JavaScript, JSON, HTML, Markdown, XML, YAML)
+- Rewrite all syntax definitions extending ST's (CSS, JavaScript, JSON, HTML, Markdown, XML, YAML)
 - fix snippet indentation (now using tabs)

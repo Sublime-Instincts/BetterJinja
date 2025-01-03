@@ -179,7 +179,7 @@
 			"trigger": "upper",
 			"kind": ["namespace", "t", "Jinja test"],
 			"annotation": "Jinja test",
-			"details": "Return <code>true</code> if the variable is uppercased.",
+			"details": "Return <code>true</code> if the variable is upper-cased.",
 		},
 	],
 }

@@ -132,7 +132,7 @@ not a # for statement:
 ##                       ^^^^^^ - keyword
 
 
-### [ BLOCK DECLARATNONS ]#####################################################
+### [ BLOCK DECLARATIONS ]#####################################################
 
     {% block %} {% endblock %}
 ##  ^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
@@ -176,7 +176,7 @@ not a # for statement:
 ##                     ^^^^^^^^^^^ meta.embedded.comment.jinja comment.line.jinja
 
 
-### [ IMPORT DECLARATNONS ]####################################################
+### [ IMPORT DECLARATIONS ]####################################################
 
     {% extends "index.html" %}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
@@ -370,7 +370,7 @@ not a # for statement:
 ##                             ^^^^^^^ keyword.other.jinja
 ##                                    ^ - meta.embedded
 
-### [ MACRO DECLARATNONS ]#####################################################
+### [ MACRO DECLARATIONS ]#####################################################
 
     {% macro %} {% endmacro %}
 ##  ^^^^^^^^^^^ meta.embedded.statement.jinja - meta.embedded meta.embedded
