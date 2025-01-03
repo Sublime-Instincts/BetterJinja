@@ -1,0 +1,41 @@
+## SYNTAX TEST "HTML (Jinja).sublime-syntax"
+
+
+## [ DJANGO COMMENTS ] ########################################################
+
+{% comment %} {% comment %} {% endcomment %}
+##^^^^^^^^^^^ meta.embedded.statement.jinja
+##^^^^^^^^^ source.jinja.embedded
+## ^^^^^^^ keyword.other.tag.jinja
+##         ^^ punctuation.section.embedded.end.jinja
+##           ^^^^^^^^^^^^^^ comment.block.jinja
+##                          ^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##                          ^^ punctuation.section.embedded.begin.jinja
+##                             ^^^^^^^^^^ keyword.other.endtag.jinja
+##                                        ^^ punctuation.section.embedded.end.jinja
+
+{% comment "description" %}
+##^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+##^^^^^^^^^ source.jinja.embedded
+## ^^^^^^^ keyword.other.tag.jinja
+##         ^^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
+##                       ^^ punctuation.section.embedded.end.jinja
+    <div>comment {{ignored}}</div>
+##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block.jinja - meta.tag - meta.interpolation - punctuation
+{% endcomment %}
+##^^^^^^^^^^^^^^ meta.embedded.statement.jinja
+## ^^^^^^^^^^ keyword.other.endtag.jinja
+##            ^^ punctuation.section.embedded.end.jinja
+
+# comment "description"
+## <- meta.embedded.statement.jinja punctuation.section.embedded.jinja
+##^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded
+##^^^^^^^ keyword.other.tag.jinja
+##        ^^^^^^^^^^^^^ meta.string.jinja string.quoted.double.jinja
+##        ^ punctuation.definition.string.begin.jinja
+##                    ^ punctuation.definition.string.end.jinja
+    <div>comment {{ignored}}</div>
+##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.block.jinja - meta.tag - meta.interpolation - punctuation
+# endcomment
+## <- meta.embedded.statement.jinja punctuation.section.embedded.begin.jinja
+##^^^^^^^^^^ meta.embedded.statement.jinja source.jinja.embedded keyword.other.endtag.jinja

@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endcomment $1%}]]></content>
+	<tabTrigger>endcomment</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Django endcomment tag</description>
+</snippet>

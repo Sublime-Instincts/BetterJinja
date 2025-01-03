@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+{% comment %}
+${TM_TEMPLATE_INDENT}$0
+{% endcomment %}
+]]></content>
+	<tabTrigger>jcomment</tabTrigger>
+	<scope>meta.template.jinja - meta.embedded.expression - meta.embedded.statement</scope>
+	<description>Django comment statement</description>
+</snippet>

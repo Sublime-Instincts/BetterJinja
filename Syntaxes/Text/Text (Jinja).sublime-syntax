@@ -124,6 +124,7 @@ contexts:
     - include: macro-statement-line
     - include: raw-statement-line
     - include: set-statement-line
+    - include: comment-statement-line
     - include: other-statement
     - include: else-pop
     - include: eol-pop
@@ -151,6 +152,7 @@ contexts:
     - include: macro-statement-tag
     - include: raw-statement-tag
     - include: set-statement-tag
+    - include: comment-statement-tag
     - include: other-statement
     - include: else-pop
 
@@ -345,6 +347,48 @@ contexts:
       pop: 1
     - include: block-pop
     - include: expressions
+
+###[ COMMENT BLOCK DECLARATIONS ]##############################################
+
+  comment-statement-line:
+    - match: comment\b
+      scope: keyword.other.tag.jinja
+      pop: 2  # skip default `statement-line-end`
+      push:
+        - comment-block
+        - jinja-statement-line-end
+
+  comment-statement-tag:
+    - match: comment\b
+      scope: keyword.other.tag.jinja
+      pop: 2 # skip default `statement-tag-end`
+      push:
+        - comment-block
+        - jinja-statement-tag-end
+
+  comment-block:
+    - meta_include_prototype: false
+    # start block at new line or with next non-whitespace
+    - match: ^|(?=\s*\S)
+      set: comment-block-body
+
+  comment-block-body:
+    # All but final `{% endcomment %}` or `# endcomment` is treated literal
+    - meta_content_scope: comment.block.jinja.django
+    - match: (?:^\s*)?(({%{{modifiers}}?)(\s*(endcomment\b)))
+      captures:
+        1: meta.embedded.statement.jinja
+        2: punctuation.section.embedded.begin.jinja
+        3: source.jinja.embedded
+        4: keyword.other.endtag.jinja.django
+      set: jinja-statement-tag-end
+    - match: ^\s*(#)(\s*(endcomment\b))
+      scope: meta.embedded.statement.jinja
+      captures:
+        1: punctuation.section.embedded.begin.jinja
+        2: source.jinja.embedded
+        3: keyword.other.endtag.jinja.django
+      set: jinja-statement-line-end
 
 ###[ RAW BLOCK DECLARATIONS ]##################################################
 
