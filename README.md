@@ -3,12 +3,13 @@
 ![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge) ![LICENSE](https://img.shields.io/badge/ST-Build%204107+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterJinja?style=for-the-badge&logo=github&sort=semver) ![Downloads](https://img.shields.io/packagecontrol/dt/Jinja2?style=for-the-badge)
 ![Syntax tests](https://img.shields.io/github/actions/workflow/status/Sublime-Instincts/BetterJinja/syntax_test.yml?color=green&label=Syntax%20Tests&logo=github&logoColor=white&style=for-the-badge)
 
-[Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) syntax definitions, completions and snippets for [Sublime Text](https://www.sublimetext.com) 
+[Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) and [Django Template Language](https://docs.djangoproject.com/en/5.1/topics/templates/) syntax definitions,
+completions and snippets for [Sublime Text](https://www.sublimetext.com) 
 based on its bundled C/C++, CSS, HTML, JavaScript, JSON, Markdown, XML and YAML syntaxes.
 
 ## Features
 
-- Syntax highlighting for Jinja2 templates  
+- Syntax highlighting for Jinja2 and Django templates  
   _Supported languages: C/C++, CSS, HTML, JavaScript, JSON, Markdown, XML and YAML_
 - Syntax specific indentation for code blocks
 - Completions for built in tags, filters, functions, tests & loop variables.
@@ -35,7 +36,12 @@ at the bottom when you select `Package Control: Add Repository`. Now use
 ### How to use this package ?
 
 By default, this package supports the following Jinja extensions:
-`j2`, `jinja`, `jinja2`, `html.j2`, `html.jinja`, `html.jinja2`, `htm.j2`, `htm.jinja`, `htm.jinja2`.
+
+   `j2`, `jinja`, `jinja2`, `html.j2`, `html.jinja`, `html.jinja2`, `htm.j2`, `htm.jinja`, `htm.jinja2`
+
+and Django extensions:
+
+   `djt`, `djhtml`, `dj.html`, `html.djt`
 
 Since a user can have more than one templating language package installed,
 this package doesn't support `.html` directly. To get highlighting for `.html`

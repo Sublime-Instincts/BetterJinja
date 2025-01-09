@@ -9,7 +9,7 @@
 ======================================================================
 
 Jinja2 package provides syntax definitions, snippets and completions
-for Jinja templates in Sublime Text.
+for Jinja and Django templates in Sublime Text.
 
 Supported languages are:
     CSS, C++, JavaScript, JSON, HTML, Markdown, Text, XML and YAML.
@@ -38,6 +38,10 @@ Default templating language is HTML with following file extensions:
   - .html.j2
   - .html.jinja
   - .html.jinja2
+  - .djt
+  - .djhtml
+  - .dj.html
+  - .html.djt
 
 Having Problems ?
 -----------------
