@@ -1,0 +1,52 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: TOML (Jinja)
+scope: source.toml.jinja
+version: 2
+
+extends: Packages/TOML/TOML.sublime-syntax
+
+file_extensions:
+  - toml.jinja
+  - toml.jinja2
+  - toml.j2
+  - jinja.toml
+  - jinja2.toml
+  - j2.toml
+
+contexts:
+
+  toml:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#jinja-comment-lines
+    - include: Text (Jinja).sublime-syntax#jinja-statement-lines
+    - include: Text (Jinja).sublime-syntax#jinja-comment-tags
+    - include: Text (Jinja).sublime-syntax#jinja-statement-tags
+
+  comments:
+    # escaped TOML comments due to Jinja line statement support
+    - match: \\\#
+      scope: punctuation.definition.comment.toml
+      push: comment-body
+
+  inline-table:
+    # https://toml.io/en/v1.0.0#inline-table
+    - match: \{(?![{%])
+      scope: punctuation.section.mapping.begin.toml
+      push: inline-table-body
+
+  value:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  name-prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  string-prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+variables:
+  ident_begin: (?={{ident_char}}|{{)
