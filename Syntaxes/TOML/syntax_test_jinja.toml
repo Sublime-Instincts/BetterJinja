@@ -1,0 +1,98 @@
+\# SYNTAX TEST "TOML (Jinja2).sublime-syntax"
+
+    \# TOML comment
+\#  ^^^^^^^^^^^^^^^^ comment.line.number-sign.toml
+\#  ^^ punctuation.definition.comment.toml
+
+    [{{section}}]
+\#^^^^^^^^^^^^^^^^ meta.section.toml
+\#  ^^^^^^^^^^^^^ meta.brackets.toml
+\#  ^ punctuation.section.brackets.begin.toml
+\#   ^^^^^^^^^^^ entity.name.section.toml meta.embedded.expression.jinja
+\#   ^^ punctuation.section.embedded.begin.jinja
+\#     ^^^^^^^ source.jinja.embedded variable.other.readwrite.jinja
+\#            ^^ punctuation.section.embedded.end.jinja
+\#              ^ punctuation.section.brackets.end.toml
+
+    [ {{foo}} . {{bar}} . "{{baz}}" . '{{buz}}' ]
+\# ^ meta.section.toml - meta.brackets
+\#  ^^ meta.section.toml meta.brackets.toml
+\#    ^^^^^^^ meta.section.toml meta.brackets.toml entity.name.section.toml meta.embedded.expression.jinja
+\#           ^^^ meta.section.toml meta.brackets.toml
+\#              ^^^^^^^ meta.section.toml meta.brackets.toml entity.name.section.toml meta.embedded.expression.jinja
+\#                     ^^^^ meta.section.toml meta.brackets.toml
+\#                         ^^^^^^^ meta.section.toml meta.brackets.toml entity.name.section.toml meta.embedded.expression.jinja
+\#                                ^^^^^ meta.section.toml meta.brackets.toml
+\#                                     ^^^^^^^ meta.section.toml meta.brackets.toml entity.name.section.toml meta.embedded.expression.jinja
+\#                                            ^^^ meta.section.toml meta.brackets.toml
+\#                                               ^ meta.section.toml - meta.brackets
+
+    {{key}} = {{value}}
+\# ^ meta.mapping.toml - meta.embedded
+\#  ^^^^^^^ meta.mapping.key.toml meta.string.toml meta.embedded.expression.jinja - string
+\#         ^^^ meta.mapping.toml - meta.embedded
+\#            ^^^^^^^^^ meta.mapping.value.toml meta.embedded.expression.jinja - string
+\#                     ^ meta.mapping.toml - meta.embedded
+
+    "{{key}}" = "{{value}}"
+\# ^ meta.mapping.toml - meta.embedded
+\#  ^ meta.mapping.key.toml meta.string.toml string.quoted.double.toml
+\#   ^^^^^^^ meta.mapping.key.toml meta.string.toml meta.embedded.expression.jinja - string
+\#          ^ meta.mapping.key.toml meta.string.toml string.quoted.double.toml
+\#           ^^^ meta.mapping.toml - meta.embedded
+\#              ^ meta.mapping.value.toml meta.string.toml string.quoted.double.toml
+\#               ^^^^^^^^^ meta.mapping.value.toml meta.string.toml meta.embedded.expression.jinja - string
+\#                        ^ meta.mapping.value.toml meta.string.toml string.quoted.double.toml
+\#                         ^ meta.mapping.toml - meta.embedded
+
+    '{{key}}' = '{{value}}'
+\# ^ meta.mapping.toml - meta.embedded
+\#  ^ meta.mapping.key.toml meta.string.toml string.quoted.single.toml
+\#   ^^^^^^^ meta.mapping.key.toml meta.string.toml meta.embedded.expression.jinja - string
+\#          ^ meta.mapping.key.toml meta.string.toml string.quoted.single.toml
+\#           ^^^ meta.mapping.toml - meta.embedded
+\#              ^ meta.mapping.value.toml meta.string.toml string.quoted.single.toml
+\#               ^^^^^^^^^ meta.mapping.value.toml meta.string.toml meta.embedded.expression.jinja - string
+\#                        ^ meta.mapping.value.toml meta.string.toml string.quoted.single.toml
+\#                         ^ meta.mapping.toml - meta.embedded
+
+    {{foo}} . {{bar}} . "{{baz}}" . '{{buz}}' = { {{foo}} . {{bar}} . "{{baz}}" . '{{buz}}' = {{value}} }
+\#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.key.toml - meta.mapping meta.mapping
+\#                                           ^^^ meta.mapping.toml - meta.mapping meta.mapping
+\#                                              ^^ meta.mapping.value.toml meta.mapping.toml
+\#                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.toml meta.mapping.key.toml
+\#                                                                                         ^^^ meta.mapping.value.toml meta.mapping.toml
+\#                                                                                            ^^^^^^^^^ meta.mapping.value.toml meta.mapping.value.toml meta.embedded.expression.jinja
+\#                                                                                                     ^^ meta.mapping.value.toml meta.mapping.toml
+\#                                                                                                       ^ meta.mapping.toml - meta.mapping meta.mapping
+\#  ^^^^^^^ meta.string.toml meta.embedded.expression.jinja
+\#            ^^^^^^^ meta.string.toml meta.embedded.expression.jinja
+\#                       ^^^^^^^ meta.string.toml meta.embedded.expression.jinja
+\#                                   ^^^^^^^ meta.string.toml meta.embedded.expression.jinja
+\#                                                ^^^^^^^ meta.string.toml meta.embedded.expression.jinja
+\#                                                          ^^^^^^^ meta.string.toml meta.embedded.expression.jinja
+\#                                                                     ^^^^^^^ meta.string.toml meta.embedded.expression.jinja
+\#                                                                                 ^^^^^^^ meta.string.toml meta.embedded.expression.jinja
+\#                                                                                            ^^^^^^^^^ meta.embedded.expression.jinja
+
+    {% if global.condition %}
+\#^^ meta.mapping.toml - meta.embedded
+\#  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.toml meta.embedded.statement.jinja
+\#                           ^ meta.mapping.toml - meta.embedded
+\#  ^^ punctuation.section.embedded.begin.jinja
+\#    ^^^^^^^^^^^^^^^^^^^^^ source.jinja.embedded
+\#     ^^ keyword.control.conditional.if.jinja
+\#        ^^^^^^^^^^^^^^^^ meta.path.jinja
+\#        ^^^^^^ variable.other.object.jinja
+\#              ^ punctuation.accessor.dot.jinja
+\#               ^^^^^^^^^ variable.other.member.jinja
+\#                         ^^ punctuation.section.embedded.end.jinja
+
+    {% endif %}
+\#^^ meta.mapping.toml - meta.embedded
+\#  ^^^^^^^^^^^ meta.mapping.toml meta.embedded.statement.jinja
+\#             ^ meta.mapping.toml - meta.embedded
+\#  ^^ punctuation.section.embedded.begin.jinja
+\#    ^^^^^^^ source.jinja.embedded
+\#     ^^^^^ keyword.control.conditional.endif.jinja
+\#           ^^ punctuation.section.embedded.end.jinja

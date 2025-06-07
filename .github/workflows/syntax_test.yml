@@ -30,10 +30,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - build: 4152
-            default_packages: v4152
-          - build: 4169
-            default_packages: v4169
+          - build: 4200
+            default_packages: v4200
           - build: latest
             default_packages: master
     steps:
