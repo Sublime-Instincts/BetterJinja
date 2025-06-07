@@ -14,11 +14,23 @@ goto :usage
 
     echo Creating assets for "%package%"...
 
-    :: create downloadable asset for ST4126+
-    set branch=master
-    set tag=4152-%version%
-    set archive=%package%.sublime-package
+    :: create tag and download asset for ST4152+
+    set build=4152
+    set branch=st%build%
+    set tag=%build%-%version%
+    set archive=%package%-%version%-st%build%.sublime-package
     set assets="%archive%#%archive%"
+    call git push origin %branch%
+    call git tag -f %tag% %branch%
+    call git push --force origin %tag%
+    call git archive --format zip -o "%archive%" %branch%
+
+    :: create tag and download asset for ST4200+ (master branch)
+    set build=4200
+    set branch=master
+    set tag=%build%-%version%
+    set archive=%package%-%version%-st%build%.sublime-package
+    set assets=%assets% "%archive%#%archive%"
     call git push origin %branch%
     call git archive --format zip -o "%archive%" %branch%
 
