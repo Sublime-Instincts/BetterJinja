@@ -25,8 +25,27 @@ contexts:
     - include: Text (Jinja).sublime-syntax#jinja-expression-tags
 
   main:
-    - meta_prepend: true
+    - meta_include_prototype: false
     - meta_scope: meta.template.jinja
+    - match: ''
+      push: [markdown, frontmatter]
+
+  frontmatter:
+    - match: \s*(---)\s*\n
+      captures:
+        0: meta.frontmatter.jinja
+        1: punctuation.section.frontmatter.begin.jinja
+        2: constant.other.language-name.jinja
+      embed: scope:source.yaml.jinja
+      embed_scope: meta.frontmatter.jinja source.yaml.embedded.jinja
+      escape: ^\s*(---)\s*$\n?
+      escape_captures:
+        0: meta.frontmatter.jinja
+        1: punctuation.section.frontmatter.end.jinja
+      pop: 1
+    # Ensure to highlight frontmatter if the syntax is embedded, but pop as early as possible
+    - match: ^|(?=\S)
+      pop: 1
 
   html-content:
     - include: HTML (Jinja).sublime-syntax#html
