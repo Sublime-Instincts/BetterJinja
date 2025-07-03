@@ -489,7 +489,7 @@ contexts:
     # loops
     - match: for\b
       scope: keyword.control.loop.for.jinja
-      pop: 1
+      set: for-expression
     - match: endfor\b
       scope: keyword.control.loop.endfor.jinja
       pop: 1
@@ -499,6 +499,14 @@ contexts:
     - match: break\b
       scope: keyword.control.flow.break.jinja
       pop: 1
+
+  for-expression:
+    - match: in\b
+      scope: keyword.control.loop.in.jinja
+      pop: 1
+    - match: (?=\:?\s*(?:##|$))
+      pop: 1
+    - include: expressions
 
 ###[ OTHER STATEMENTS ]########################################################
 
@@ -683,9 +691,7 @@ contexts:
     # alphanumeric operators
     - match: as\b
       scope: keyword.operator.word.jinja keyword.operator.assignment.as.jinja
-    - match: in\b
-      scope: keyword.operator.word.jinja keyword.operator.iteration.in.jinja
-    - match: (?:and|or|not)\b
+    - match: (?:and|or|not|in)\b
       scope: keyword.operator.word.jinja keyword.operator.logical.jinja
     - match: is\b
       scope: keyword.operator.word.jinja keyword.operator.logical.jinja
