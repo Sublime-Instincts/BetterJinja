@@ -43,6 +43,17 @@ contexts:
         0: meta.frontmatter.jinja
         1: punctuation.section.frontmatter.end.jinja
       pop: 1
+    - match: \s*(\+{3})\s*\n
+      captures:
+        0: meta.frontmatter.jinja
+        1: punctuation.section.frontmatter.begin.jinja
+      embed: scope:source.toml.jinja
+      embed_scope: meta.frontmatter.jinja source.toml.embedded.jinja
+      escape: ^\s*(\+{3})\s*\n
+      escape_captures:
+        0: meta.frontmatter.jinja
+        1: punctuation.section.frontmatter.end.jinja
+      pop: 1
     # Ensure to highlight frontmatter if the syntax is embedded, but pop as early as possible
     - match: ^|(?=\S)
       pop: 1
