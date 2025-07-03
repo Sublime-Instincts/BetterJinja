@@ -901,6 +901,18 @@ not a # for statement:
 ##             ^^ keyword.operator.logical.jinja
 ##                ^^ punctuation.section.embedded.end.jinja
 
+    {{ "foo" if bar == True else "baz" }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##  ^^ punctuation.section.embedded.begin.jinja
+##     ^^^^^ meta.string.jinja string.quoted.double.jinja
+##           ^^ keyword.control.conditional.if.jinja
+##              ^^^ variable.other.readwrite.jinja
+##                  ^^ keyword.operator.symbol.jinja keyword.operator.comparison.jinja
+##                     ^^^^ constant.language.boolean.true.jinja
+##                          ^^^^ keyword.control.conditional.else.jinja
+##                               ^^^^^ meta.string.jinja string.quoted.double.jinja
+##                                     ^^ punctuation.section.embedded.end.jinja
+
     {{ "foo {bar} baz" }}
 ##  ^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
 ##  ^^ punctuation.section.embedded.begin.jinja

@@ -175,6 +175,10 @@ contexts:
     - match: \}{2}
       scope: meta.embedded.expression.jinja punctuation.section.embedded.end.jinja
       pop: 1
+    - match: if\b
+      scope: keyword.control.conditional.if.jinja
+    - match: else\b
+      scope: keyword.control.conditional.else.jinja
     - include: expressions
 
 ###[ IMPORT DECLARATIONS ]#####################################################
