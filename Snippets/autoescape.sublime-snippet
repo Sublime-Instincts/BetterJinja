@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 {% autoescape ${1:true} %}
-${TM_TEMPLATE_INDENT}$0
+${TM_TEMPLATE_INDENT}${0:$SELECTION}
 {% endautoescape %}
 ]]></content>
 	<tabTrigger>jautoescape</tabTrigger>

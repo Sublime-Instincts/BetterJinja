@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 {% block ${1:block_name} %}
-${TM_TEMPLATE_INDENT}$0
+${TM_TEMPLATE_INDENT}${0:$SELECTION}
 {% endblock ${1:block_name} %}
 ]]></content>
 	<tabTrigger>jblock</tabTrigger>

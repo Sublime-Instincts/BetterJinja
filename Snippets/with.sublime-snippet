@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 {% with ${1:assignment} %}
-${TM_TEMPLATE_INDENT}$0
+${TM_TEMPLATE_INDENT}${0:$SELECTION}
 {% endwith %}
 ]]></content>
 	<tabTrigger>jwith</tabTrigger>

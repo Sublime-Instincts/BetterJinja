@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 {% if ${1:condition} %}
-${TM_TEMPLATE_INDENT}$0
+${TM_TEMPLATE_INDENT}${0:$SELECTION}
 {% endif %}
 ]]></content>
 	<tabTrigger>jif</tabTrigger>
