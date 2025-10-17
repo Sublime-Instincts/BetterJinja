@@ -119,7 +119,9 @@ not a # for statement:
 ##    ^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.jinja.embedded
 ##                               ^^ punctuation.section.embedded.end.jinja - source.jinja.embedded
 ##     ^^ keyword.control.conditional.if.jinja
-##        ^^^^^^^^^^^^^^^^^^^^^^ - keyword
+##       ^^^^^^ - keyword
+##             ^^^^ keyword.control.conditional.else.jinja
+##                 ^^^^^^^^^^^^^ - keyword
 
     {% for item in items endfor %}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.jinja
@@ -718,6 +720,28 @@ not a # for statement:
 ##                                    ^^^^^^ variable.other.readwrite.jinja
 ##                                          ^ punctuation.section.arguments.end.jinja
 
+    {% inlineif(arg = ("a" if True else "b")) %}
+##                    ^^^^^^^^^^^^^^^^^^^^^^ meta.group.jinja
+##                     ^^^ meta.string.jinja string.quoted.double.jinja
+##                         ^^ keyword.control.conditional.if.jinja
+##                            ^^^^ constant.language.boolean.true.jinja
+##                                 ^^^^ keyword.control.conditional.else.jinja
+##                                      ^^^ meta.string.jinja string.quoted.double.jinja
+
+    {% inlinefor(arg = (a for a in ("a", "b"))) %}
+##                     ^^^^^^^^^^^^^^^^^^^^^^^ meta.group.jinja
+##                      ^ variable.other.readwrite.jinja
+##                        ^^^ keyword.control.loop.for.jinja
+##                            ^ variable.other.readwrite.jinja
+##                              ^^ keyword.control.loop.in.jinja
+##                                 ^^^^^^^^^^ meta.sequence.tuple.jinja
+##                                 ^ punctuation.section.sequence.begin.jinja
+##                                  ^^^ meta.string.jinja string.quoted.double.jinja
+##                                     ^ punctuation.separator.sequence.jinja
+##                                       ^^^ meta.string.jinja string.quoted.double.jinja
+##                                          ^ punctuation.section.sequence.end.jinja
+##                                           ^ punctuation.section.group.end.jinja
+##                                            ^ punctuation.section.arguments.end.jinja
 
 ### [ EXPRESSION BLOCKS ] #####################################################
 
