@@ -504,7 +504,7 @@ contexts:
     - match: in\b
       scope: keyword.control.loop.in.jinja
       pop: 1
-    - match: (?=\:?\s*(?:##|$))
+    - match: (?=[)\]}]|%}|\:?\s*(?:##|$))
       pop: 1
     - include: expressions
 
@@ -688,6 +688,14 @@ contexts:
 ###[ OPERATORS ]###############################################################
 
   operators:
+    # inline if statements
+    - match: if\b
+      scope: keyword.control.conditional.if.jinja
+    - match: else\b
+      scope: keyword.control.conditional.else.jinja
+    - match: for\b
+      scope: keyword.control.loop.for.jinja
+      push: for-expression
     # alphanumeric operators
     - match: as\b
       scope: keyword.operator.word.jinja keyword.operator.assignment.as.jinja

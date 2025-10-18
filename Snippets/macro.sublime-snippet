@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 {% macro ${1:function} %}
-${TM_TEMPLATE_INDENT}$0
+${TM_TEMPLATE_INDENT}${0:$SELECTION}
 {% endmacro %}
 ]]></content>
 	<tabTrigger>jmacro</tabTrigger>

@@ -7,8 +7,10 @@ hidden: true
 extends: JavaScript (Jinja).sublime-syntax
 
 contexts:
-  main:
-    - include: expressions
+  prototype:
+    - meta_prepend: true
+    - match: (?=')
+      pop: 1
 
   field-name:
     - meta_prepend: true

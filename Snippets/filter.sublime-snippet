@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 {% filter ${1:filter_name} %}
-${TM_TEMPLATE_INDENT}$0
+${TM_TEMPLATE_INDENT}${0:$SELECTION}
 {% endfilter %}
 ]]></content>
 	<tabTrigger>jfilter</tabTrigger>

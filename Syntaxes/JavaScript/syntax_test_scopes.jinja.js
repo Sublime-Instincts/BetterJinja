@@ -40,4 +40,16 @@ function foo () {
 ##   ^^^^^ keyword.control.conditional.endif.jinja
 ##         ^^ punctuation.section.embedded.end.jinja
 
+  {{ obj.prop | filter }}
+##^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+##^^ punctuation.section.embedded.begin.jinja
+##  ^^^^^^^^^^^^^^^^^^^ source.jinja.embedded
+##   ^^^^^^^^ meta.path.jinja
+##   ^^^ variable.other.object.jinja
+##      ^ punctuation.accessor.dot.jinja
+##       ^^^^ variable.other.member.jinja
+##            ^^^^^^^^ meta.filter.jinja
+##            ^ keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
+##              ^^^^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
+##                     ^^ punctuation.section.embedded.end.jinja
 }

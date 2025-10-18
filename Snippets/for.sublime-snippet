@@ -1,7 +1,7 @@
 <snippet>
 	<content><![CDATA[
 {% for ${1:item} in ${2:sequence} %}
-${TM_TEMPLATE_INDENT}$0
+${TM_TEMPLATE_INDENT}${0:$SELECTION}
 {% endfor %}
 ]]></content>
 	<tabTrigger>jfor</tabTrigger>
