@@ -1,0 +1,64 @@
+%YAML 1.2
+---
+name: MySQL (Jinja)
+scope: source.sql.mysql.jinja
+version: 2
+
+extends: Packages/SQL/MySQL.sublime-syntax
+
+contexts:
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.jinja
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+###[ TABLE NAMES OR SUBQUERIES ]###############################################
+
+  table-subquery:
+    - match: \(
+      scope: punctuation.section.group.begin.sql
+      set: table-subquery-begin
+    - match: \{(?![{%])
+      scope: punctuation.section.braces.begin.mysql
+      set:
+        - table-braced-subquery-body
+        - maybe-on-table
+    - match: \b(?i:json_table)\b
+      scope: meta.table-valued-function-name.sql support.function.tsql
+      set: function-call-arguments
+
+###[ IDENTIFIERS ]#############################################################
+
+  inside-backtick-quoted-identifier-part:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  inside-double-quoted-identifier-part:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  inside-single-quoted-identifier-part:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  inside-simple-identifier-part:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+###[ STRINGS ]#################################################################
+
+  inside-like-single-quoted-string:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  inside-single-quoted-string:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  string-interpolations:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations

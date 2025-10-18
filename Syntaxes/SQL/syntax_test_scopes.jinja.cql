@@ -1,0 +1,36 @@
+-- SYNTAX TEST "Cassandra (Jinja).sublime-syntax"
+
+SELECT {{ columns | secure }} FROM {{ table }} WHERE `my-{{field}}` is 'String {{ value }}'
+--^^^^ keyword.other.dml.sql
+--     ^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.jinja
+--     ^^ punctuation.section.embedded.begin.jinja
+--       ^^^^^^^^^^^^^^^^^^ source.jinja.embedded
+--        ^^^^^^^ variable.other.readwrite.jinja
+--                ^^^^^^^^ meta.filter.jinja
+--                ^ keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
+--                  ^^^^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
+--                         ^^ punctuation.section.embedded.end.jinja
+--                            ^^^^ keyword.other.dml.sql
+--                                 ^^^^^^^^^^^ meta.table-name.sql meta.embedded.expression.jinja
+--                                 ^^ punctuation.section.embedded.begin.jinja
+--                                   ^^^^^^^ source.jinja.embedded
+--                                    ^^^^^ variable.other.readwrite.jinja
+--                                          ^^ punctuation.section.embedded.end.jinja
+--                                             ^^^^^ keyword.other.dml.sql
+--                                                   ^^^^^^^^^^^^^^ meta.column-name.sql
+--                                                   ^ punctuation.definition.identifier.begin.sql
+--                                                       ^^^^^^^^^ meta.embedded.expression.jinja
+--                                                       ^^ punctuation.section.embedded.begin.jinja
+--                                                         ^^^^^ source.jinja.embedded variable.other.readwrite.jinja
+--                                                              ^^ punctuation.section.embedded.end.jinja
+--                                                                ^ punctuation.definition.identifier.end.sql
+--                                                                  ^^ keyword.operator.logical.sql
+--                                                                     ^^^^^^^^^^^^^^^^^^^^ meta.string.sql
+--                                                                     ^^^^^^^^ string.quoted.single.sql
+--                                                                     ^ punctuation.definition.string.begin.sql
+--                                                                             ^^^^^^^^^^^ meta.embedded.expression.jinja
+--                                                                             ^^ punctuation.section.embedded.begin.jinja
+--                                                                               ^^^^^^^ source.jinja.embedded
+--                                                                                ^^^^^ variable.other.readwrite.jinja
+--                                                                                      ^^ punctuation.section.embedded.end.jinja
+--                                                                                        ^ string.quoted.single.sql punctuation.definition.string.end.sql

@@ -1,10 +1,10 @@
 %YAML 1.2
 ---
-name: SQL (Jinja)
-scope: source.sql.jinja
-version: 1
+name: TSQL (Jinja)
+scope: source.sql.tsql.jinja
+version: 2
 
-extends: Packages/SQL/SQL.sublime-syntax
+extends: Packages/SQL/TSQL.sublime-syntax
 
 contexts:
 
@@ -16,34 +16,34 @@ contexts:
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax
 
-  inside-double-dash-comment:
-    - meta_prepend: true
-    - include: Text (Jinja).sublime-syntax
+###[ IDENTIFIERS ]#############################################################
 
-  inside-number-sign-comment:
-    - meta_prepend: true
-    - include: Text (Jinja).sublime-syntax
-
-  inside-comment-block:
-    - meta_prepend: true
-    - include: Text (Jinja).sublime-syntax
-
-  string-escape:
+  inside-backtick-quoted-identifier-part:
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax#interpolations
 
-  string-interpolation:
+  inside-double-quoted-identifier-part:
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax#interpolations
 
-  inside-like-single-quoted-string-slash-escape:
+  inside-single-quoted-identifier-part:
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax#interpolations
 
-  inside-like-single-quoted-string-caret-escape:
+  inside-simple-identifier-part:
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax#interpolations
+
+###[ STRINGS ]#################################################################
 
   inside-like-single-quoted-string:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  inside-single-quoted-string:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  string-interpolations:
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax#interpolations
