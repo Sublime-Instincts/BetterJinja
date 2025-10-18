@@ -1,0 +1,49 @@
+%YAML 1.2
+---
+name: SQL (Jinja)
+scope: source.sql.jinja
+version: 1
+
+extends: Packages/SQL/SQL.sublime-syntax
+
+contexts:
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.jinja
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  inside-double-dash-comment:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  inside-number-sign-comment:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  inside-comment-block:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  string-escape:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  string-interpolation:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  inside-like-single-quoted-string-slash-escape:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  inside-like-single-quoted-string-caret-escape:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  inside-like-single-quoted-string:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
