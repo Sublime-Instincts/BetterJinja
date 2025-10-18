@@ -276,6 +276,25 @@
 ##                                               ^^ punctuation.section.embedded.end.jinja
 ##                                                 ^ punctuation.definition.string.end.html
 
+    onclick="{{ obj.prop | filter }}"
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.event.html
+##  ^^^^^^^ entity.other.attribute-name.event.html
+##         ^ punctuation.separator.key-value.html
+##          ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.html
+##          ^ string.quoted.double.html punctuation.definition.string.begin.html
+##           ^^^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.html meta.embedded.expression.jinja
+##           ^^ punctuation.section.embedded.begin.jinja
+##             ^^^^^^^^^^^^^^^^^^^ source.jinja.embedded
+##              ^^^^^^^^ meta.path.jinja
+##              ^^^ variable.other.object.jinja
+##                 ^ punctuation.accessor.dot.jinja
+##                  ^^^^ variable.other.member.jinja
+##                       ^^^^^^^^ meta.filter.jinja
+##                       ^ keyword.operator.symbol.jinja keyword.operator.assignment.pipe.jinja
+##                         ^^^^^^ meta.function-call.identifier.jinja variable.function.filter.jinja
+##                                ^^ punctuation.section.embedded.end.jinja
+##                                  ^ string.quoted.double.html punctuation.definition.string.end.html
+
     {% endif %}
 ##^^^^^^^^^^^^^^ meta.tag - meta.attribute-with-value
 ##  ^^^^^^^^^^^ meta.embedded.statement.jinja
