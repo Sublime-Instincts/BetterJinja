@@ -295,6 +295,42 @@
 ##                                ^^ punctuation.section.embedded.end.jinja
 ##                                  ^ string.quoted.double.html punctuation.definition.string.end.html
 
+    onClick="let editing = document.querySelector('.editing')
+##  ^^^^^^^^ meta.attribute-with-value.event.html - meta.string
+##          ^ meta.attribute-with-value.event.html meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
+##           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.event.html meta.string.html source.js.embedded.html
+##           ^^^ keyword.declaration
+##               ^^^^^^^ variable.other
+##                       ^ keyword.operator.assignment
+             if (editing) {
+##^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.event.html meta.string.html source.js.embedded.html
+##           ^^ keyword.control.conditional.if
+##              ^^^^^^^^^ meta.group
+##              ^ punctuation.section.group.begin
+##               ^^^^^^^ variable.other.readwrite
+##                      ^ punctuation.section.group.end
+##                        ^ meta.block punctuation.section.block.begin
+                htmx.trigger(this, 'edit')
+##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.event.html meta.string.html source.js.embedded.html meta.conditional.js meta.block.js
+##              ^^^^ variable.other
+##                  ^ punctuation.accessor
+##                   ^^^^^^^^^^^^^^^^^^^^^ meta.function-call
+##                   ^^^^^^^ variable.function
+##                          ^^^^^^^^^^^^^^ meta.group
+##                          ^ punctuation.section.group.begin
+##                           ^^^^ variable.language.this
+##                               ^ punctuation.separator.comma
+##                                 ^^^^^^ meta.string string.quoted.single
+##                                 ^ punctuation.definition.string.begin
+##                                      ^ punctuation.definition.string.end
+##                                       ^ punctuation.section.group.end
+             }"
+##^^^^^^^^^^^^^ meta.attribute-with-value.event.html meta.string.html
+##^^^^^^^^^^^^ source.js.embedded.html meta.block.js
+##           ^ punctuation.section.block.end.js
+##            ^ string.quoted.double.html punctuation.definition.string.end.html - source.js
+##             ^ - meta.attribute-with-value
+
     {% endif %}
 ##^^^^^^^^^^^^^^ meta.tag - meta.attribute-with-value
 ##  ^^^^^^^^^^^ meta.embedded.statement.jinja
