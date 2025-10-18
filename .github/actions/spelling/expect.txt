@@ -1,0 +1,7 @@
+cql
+dml
+htmx
+inlinefor
+inlineif
+Postgre
+tsql
