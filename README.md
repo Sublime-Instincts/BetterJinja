@@ -10,7 +10,7 @@ based on its bundled C/C++, CSS, HTML, JavaScript, JSON, Markdown, XML and YAML 
 ## Features
 
 - Syntax highlighting for Jinja2 and Django templates  
-  _Supported languages: C/C++, CSS, HTML, JavaScript, JSON, Markdown, XML and YAML_
+  _Supported languages: C/C++, CSS, HTML, JavaScript, JSON, Markdown, SQL, XML and YAML_
 - Syntax specific indentation for code blocks
 - Completions for built in tags, filters, functions, tests & loop variables.
 - Key bindings to make your life easier
