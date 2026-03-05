@@ -20,6 +20,8 @@ file_extensions:
   - djhtml
   - dj.html
   - html.djt
+  # Nunjucks
+  - njk
 
 extends: Packages/HTML/HTML.sublime-syntax
 
