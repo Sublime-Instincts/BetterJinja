@@ -30,32 +30,49 @@ contexts:
 
 ###[ IDENTIFIERS ]#############################################################
 
-  inside-backtick-quoted-identifier-part:
+  identifier-prototype:
+    # requires sublimehq/Packages/pull/4464
     - meta_prepend: true
-    - include: Text (Jinja).sublime-syntax#interpolations
+    - include: Text (Jinja).sublime-syntax
+
+  inside-backtick-quoted-identifier-part:
+    # required before sublimehq/Packages/pull/4464
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
 
   inside-double-quoted-identifier-part:
+    # required before sublimehq/Packages/pull/4464
     - meta_prepend: true
-    - include: Text (Jinja).sublime-syntax#interpolations
+    - include: Text (Jinja).sublime-syntax
 
   inside-single-quoted-identifier-part:
+    # required before sublimehq/Packages/pull/4464
     - meta_prepend: true
-    - include: Text (Jinja).sublime-syntax#interpolations
+    - include: Text (Jinja).sublime-syntax
 
   inside-simple-identifier-part:
+    # required before sublimehq/Packages/pull/4464
     - meta_prepend: true
-    - include: Text (Jinja).sublime-syntax#interpolations
+    - include: Text (Jinja).sublime-syntax
 
 ###[ STRINGS ]#################################################################
 
+  string-prototype:
+    # requires sublimehq/Packages/pull/4464
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
   inside-like-single-quoted-string:
+    # required before sublimehq/Packages/pull/4464
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax#interpolations
 
   inside-single-quoted-string:
+    # required before sublimehq/Packages/pull/4464
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax#interpolations
 
   string-interpolations:
+    # required before sublimehq/Packages/pull/4464
     - meta_prepend: true
     - include: Text (Jinja).sublime-syntax#interpolations
