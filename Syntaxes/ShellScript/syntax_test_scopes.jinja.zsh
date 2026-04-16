@@ -1,8 +1,8 @@
 ## SYNTAX TEST "Zsh (Jinja).sublime-syntax"
 
-\# Shell comments need escaped hashtags
+# Shell comments need escaped hashtags
 ## <- comment.line.number-sign.shell punctuation.definition.comment.shell
-##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.number-sign.shell
+##^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.number-sign.shell
 
   {% if true %}
 ##^^^^^^^^^^^^^ meta.embedded.statement.jinja
