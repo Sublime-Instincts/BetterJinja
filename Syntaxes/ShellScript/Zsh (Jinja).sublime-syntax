@@ -1,0 +1,66 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: Zsh (Jinja)
+scope: source.shell.zsh.jinja
+version: 2
+
+extends: Packages/ShellScript/Zsh.sublime-syntax
+
+file_extensions:
+  - zsh.jinja
+  - zsh.jinja2
+  - zsh.j2
+  - jinja.zsh
+  - jinja2.zsh
+  - j2.zsh
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.jinja
+
+  comments:
+    - match: \\\#+
+      scope: punctuation.definition.comment.shell
+      push: comments-body
+    - include: merge-conflict-markers
+
+  string-prototype:
+    - meta_prepend: true
+    - include: Text (Jinja).sublime-syntax#interpolations
+
+  string-path-pattern-ansi-c-body:
+    # workaround for missing prototype exclusion in core syntax
+    - meta_prepend: true
+    - meta_include_prototype: false
+
+  string-path-pattern-double-quoted-body:
+    # workaround for missing prototype exclusion in core syntax
+    - meta_prepend: true
+    - meta_include_prototype: false
+
+  string-path-pattern-single-quoted-body:
+    # workaround for missing prototype exclusion in core syntax
+    - meta_prepend: true
+    - meta_include_prototype: false
+
+  path-pattern-ansi-c-body:
+    # workaround for missing prototype exclusion in core syntax
+    - meta_prepend: true
+    - meta_include_prototype: false
+
+  path-pattern-double-quoted-body:
+    # workaround for missing prototype exclusion in core syntax
+    - meta_prepend: true
+    - meta_include_prototype: false
+
+  path-pattern-single-quoted-body:
+    # workaround for missing prototype exclusion in core syntax
+    - meta_prepend: true
+    - meta_include_prototype: false
