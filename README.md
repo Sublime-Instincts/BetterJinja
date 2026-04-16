@@ -5,7 +5,8 @@
 
 [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) and [Django Template Language](https://docs.djangoproject.com/en/5.1/topics/templates/) syntax definitions,
 completions and snippets for [Sublime Text](https://www.sublimetext.com) 
-based on its bundled C/C++, CSS, HTML, JavaScript, JSON, Markdown, XML and YAML syntaxes.
+based on its bundled C/C++, CSS, HTML, JavaScript, JSON, Markdown, ShellScript,
+XML and YAML syntaxes.
 
 ## Features
 
