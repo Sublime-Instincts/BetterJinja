@@ -24,12 +24,14 @@ formatspec
 frontmatter
 gcc
 Giorsux
+hashtags
 HIMSj
 keepachangelog
 lipsum
 MSfz
 mytemplate
 nmstart
+njk
 nxd
 packagecontrol
 palletsprojects
