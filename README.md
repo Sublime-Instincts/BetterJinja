@@ -1,17 +1,13 @@
 # Jinja2
 
-![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge) ![LICENSE](https://img.shields.io/badge/ST-Build%204107+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterJinja?style=for-the-badge&logo=github&sort=semver) ![Downloads](https://img.shields.io/packagecontrol/dt/Jinja2?style=for-the-badge)
-![Syntax tests](https://img.shields.io/github/actions/workflow/status/Sublime-Instincts/BetterJinja/syntax_test.yml?color=green&label=Syntax%20Tests&logo=github&logoColor=white&style=for-the-badge)
-
 [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) and [Django Template Language](https://docs.djangoproject.com/en/5.1/topics/templates/) syntax definitions,
 completions and snippets for [Sublime Text](https://www.sublimetext.com)
 based on its bundled C/C++, CSS, HTML, JavaScript, JSON, Markdown, ShellScript,
-XML and YAML syntaxes.
+SQL, TOML, XML and YAML syntaxes.
 
 ## Features
 
 - Syntax highlighting for Jinja2 and Django templates  
-  _Supported languages: C/C++, CSS, HTML, JavaScript, JSON, Markdown, SQL, TOML, XML and YAML_
 - Syntax specific indentation for code blocks
 - Completions for built in tags, filters, functions, tests & loop variables.
 - Key bindings to make your life easier
@@ -19,7 +15,7 @@ XML and YAML syntaxes.
 
 ## Installation
 
-#### Package Control
+### Package Control
 
 The best way is to install it via [Package Control](https://packagecontrol.io/).
 Once you have Package Control setup in Sublime Text, open the command palette
@@ -38,7 +34,8 @@ at the bottom when you select `Package Control: Add Repository`. Now use
 
 By default, this package supports the following Jinja extensions:
 
-   `j2`, `jinja`, `jinja2`, `html.j2`, `html.jinja`, `html.jinja2`, `htm.j2`, `htm.jinja`, `htm.jinja2`
+   `j2`, `jinja`, `jinja2`, `html.j2`, `html.jinja`, `html.jinja2`, `htm.j2`,
+   `htm.jinja`, `htm.jinja2`
 
 and Django extensions:
 
@@ -70,12 +67,12 @@ can follow any of the two approaches given below
 
 ### Key bindings
 
-- The key bindings are configured so that pressing <kbd>shift + {</kbd>
-  **twice** will automatically add spaces on both sides for the inner brace
-  expression block & place the cursor in the center, like so `{{ | }}`.
-- |||ly pressing <kbd>shift + %</kbd> within `{}` will add spaces on both sides of the inner `%` like so `{% | %}`
-- You can use <kbd>ctrl + /</kbd> for inserting Jinja style line comments (`## This is a line comment`)
-- Similarly, use <kbd>ctrl + shift + /</kbd> for block style comments (`{# This is a block comment #}`)
+- <kbd>shift + {</kbd> **twice** inserts `{{ | }}`
+- <kbd>shift + %</kbd> within `{}` expands to `{% | %}`
+- <kbd>ctrl + /</kbd> inserts Jinja style line comments
+  (`## This is a line comment`)
+- <kbd>ctrl + shift + /</kbd> inserts block style comments
+  (`{# This is a block comment #}`)
 
 ### Auto completions
 
@@ -91,7 +88,7 @@ Content of `{% %}` and `{{ }}` tags is scoped `source.jinja` to enable completio
 
 ### Snippets
 
-Basic snippets for each keyword are provided to create expressions without bothering with `{%  %}`.
+Basic snippets are provided to create expressions without bothering with `{%  %}`.
 
 |  **Tab Trigger**  | **Jinja Tag**         |
 |-------------------|-----------------------|
