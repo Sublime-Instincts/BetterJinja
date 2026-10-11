@@ -4,14 +4,14 @@
 ![Syntax tests](https://img.shields.io/github/actions/workflow/status/Sublime-Instincts/BetterJinja/syntax_test.yml?color=green&label=Syntax%20Tests&logo=github&logoColor=white&style=for-the-badge)
 
 [Jinja2](https://jinja.palletsprojects.com/en/3.1.x/) and [Django Template Language](https://docs.djangoproject.com/en/5.1/topics/templates/) syntax definitions,
-completions and snippets for [Sublime Text](https://www.sublimetext.com) 
+completions and snippets for [Sublime Text](https://www.sublimetext.com)
 based on its bundled C/C++, CSS, HTML, JavaScript, JSON, Markdown, ShellScript,
 XML and YAML syntaxes.
 
 ## Features
 
 - Syntax highlighting for Jinja2 and Django templates  
-  _Supported languages: C/C++, CSS, HTML, JavaScript, JSON, Markdown, SQL, XML and YAML_
+  _Supported languages: C/C++, CSS, HTML, JavaScript, JSON, Markdown, SQL, TOML, XML and YAML_
 - Syntax specific indentation for code blocks
 - Completions for built in tags, filters, functions, tests & loop variables.
 - Key bindings to make your life easier
@@ -21,7 +21,7 @@ XML and YAML syntaxes.
 
 #### Package Control
 
-The best way is to install it via [Package Control](https://packagecontrol.io/). 
+The best way is to install it via [Package Control](https://packagecontrol.io/).
 Once you have Package Control setup in Sublime Text, open the command palette
 and search for `Package Control: Install Package`. Search for `Jinja2` and
 install it. Package Control will take care for of automatically updating the
@@ -128,26 +128,58 @@ Snippets can be disabled (ignored) by adding the following to _Preferences.subli
 
 ## Troubleshooting
 
-Jinja2 extends Sublime Text's CSS, HTML, JavaScript, JSON, Markdown, XML and
-YAML syntax definitions.
+Jinja2 extends Sublime Text's C++, CSS, HTML, JavaScript, JSON, Markdown, ShellScript,
+SQL, TOML, XML and YAML syntax definitions.
 
-If Jinja2 syntax highlighting doesn't work and console displays syntax errors, 
+If Jinja2 syntax highlighting doesn't work and console displays syntax errors,
 
-1. check if required bundled packages are enabled.
-2. remove any out-dated syntax override.
-   
+1. check if required bundled packages are enabled
+2. revert bundled packages to factory defaults
+3. uninstall any 3rd-party package, providing incompatible syntax definitions
+
 ### Enable bundled packages
 
 1. Open `Command Palette` using <kbd>ctrl+shift+P</kbd> or menu item `Tools → Command Palette...`
 2. Choose `Package Control: Enable Packages`
-3. Find `CSS` and hit <kbd>Enter</kbd>
-4. Repeat the steps for `JavaScript`, `HTML` ...
+3. Find e.g. `CSS` and hit <kbd>Enter</kbd>
+4. Repeat the steps for all relevant packages (`JavaScript`, `HTML`, ...)
 
-### Remove overrides
+### Revert bundled packages to factory defaults
 
-1. call _Menu > Preferences > Browse Packages.._
+When to use:
+
+- A 3rd-party package, such as TOML augments ST's bundled package.
+- An out-dated syntax definition override was created before,
+  which prevents the built-in syntax from taking effect.
+
+To revert a bundled package...
+
+1. Open `Command Palette` using <kbd>ctrl+shift+P</kbd> or menu item `Tools → Command Palette...`
+2. Choose `Package Control: Revert Built-in Package`
+3. Find e.g. `TOML` and hit <kbd>Enter</kbd>
+4. Repeat the steps for all relevant packages (`JavaScript`, `HTML`, ...)
+
+To manually check and remove overrides ...
+
+1. Call _Menu > Preferences > Browse Packages.._
 2. Look for _CSS_, _HTML_, ... folders
 3. Remove them or at least delete any syntax definition in them
+
+### Uninstall incompatible 3rd-party packages
+
+Make sure to remove related out-dated syntax packages,
+which don't meet least compatibility requirements.
+
+They can be identified by calling
+e.g. `sublime.find_syntax_by_scope("source.ts")` in ST's console.
+
+Known candidates are:
+
+- [JavaScriptNext - ES6 Syntax](https://packagecontrol.io/packages/JavaScriptNext%20-%20ES6%20Syntax)
+- [Naomi](https://github.com/borela/naomi)
+- [TOML](https://packagecontrol.io/packages/TOML)
+- [TypeScript](https://packagecontrol.io/packages/TypeScript)
+- [TypeScript Syntax](https://packagecontrol.io/packages/TypeScript%20Syntax)
 
 ## Issues & Feature requests
 
@@ -159,5 +191,5 @@ as possible).
 
 ## Acknowledgements
 
-The [syntax_test.yml](.github/workflows/syntax_test.yml) is taken & used (with some modifications) 
+The [syntax_test.yml](.github/workflows/syntax_test.yml) is taken & used (with some modifications)
 from the official [Packages](https://github.com/sublimehq/Packages) repository. So full credit goes to them for it.
